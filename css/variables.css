@@ -1,0 +1,45 @@
+:root {
+  /* Brand Colors */
+  --kn-charcoal: #1C1B19;
+  --kn-pine: #7E9B8A;
+  --kn-fjord: #8DA3B0;
+  --kn-ash: #5C5A55;
+  --kn-linen: #F4F3F0;
+  --kn-white: #FFFFFF;
+  --kn-pine-light: #96B5A3;
+  --kn-fjord-light: #A3BAC8;
+
+  /* Text */
+  --ink: #1C1B19;
+  --text-secondary: #5C5A55;
+  --text-muted: #8A8880;
+
+  /* Surfaces */
+  --surface: #F4F3F0;
+  --surface-warm: #ECEAE5;
+  --surface-card: #FFFFFF;
+
+  /* Borders */
+  --border: rgba(28, 27, 25, 0.08);
+  --border-mid: rgba(28, 27, 25, 0.14);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 12px rgba(28, 27, 25, 0.06);
+  --shadow-md: 0 8px 32px rgba(28, 27, 25, 0.10);
+  --shadow-lg: 0 20px 60px rgba(28, 27, 25, 0.14);
+
+  /* Typography Scale */
+  --text-xs: 0.72rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.375rem;
+
+  /* Font */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.4s ease;
+}
