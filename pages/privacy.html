@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
   <title>Privacy Policy | Kneuralabs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,9 +12,9 @@
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/layout.css" />
   <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/sections.css" />
   <style>
-    body { padding-top: 64px; }
-    .page-header { background: var(--kn-charcoal); padding: clamp(48px,8vw,96px) 0; }
+    .page-header { background: var(--kn-charcoal); padding: clamp(48px,8vw,96px) 0; padding-top: calc(64px + clamp(48px,8vw,96px)); }
     .page-header h1 { color: var(--kn-white); font-size: clamp(1.8rem,4vw,2.8rem); }
     .page-header p { color: rgba(255,255,255,0.55); margin-top:10px; font-size:var(--text-sm); }
     .prose { max-width: 720px; padding: clamp(48px,8vw,96px) 0; }
@@ -21,62 +22,58 @@
     .prose p, .prose li { font-size:var(--text-sm); color:var(--text-secondary); line-height:1.75; }
     .prose ul { list-style: disc; padding-left: 20px; }
     .prose li { margin-bottom: 6px; }
-    .back-link { display:inline-flex; align-items:center; gap:6px; font-size:var(--text-sm); font-weight:600; color:var(--kn-pine); margin-bottom:8px; }
+    .back-link { display:inline-flex; align-items:center; gap:6px; font-size:var(--text-sm); font-weight:600; color:var(--kn-pine); margin-bottom:24px; }
     .back-link:hover { opacity:0.7; }
   </style>
 </head>
 <body>
-  <nav class="navbar scrolled">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="../index.html" class="nav-logo" aria-label="Kneuralabs home">
-          <div class="nav-logo-icon">Kn</div>
-          <div class="nav-logo-text">
-            <span class="nav-logo-name">Kneuralabs</span>
-            <span class="nav-logo-sub">AI Governance</span>
-          </div>
-        </a>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header></header>
+
+  <main id="main-content">
+    <div class="page-header">
+      <div class="container">
+        <h1>Privacy Policy</h1>
+        <p>Last updated: January 2024</p>
       </div>
     </div>
-  </nav>
 
-  <div class="page-header">
     <div class="container">
-      <h1>Privacy Policy</h1>
-      <p>Last updated: January 2024</p>
+      <div class="prose">
+        <a href="../index.html" class="back-link">← Back to home</a>
+
+        <h2>Overview</h2>
+        <p>Kneuralabs LLC ("we," "us," or "our") is committed to protecting your personal information. This Privacy Policy describes how we collect, use, and share information when you visit our website or engage with our services.</p>
+
+        <h2>Information We Collect</h2>
+        <p>We may collect the following types of information:</p>
+        <ul>
+          <li>Contact information (name, email, company, role) submitted through our inquiry form</li>
+          <li>Usage data collected automatically when you visit our site (pages visited, browser type, IP address)</li>
+          <li>Communications you send to us via email or our contact form</li>
+        </ul>
+
+        <h2>How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+          <li>Respond to your inquiries and provide our consulting services</li>
+          <li>Improve our website and services</li>
+          <li>Send relevant updates about AI governance with your consent</li>
+          <li>Comply with legal obligations</li>
+        </ul>
+
+        <h2>Data Sharing</h2>
+        <p>We do not sell your personal information. We may share information with trusted service providers who assist us in operating our website, subject to confidentiality agreements.</p>
+
+        <h2>Contact Us</h2>
+        <p>For privacy-related questions, contact us at <a href="mailto:hello@kneuralabs.com" style="color:var(--kn-pine);">hello@kneuralabs.com</a>.</p>
+      </div>
     </div>
-  </div>
+  </main>
 
-  <div class="container">
-    <div class="prose">
-      <a href="../index.html" class="back-link">← Back to home</a>
+  <footer></footer>
 
-      <h2>Overview</h2>
-      <p>Kneuralabs LLC ("we," "us," or "our") is committed to protecting your personal information. This Privacy Policy describes how we collect, use, and share information when you visit our website or engage with our services.</p>
-
-      <h2>Information We Collect</h2>
-      <p>We may collect the following types of information:</p>
-      <ul>
-        <li>Contact information (name, email, company, role) submitted through our inquiry form</li>
-        <li>Usage data collected automatically when you visit our site (pages visited, browser type, IP address)</li>
-        <li>Communications you send to us via email or our contact form</li>
-      </ul>
-
-      <h2>How We Use Your Information</h2>
-      <p>We use the information we collect to:</p>
-      <ul>
-        <li>Respond to your inquiries and provide our consulting services</li>
-        <li>Improve our website and services</li>
-        <li>Send relevant updates about AI governance with your consent</li>
-        <li>Comply with legal obligations</li>
-      </ul>
-
-      <h2>Data Sharing</h2>
-      <p>We do not sell your personal information. We may share information with trusted service providers who assist us in operating our website, subject to confidentiality agreements.</p>
-
-      <h2>Contact Us</h2>
-      <p>For privacy-related questions, contact us at <a href="mailto:hello@kneuralabs.com" style="color:var(--kn-pine);">hello@kneuralabs.com</a>.</p>
-    </div>
-  </div>
+  <script src="../js/components.js"></script>
 </body>
 </html>
