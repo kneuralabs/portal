@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="index, follow" />
-  <meta name="description" content="Get in touch with Kneuralabs to start your AI governance assessment or learn more about our services." />
+  <meta name="description" content="Get in touch with Kneuralabs. Book a discovery call or ask about our AI governance services." />
   <title>Contact | Kneuralabs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
@@ -17,91 +17,99 @@
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
-
   <header></header>
 
   <main id="main-content">
 
-    <!-- ── Contact ── -->
-    <section class="contact section-lg" style="padding-top: calc(64px + clamp(64px,10vw,120px));">
+    <!-- Hero -->
+    <section class="contact-hero section-sm">
+      <div class="container">
+        <span class="section-tag sr">Contact</span>
+        <h1 class="sr">Let's talk governance.</h1>
+        <p class="lead sr">Book a 30-minute discovery call or send us a message. We respond within one business day.</p>
+      </div>
+    </section>
+
+    <!-- Contact Grid -->
+    <section class="section-md">
       <div class="container">
         <div class="contact-grid">
-          <div class="contact-info sr sr-left">
-            <span class="section-tag">Contact</span>
-            <h1 style="font-size:clamp(1.7rem,3.5vw,2.6rem);line-height:1.15;letter-spacing:-0.02em;margin-bottom:16px;">Start the conversation</h1>
-            <p>Tell us about your AI landscape. We'll review your inquiry and respond within one business day.</p>
 
-            <div class="contact-details">
-              <div class="contact-detail">
-                <div class="detail-icon">✉</div>
-                <div>
-                  <div class="detail-label">Email</div>
-                  <div class="detail-value"><a href="mailto:hello@kneuralabs.com">hello@kneuralabs.com</a></div>
-                </div>
-              </div>
-              <div class="contact-detail">
-                <div class="detail-icon">📍</div>
-                <div>
-                  <div class="detail-label">Location</div>
-                  <div class="detail-value">Manchester, CT 06042, USA</div>
-                </div>
-              </div>
-              <div class="contact-detail">
-                <div class="detail-icon">🕐</div>
-                <div>
-                  <div class="detail-label">Hours</div>
-                  <div class="detail-value">Monday–Friday, 9 AM–5 PM EST<br />Appointments available by request.</div>
-                </div>
-              </div>
+          <!-- Info -->
+          <div class="contact-info-block sr sr-left">
+            <div class="contact-info-item">
+              <div class="contact-info-label">Email</div>
+              <a href="mailto:hello@kneuralabs.com" class="contact-info-value">hello@kneuralabs.com</a>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-label">Location</div>
+              <div class="contact-info-value">Manchester, CT 06042<br />United States</div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-label">Response time</div>
+              <div class="contact-info-value">Within one business day</div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-label">Discovery call</div>
+              <div class="contact-info-value">30 minutes · Free · No commitment</div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-label">LinkedIn</div>
+              <a href="https://linkedin.com/company/kneuralabs" target="_blank" rel="noopener" class="contact-info-value">linkedin.com/company/kneuralabs</a>
             </div>
           </div>
 
-          <div class="contact-form sr sr-right">
+          <!-- Form -->
+          <div class="sr sr-right">
             <form id="contactForm" novalidate>
-              <div class="form-body">
-                <div class="form-row">
-                  <div class="form-group">
-                    <label class="form-label" for="companyName">Company Name</label>
-                    <input class="form-input" type="text" id="companyName" name="companyName" required placeholder="Acme Inc." />
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="yourName">Your Name</label>
-                    <input class="form-input" type="text" id="yourName" name="yourName" required placeholder="Jane Smith" />
-                  </div>
+              <div id="formBody">
+                <div class="form-group">
+                  <label class="form-label" for="fullName">Full name</label>
+                  <input class="form-input" type="text" id="fullName" name="fullName" required placeholder="Jane Smith" autocomplete="name" />
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="email">Email</label>
-                  <input class="form-input" type="email" id="email" name="email" required placeholder="jane@acme.com" />
+                  <label class="form-label" for="company">Company</label>
+                  <input class="form-input" type="text" id="company" name="company" required placeholder="Acme Inc." autocomplete="organization" />
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="role">Role <span>(optional)</span></label>
-                  <input class="form-input" type="text" id="role" name="role" placeholder="e.g., Chief Risk Officer, VP Engineering" />
+                  <label class="form-label" for="workEmail">Work email</label>
+                  <input class="form-input" type="email" id="workEmail" name="workEmail" required placeholder="jane@acme.com" autocomplete="email" />
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="interest">Primary Interest</label>
-                  <select class="form-input" id="interest" name="interest">
-                    <option value="">Select a service…</option>
-                    <option value="assessment">AI Risk Assessment</option>
-                    <option value="framework">Governance Framework</option>
-                    <option value="standards">Standards Readiness</option>
-                    <option value="other">Other</option>
+                  <label class="form-label" for="interest">Primary interest</label>
+                  <select class="form-select" id="interest" name="interest" required>
+                    <option value="">Select…</option>
+                    <option value="s1">S1 — AI System Inventory &amp; Risk Classification</option>
+                    <option value="s2">S2 — AI Governance Framework Design</option>
+                    <option value="s3">S3 — Standards Readiness &amp; Certification Preparation</option>
+                    <option value="s4">S4 — Ongoing Governance Advisory</option>
+                    <option value="full">Full Programme (S1–S4)</option>
+                    <option value="discovery">Discovery call (not sure yet)</option>
                   </select>
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="message">Message <span>(optional)</span></label>
-                  <textarea class="form-input" id="message" name="message" placeholder="Tell us about your AI governance needs…"></textarea>
+                  <label class="form-label" for="message">Message <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+                  <textarea class="form-textarea" id="message" name="message" rows="4" placeholder="Tell us about your AI landscape, your timeline, or anything else that would help us prepare…"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-lg form-submit" style="width:100%;justify-content:center;">
-                  Send Inquiry
-                </button>
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
+                <p class="form-note">We'll respond within one business day. Your information is kept strictly confidential.</p>
+              </div>
+
+              <div id="formSuccess" style="display:none;" aria-live="polite">
+                <div class="form-success">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--kn-pine)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <h3>Message received.</h3>
+                  <p>Thank you for reaching out. We'll review your inquiry and respond within one business day.</p>
+                </div>
               </div>
             </form>
           </div>
+
         </div>
       </div>
     </section>
