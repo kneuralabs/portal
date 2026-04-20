@@ -48,7 +48,6 @@
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     const backdrop = document.getElementById('navBackdrop');
-    const navbar = document.querySelector('.navbar');
 
     if (!hamburger || !mobileMenu) return;
 
@@ -75,10 +74,6 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
     });
-
-    window.addEventListener('scroll', () => {
-      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 8);
-    }, { passive: true });
   }
 
   async function init() {

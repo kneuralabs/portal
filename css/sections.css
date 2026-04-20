@@ -518,30 +518,46 @@ footer::before {
   .about-values-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr 1fr; }
 }
+/* ── Responsive: Tablet (641–900px) ── */
+@media (max-width: 900px) and (min-width: 641px) {
+  .team-grid { grid-template-columns: repeat(2,1fr); }
+  .kl-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+/* ── Responsive: Large phone (481–640px) ── */
 @media (max-width: 640px) {
+  /* Hero: stack buttons, full-width for equal sizing */
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; justify-content: center; text-align: center; min-height: 52px; }
+  /* CTA band: stack buttons */
+  .cta-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 360px; }
+  .cta-actions .btn { width: 100%; justify-content: center; min-height: 52px; }
+  /* Grids: single column */
   .approach-grid { grid-template-columns: 1fr; }
   .bundle-row { grid-template-columns: 1fr; }
   .jflow-item { grid-template-columns: 40px 1fr; gap: 12px; }
   .standards-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
-  /* Stats: 2×2 grid on small tablets and large phones */
+  /* Stats: 2×2 grid on phones */
   .stats-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
   .stat-item { padding: 20px 16px; margin: 0; border: none; background: var(--surface-warm); }
-  .stats-grid-spacer { display: none; }
 }
+
+/* ── Responsive: Small phone (≤ 480px) ── */
 @media (max-width: 480px) {
   .about-contact-row { grid-template-columns: 72px 1fr; gap: 8px; }
   .svc-pg-meta { flex-direction: column; align-items: flex-start; }
   .discovery-callout { flex-direction: column; }
-}
-@media (max-width: 340px) {
-  .hero-title { font-size: clamp(1.9rem,10vw,2.6rem); }
-  .hero-actions { flex-direction: column; }
-  .hero-actions .btn { width: 100%; justify-content: center; }
-  /* Stats: single column below 340px, override the 2-col from 640px */
+  .hero-rings { display: none; }
+  /* Stats: single column */
   .stats-inner { display: flex; flex-direction: column; background: transparent; gap: 0; }
-  .stat-item { border: none; border-bottom: 1px solid var(--border); padding: 12px 0; margin: 0; background: transparent; }
+  .stat-item { border: none; border-bottom: 1px solid var(--border); padding: 14px 0; margin: 0; background: transparent; }
   .stat-item:last-child { border-bottom: none; }
+}
+
+/* ── Responsive: Very small (≤ 360px) ── */
+@media (max-width: 360px) {
+  .hero-title { font-size: clamp(1.9rem, 10vw, 2.6rem); }
 }
 
 /* Standards grid */
