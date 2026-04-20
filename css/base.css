@@ -91,11 +91,11 @@ h4 { font-size: 1rem; font-weight: 600; line-height: var(--lh-heading); }
 /* Scroll reveal */
 .sr {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.65s var(--ease-apple), transform 0.65s var(--ease-apple);
+  transform: translateY(22px);
+  transition: opacity 0.6s var(--ease-apple), transform 0.6s var(--ease-apple-out);
 }
-.sr.sr-left { transform: translateX(-18px); }
-.sr.sr-right { transform: translateX(18px); }
+.sr.sr-left { transform: translateX(-20px); }
+.sr.sr-right { transform: translateX(20px); }
 .sr.revealed { opacity: 1; transform: translate(0, 0) !important; }
 
 /* Stagger delays for card grids */
@@ -108,7 +108,7 @@ h4 { font-size: 1rem; font-weight: 600; line-height: var(--lh-heading); }
 .careers-values .sr:nth-child(2),
 .about-values-grid .sr:nth-child(2),
 .standards-grid .sr:nth-child(2),
-.getstarted-grid .sr:nth-child(2) { transition-delay: 0.09s; }
+.getstarted-grid .sr:nth-child(2) { transition-delay: 0.08s; }
 
 .svc-grid .sr:nth-child(3),
 .approach-grid .sr:nth-child(3),
@@ -118,18 +118,24 @@ h4 { font-size: 1rem; font-weight: 600; line-height: var(--lh-heading); }
 .careers-values .sr:nth-child(3),
 .about-values-grid .sr:nth-child(3),
 .standards-grid .sr:nth-child(3),
-.getstarted-grid .sr:nth-child(3) { transition-delay: 0.18s; }
+.getstarted-grid .sr:nth-child(3) { transition-delay: 0.16s; }
 
 .approach-grid .sr:nth-child(4),
 .careers-values .sr:nth-child(4),
 .about-values-grid .sr:nth-child(4),
 .standards-grid .sr:nth-child(4),
-.kl-grid .sr:nth-child(4) { transition-delay: 0.27s; }
+.kl-grid .sr:nth-child(4) { transition-delay: 0.24s; }
 
 .approach-grid .sr:nth-child(5),
-.standards-grid .sr:nth-child(5) { transition-delay: 0.36s; }
+.standards-grid .sr:nth-child(5) { transition-delay: 0.32s; }
 
-.standards-grid .sr:nth-child(6) { transition-delay: 0.45s; }
+.standards-grid .sr:nth-child(6) { transition-delay: 0.40s; }
+
+/* Sequential stagger for problem list — reads like a typewriter */
+.problems-list .sr:nth-child(2) { transition-delay: 0.07s; }
+.problems-list .sr:nth-child(3) { transition-delay: 0.14s; }
+.problems-list .sr:nth-child(4) { transition-delay: 0.21s; }
+.problems-list .sr:nth-child(5) { transition-delay: 0.28s; }
 
 /* Honour reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
