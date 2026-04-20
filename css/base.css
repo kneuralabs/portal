@@ -94,3 +94,28 @@ h4 { font-size: 1rem; font-weight: 600; line-height: var(--lh-heading); }
 .sr.sr-left { transform: translateX(-18px); }
 .sr.sr-right { transform: translateX(18px); }
 .sr.revealed { opacity: 1; transform: translate(0, 0) !important; }
+
+/* Stagger delays for card grids */
+.svc-grid .sr:nth-child(2),
+.approach-grid .sr:nth-child(2),
+.kl-grid .sr:nth-child(2),
+.insights-grid .sr:nth-child(2),
+.team-grid .sr:nth-child(2),
+.industry-grid .sr:nth-child(2) { transition-delay: 0.09s; }
+
+.svc-grid .sr:nth-child(3),
+.approach-grid .sr:nth-child(3),
+.insights-grid .sr:nth-child(3),
+.team-grid .sr:nth-child(3),
+.kl-grid .sr:nth-child(3) { transition-delay: 0.18s; }
+
+.approach-grid .sr:nth-child(4) { transition-delay: 0.27s; }
+.approach-grid .sr:nth-child(5) { transition-delay: 0.36s; }
+
+/* Honour reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .sr, .sr.sr-left, .sr.sr-right {
+    opacity: 1; transform: none;
+    transition: none;
+  }
+}
