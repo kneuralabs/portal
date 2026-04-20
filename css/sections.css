@@ -153,6 +153,10 @@
 .svc-subnav a.active, .svc-subnav-item.active { color: var(--ink); border-bottom-color: var(--kn-pine-text); }
 
 /* ── Services page — per-service 2-col layout ── */
+/* Account for fixed navbar + sticky subnav (~48px) when anchor-linking */
+.svc-pg-section[id], #industries, #bundles {
+  scroll-margin-top: calc(var(--nav-height) + 56px);
+}
 .svc-pg-section {}
 .svc-pg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px); align-items: start; }
 .svc-pg-grid-reverse .svc-pg-content { order: 2; }
