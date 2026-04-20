@@ -44,18 +44,109 @@
 
     <!-- Hero -->
     <section class="hero">
-      <!-- KneuraLens decorative rings — brand graphic element -->
+      <!-- KneuraLens Neural Network — animated signal propagation -->
       <div class="hero-rings" aria-hidden="true">
         <div class="hero-rings-inner">
           <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="200" cy="200" r="188" stroke="currentColor" stroke-width="0.6"/>
-            <circle cx="200" cy="200" r="142" stroke="currentColor" stroke-width="0.6"/>
-            <circle cx="200" cy="200" r="96"  stroke="currentColor" stroke-width="0.6"/>
-            <circle cx="200" cy="200" r="48"  stroke="currentColor" stroke-width="0.6"/>
-            <line x1="12"  y1="200" x2="388" y2="200" stroke="currentColor" stroke-width="0.3"/>
-            <line x1="200" y1="12"  x2="200" y2="388" stroke="currentColor" stroke-width="0.3"/>
-            <line x1="67"  y1="67"  x2="333" y2="333" stroke="currentColor" stroke-width="0.25"/>
-            <line x1="333" y1="67"  x2="67"  y2="333" stroke="currentColor" stroke-width="0.25"/>
+
+            <!-- Structural rings + crosshairs (background guide) -->
+            <g stroke="currentColor" opacity="0.12">
+              <circle cx="200" cy="200" r="188" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="142" stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="96"  stroke-width="0.5"/>
+              <circle cx="200" cy="200" r="48"  stroke-width="0.5"/>
+              <line x1="12"  y1="200" x2="388" y2="200" stroke-width="0.3"/>
+              <line x1="200" y1="12"  x2="200" y2="388" stroke-width="0.3"/>
+              <line x1="67"  y1="67"  x2="333" y2="333" stroke-width="0.2"/>
+              <line x1="333" y1="67"  x2="67"  y2="333" stroke-width="0.2"/>
+            </g>
+
+            <!-- Neural edges — also used as mpath targets for signal pulses -->
+            <g stroke="currentColor" stroke-width="0.75" stroke-linecap="round" opacity="0.22">
+              <!-- Center → inner ring -->
+              <path id="e0"  d="M200,200 L200,152"/>
+              <path id="e1"  d="M200,200 L248,200"/>
+              <path id="e2"  d="M200,200 L200,248"/>
+              <path id="e3"  d="M200,200 L152,200"/>
+              <!-- Inner → middle (cardinal) -->
+              <path id="e4"  d="M200,152 L200,104"/>
+              <path id="e5"  d="M248,200 L296,200"/>
+              <path id="e6"  d="M200,248 L200,296"/>
+              <path id="e7"  d="M152,200 L104,200"/>
+              <!-- Inner → middle (diagonal fan) -->
+              <path id="e8"  d="M200,152 L268,132"/>
+              <path id="e9"  d="M200,152 L132,132"/>
+              <path id="e10" d="M248,200 L268,132"/>
+              <path id="e11" d="M248,200 L268,268"/>
+              <path id="e12" d="M200,248 L268,268"/>
+              <path id="e13" d="M200,248 L132,268"/>
+              <path id="e14" d="M152,200 L132,268"/>
+              <path id="e15" d="M152,200 L132,132"/>
+              <!-- Middle → outer (cardinal) -->
+              <path id="e16" d="M200,104 L200,58"/>
+              <path id="e17" d="M296,200 L342,200"/>
+              <path id="e18" d="M200,296 L200,342"/>
+              <path id="e19" d="M104,200 L58,200"/>
+              <!-- Middle → outer (diagonal fan) -->
+              <path id="e20" d="M200,104 L300,100"/>
+              <path id="e21" d="M200,104 L100,100"/>
+              <path id="e22" d="M268,132 L300,100"/>
+              <path id="e23" d="M296,200 L300,100"/>
+              <path id="e24" d="M268,268 L300,300"/>
+              <path id="e25" d="M200,296 L300,300"/>
+              <path id="e26" d="M200,296 L100,300"/>
+              <path id="e27" d="M132,268 L100,300"/>
+              <path id="e28" d="M104,200 L100,300"/>
+              <path id="e29" d="M132,132 L100,100"/>
+            </g>
+
+            <!-- Signal pulses — different speeds per layer, naturally desync over time -->
+            <g fill="currentColor" opacity="0.65">
+              <!-- Center → inner -->
+              <circle r="2.5"><animateMotion dur="1.1s" begin="0s" repeatCount="indefinite"><mpath href="#e0"/></animateMotion></circle>
+              <circle r="2.5"><animateMotion dur="1.4s" begin="0s" repeatCount="indefinite"><mpath href="#e1"/></animateMotion></circle>
+              <circle r="2.5"><animateMotion dur="1.2s" begin="0s" repeatCount="indefinite"><mpath href="#e2"/></animateMotion></circle>
+              <circle r="2.5"><animateMotion dur="1.5s" begin="0s" repeatCount="indefinite"><mpath href="#e3"/></animateMotion></circle>
+              <!-- Inner → middle (cardinal) -->
+              <circle r="2"><animateMotion dur="1.6s" begin="0s" repeatCount="indefinite"><mpath href="#e4"/></animateMotion></circle>
+              <circle r="2"><animateMotion dur="1.3s" begin="0s" repeatCount="indefinite"><mpath href="#e5"/></animateMotion></circle>
+              <circle r="2"><animateMotion dur="1.7s" begin="0s" repeatCount="indefinite"><mpath href="#e6"/></animateMotion></circle>
+              <circle r="2"><animateMotion dur="1.4s" begin="0s" repeatCount="indefinite"><mpath href="#e7"/></animateMotion></circle>
+              <!-- Inner → middle (diagonal) -->
+              <circle r="2"><animateMotion dur="2.0s" begin="0s" repeatCount="indefinite"><mpath href="#e8"/></animateMotion></circle>
+              <circle r="2"><animateMotion dur="2.3s" begin="0s" repeatCount="indefinite"><mpath href="#e11"/></animateMotion></circle>
+              <circle r="2"><animateMotion dur="1.9s" begin="0s" repeatCount="indefinite"><mpath href="#e13"/></animateMotion></circle>
+              <circle r="2"><animateMotion dur="2.1s" begin="0s" repeatCount="indefinite"><mpath href="#e15"/></animateMotion></circle>
+              <!-- Middle → outer (cardinal) -->
+              <circle r="1.5"><animateMotion dur="1.2s" begin="0s" repeatCount="indefinite"><mpath href="#e16"/></animateMotion></circle>
+              <circle r="1.5"><animateMotion dur="1.4s" begin="0s" repeatCount="indefinite"><mpath href="#e17"/></animateMotion></circle>
+              <circle r="1.5"><animateMotion dur="1.1s" begin="0s" repeatCount="indefinite"><mpath href="#e18"/></animateMotion></circle>
+              <circle r="1.5"><animateMotion dur="1.3s" begin="0s" repeatCount="indefinite"><mpath href="#e19"/></animateMotion></circle>
+              <!-- Middle → outer (diagonal) -->
+              <circle r="1.5"><animateMotion dur="2.5s" begin="0s" repeatCount="indefinite"><mpath href="#e20"/></animateMotion></circle>
+              <circle r="1.5"><animateMotion dur="2.7s" begin="0s" repeatCount="indefinite"><mpath href="#e21"/></animateMotion></circle>
+              <circle r="1.5"><animateMotion dur="2.3s" begin="0s" repeatCount="indefinite"><mpath href="#e24"/></animateMotion></circle>
+              <circle r="1.5"><animateMotion dur="2.9s" begin="0s" repeatCount="indefinite"><mpath href="#e29"/></animateMotion></circle>
+            </g>
+
+            <!-- Nodes — sized by layer depth, centre pulses -->
+            <g fill="currentColor" opacity="0.50">
+              <circle cx="200" cy="200" r="3.5">
+                <animate attributeName="r"       values="3;5;3"   dur="2.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4,0,0.6,1;0.4,0,0.6,1"/>
+                <animate attributeName="opacity" values="1;0.4;1" dur="2.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4,0,0.6,1;0.4,0,0.6,1"/>
+              </circle>
+              <circle cx="200" cy="152" r="2.5"/><circle cx="248" cy="200" r="2.5"/>
+              <circle cx="200" cy="248" r="2.5"/><circle cx="152" cy="200" r="2.5"/>
+              <circle cx="200" cy="104" r="2"/><circle cx="268" cy="132" r="2"/>
+              <circle cx="296" cy="200" r="2"/><circle cx="268" cy="268" r="2"/>
+              <circle cx="200" cy="296" r="2"/><circle cx="132" cy="268" r="2"/>
+              <circle cx="104" cy="200" r="2"/><circle cx="132" cy="132" r="2"/>
+              <circle cx="200" cy="58"  r="1.5"/><circle cx="300" cy="100" r="1.5"/>
+              <circle cx="342" cy="200" r="1.5"/><circle cx="300" cy="300" r="1.5"/>
+              <circle cx="200" cy="342" r="1.5"/><circle cx="100" cy="300" r="1.5"/>
+              <circle cx="58"  cy="200" r="1.5"/><circle cx="100" cy="100" r="1.5"/>
+            </g>
+
           </svg>
         </div>
       </div>
