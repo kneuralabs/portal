@@ -151,6 +151,42 @@
 .btn-white-outline:active { transform: translateY(0); background: rgba(255,255,255,0.06); }
 .btn-white-outline:focus-visible { outline-color: rgba(255,255,255,0.7); }
 
+/* ── Scroll Progress Bar ── */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--kn-pine);
+  transform-origin: left center;
+  transform: scaleX(0);
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.72;
+  will-change: transform;
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex; align-items: center;
+  font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: var(--ls-wider); text-transform: uppercase;
+  padding: 4px 10px; border-radius: var(--radius-full);
+}
+.badge-pine  { background: rgba(126,155,138,0.12); color: var(--kn-pine-text); }
+.badge-fjord { background: rgba(141,163,176,0.12); color: var(--kn-fjord); }
+.badge-ash   { background: rgba(92,90,85,0.10);    color: var(--kn-ash); }
+
+/* ── Button Loading Spinner ── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn-spinner {
+  display: inline-block;
+  width: 14px; height: 14px; flex-shrink: 0;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  border-top-color: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+  vertical-align: middle;
+}
+
 /* ── Forms ── */
 .form-group { margin-bottom: 24px; }
 .form-label { display: block; font-size: var(--text-xs); font-weight: 700; letter-spacing: var(--ls-wider); text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; }

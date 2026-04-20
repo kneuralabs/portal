@@ -1,4 +1,18 @@
 (function () {
+  // Scroll progress bar
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  progressBar.setAttribute('aria-hidden', 'true');
+  document.body.prepend(progressBar);
+  function updateProgress() {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = total > 0
+      ? `scaleX(${Math.min(window.scrollY / total, 1)})`
+      : 'scaleX(0)';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
   // Respect reduced motion — mark all as revealed immediately
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.querySelectorAll('.sr').forEach(el => el.classList.add('revealed'));

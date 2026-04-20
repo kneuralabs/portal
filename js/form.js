@@ -10,13 +10,14 @@
     e.preventDefault();
     if (!submitBtn) return;
 
-    submitBtn.textContent = 'Sending…';
+    submitBtn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span> Sending…';
     submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.82';
 
     setTimeout(() => {
       form.reset();
       if (formBody) formBody.setAttribute('hidden', '');
       if (formSuccess) formSuccess.removeAttribute('hidden');
-    }, 900);
+    }, 1100);
   });
 })();
