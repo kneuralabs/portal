@@ -1,22 +1,22 @@
-const form = document.getElementById('contactForm');
+(function () {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
 
-form.addEventListener('submit', e => {
-  e.preventDefault();
+  const formBody = document.getElementById('formBody');
+  const formSuccess = document.getElementById('formSuccess');
+  const submitBtn = form.querySelector('[type="submit"]');
 
-  const btn = form.querySelector('.form-submit');
-  btn.textContent = 'Sending…';
-  btn.disabled = true;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!submitBtn) return;
 
-  // Simulate form submission
-  setTimeout(() => {
-    btn.textContent = 'Inquiry Sent ✓';
-    btn.style.background = 'var(--kn-pine)';
-    form.reset();
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
 
     setTimeout(() => {
-      btn.textContent = 'Send Inquiry';
-      btn.style.background = '';
-      btn.disabled = false;
-    }, 3000);
-  }, 1200);
-});
+      form.reset();
+      if (formBody) formBody.setAttribute('hidden', '');
+      if (formSuccess) formSuccess.removeAttribute('hidden');
+    }, 900);
+  });
+})();

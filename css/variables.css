@@ -2,17 +2,18 @@
   /* Brand Colors */
   --kn-charcoal: #1C1B19;
   --kn-pine: #7E9B8A;
+  --kn-pine-text: #4D6E5E;     /* pine for text on light backgrounds — 5:1 contrast */
+  --kn-pine-light: #96B5A3;
   --kn-fjord: #8DA3B0;
+  --kn-fjord-light: #A3BAC8;
   --kn-ash: #5C5A55;
   --kn-linen: #F4F3F0;
   --kn-white: #FFFFFF;
-  --kn-pine-light: #96B5A3;
-  --kn-fjord-light: #A3BAC8;
 
   /* Text */
   --ink: #1C1B19;
   --text-secondary: #5C5A55;
-  --text-muted: #8A8880;
+  --text-muted: #6B6966;        /* darkened from #8A8880 — now 4.9:1 on linen */
 
   /* Surfaces */
   --surface: #F4F3F0;
@@ -20,13 +21,14 @@
   --surface-card: #FFFFFF;
 
   /* Borders */
-  --border: rgba(28, 27, 25, 0.08);
-  --border-mid: rgba(28, 27, 25, 0.14);
+  --border: rgba(28, 27, 25, 0.10);
+  --border-mid: rgba(28, 27, 25, 0.18);
 
   /* Shadows */
-  --shadow-sm: 0 2px 12px rgba(28, 27, 25, 0.06);
-  --shadow-md: 0 8px 32px rgba(28, 27, 25, 0.10);
-  --shadow-lg: 0 20px 60px rgba(28, 27, 25, 0.14);
+  --shadow-sm: 0 1px 4px rgba(28, 27, 25, 0.06), 0 4px 16px rgba(28, 27, 25, 0.06);
+  --shadow-md: 0 4px 12px rgba(28, 27, 25, 0.08), 0 16px 40px rgba(28, 27, 25, 0.10);
+  --shadow-lg: 0 8px 24px rgba(28, 27, 25, 0.10), 0 32px 64px rgba(28, 27, 25, 0.14);
+  --shadow-focus: 0 0 0 3px rgba(77, 110, 94, 0.22);
 
   /* Radius */
   --radius-sm: 6px;
@@ -45,6 +47,19 @@
   --text-base: 1rem;
   --text-md: 1.125rem;
   --text-lg: 1.375rem;
+
+  /* Line heights */
+  --lh-tight: 1.25;
+  --lh-heading: 1.4;
+  --lh-body: 1.65;
+  --lh-loose: 1.75;
+
+  /* Letter spacing */
+  --ls-tight: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.06em;
+  --ls-wider: 0.12em;
+  --ls-widest: 0.16em;
 
   /* Easing */
   --ease-apple: cubic-bezier(0.25, 0.46, 0.45, 0.94);
