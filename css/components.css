@@ -135,7 +135,7 @@
 .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
 .form-textarea { min-height: 120px; resize: vertical; }
 .form-note { font-size: var(--text-xs); color: var(--text-muted); margin-top: 10px; line-height: var(--lh-body); }
-.btn-block { width: 100%; justify-content: center; }
+.btn-block { width: 100%; }
 .form-label-note { font-weight: 400; text-transform: none; letter-spacing: 0; }
 select.form-input, select.form-select {
   appearance: none;
