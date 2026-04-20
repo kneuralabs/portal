@@ -326,8 +326,7 @@
 .about-hero .section-tag,
 .approach-hero .section-tag,
 .getstarted-hero .section-tag,
-.careers-hero .section-tag,
-.journey-hero .section-tag { color: rgba(255,255,255,0.55); }
+.careers-hero .section-tag { color: rgba(255,255,255,0.55); }
 .cta-band .section-tag::before,
 .about-hero .section-tag::before,
 .approach-hero .section-tag::before,
