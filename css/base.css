@@ -101,16 +101,32 @@ h4 { font-size: 1rem; font-weight: 600; line-height: var(--lh-heading); }
 .kl-grid .sr:nth-child(2),
 .insights-grid .sr:nth-child(2),
 .team-grid .sr:nth-child(2),
-.industry-grid .sr:nth-child(2) { transition-delay: 0.09s; }
+.industry-grid .sr:nth-child(2),
+.careers-values .sr:nth-child(2),
+.about-values-grid .sr:nth-child(2),
+.standards-grid .sr:nth-child(2),
+.getstarted-grid .sr:nth-child(2) { transition-delay: 0.09s; }
 
 .svc-grid .sr:nth-child(3),
 .approach-grid .sr:nth-child(3),
 .insights-grid .sr:nth-child(3),
 .team-grid .sr:nth-child(3),
-.kl-grid .sr:nth-child(3) { transition-delay: 0.18s; }
+.kl-grid .sr:nth-child(3),
+.careers-values .sr:nth-child(3),
+.about-values-grid .sr:nth-child(3),
+.standards-grid .sr:nth-child(3),
+.getstarted-grid .sr:nth-child(3) { transition-delay: 0.18s; }
 
-.approach-grid .sr:nth-child(4) { transition-delay: 0.27s; }
-.approach-grid .sr:nth-child(5) { transition-delay: 0.36s; }
+.approach-grid .sr:nth-child(4),
+.careers-values .sr:nth-child(4),
+.about-values-grid .sr:nth-child(4),
+.standards-grid .sr:nth-child(4),
+.kl-grid .sr:nth-child(4) { transition-delay: 0.27s; }
+
+.approach-grid .sr:nth-child(5),
+.standards-grid .sr:nth-child(5) { transition-delay: 0.36s; }
+
+.standards-grid .sr:nth-child(6) { transition-delay: 0.45s; }
 
 /* Honour reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
