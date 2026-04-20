@@ -291,7 +291,17 @@
 .std-pill:hover { border-color: var(--kn-pine-text); color: var(--kn-pine-text); }
 
 /* ── Approach Page ── */
-.approach-hero { background: var(--ink); padding: clamp(64px,8vw,110px) 0; }
+.approach-hero {
+  background: var(--ink); padding: clamp(64px,8vw,110px) 0;
+  position: relative; overflow: hidden;
+}
+.approach-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 90% at 85% 50%, rgba(126,155,138,0.09) 0%, transparent 65%);
+  pointer-events: none;
+}
+.approach-hero .container { position: relative; }
 .approach-hero h1 { color: white; max-width: 640px; }
 .approach-hero .lead { color: rgba(255,255,255,0.6); margin-top: 20px; max-width: 540px; }
 
@@ -397,7 +407,17 @@
 .contact-info-block a:hover { color: var(--kn-pine-text); }
 
 /* ── Launch Programme ── */
-.getstarted-hero { background: var(--ink); padding: clamp(64px,8vw,110px) 0; }
+.getstarted-hero {
+  background: var(--ink); padding: clamp(64px,8vw,110px) 0;
+  position: relative; overflow: hidden;
+}
+.getstarted-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 65% 100% at 85% 50%, rgba(126,155,138,0.09) 0%, transparent 65%);
+  pointer-events: none;
+}
+.getstarted-hero .container { position: relative; }
 .getstarted-hero h1 { color: white; }
 .getstarted-hero .lead { color: rgba(255,255,255,0.6); margin-top: 20px; max-width: 520px; }
 .getstarted-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
@@ -440,7 +460,17 @@
 .careers-hero .section-tag::before { background: rgba(255,255,255,0.45); }
 
 /* ── Footer ── */
-footer { background: var(--ink); padding: clamp(48px,6vw,80px) 0 clamp(28px,3vw,40px); }
+footer {
+  background: var(--ink);
+  padding: clamp(48px,6vw,80px) 0 clamp(28px,3vw,40px);
+  position: relative; overflow: hidden;
+}
+footer::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 95% 0%, rgba(126,155,138,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
 .footer-top { display: grid; grid-template-columns: 1.5fr repeat(3,1fr); gap: clamp(28px,4vw,56px); margin-bottom: clamp(36px,5vw,64px); padding-bottom: clamp(36px,5vw,64px); border-bottom: 1px solid rgba(255,255,255,0.08); }
 .footer-brand .nav-logo-name { color: white; }
 .footer-brand .nav-logo-sub { color: rgba(255,255,255,0.4); }
@@ -527,7 +557,17 @@ footer { background: var(--ink); padding: clamp(48px,6vw,80px) 0 clamp(28px,3vw,
 .linkedin-note .btn { margin-top: 16px; }
 
 /* ── About Page extras ── */
-.about-hero { background: var(--ink); padding: clamp(64px,8vw,110px) 0; }
+.about-hero {
+  background: var(--ink); padding: clamp(64px,8vw,110px) 0;
+  position: relative; overflow: hidden;
+}
+.about-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 100% at 90% 50%, rgba(126,155,138,0.09) 0%, transparent 65%);
+  pointer-events: none;
+}
+.about-hero .container { position: relative; }
 .about-hero h1 { color: white; max-width: 680px; }
 .about-hero .lead { color: rgba(255,255,255,0.6); margin-top: 20px; max-width: 560px; }
 .about-value-num { font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: var(--border-mid); line-height: 1; margin-bottom: 12px; letter-spacing: -0.04em; }
@@ -548,7 +588,17 @@ footer { background: var(--ink); padding: clamp(48px,6vw,80px) 0 clamp(28px,3vw,
 .about-contact-value a { color: var(--kn-pine-text); }
 
 /* Careers extras */
-.careers-hero { background: var(--ink); padding: clamp(64px,8vw,110px) 0; }
+.careers-hero {
+  background: var(--ink); padding: clamp(64px,8vw,110px) 0;
+  position: relative; overflow: hidden;
+}
+.careers-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 90% at 85% 50%, rgba(126,155,138,0.09) 0%, transparent 65%);
+  pointer-events: none;
+}
+.careers-hero .container { position: relative; }
 .careers-hero h1 { color: white; max-width: 680px; }
 .careers-hero .lead { color: rgba(255,255,255,0.6); margin-top: 20px; max-width: 560px; }
 .careers-roles { list-style: none; }
