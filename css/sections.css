@@ -517,6 +517,8 @@ footer::before {
   .industry-grid { grid-template-columns: 1fr; }
   .about-values-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr 1fr; }
+  /* Rings: tighter on tablets/large phones */
+  .hero-rings { right: -12%; width: min(82vw, 480px); height: min(82vw, 480px); }
 }
 /* ── Responsive: Tablet (641–900px) ── */
 @media (max-width: 900px) and (min-width: 641px) {
@@ -551,7 +553,8 @@ footer::before {
   .about-contact-row { grid-template-columns: 72px 1fr; gap: 8px; }
   .svc-pg-meta { flex-direction: column; align-items: flex-start; }
   .discovery-callout { flex-direction: column; }
-  .hero-rings { display: none; }
+  /* Rings: smaller + shifted right so they sit behind the text as a background element */
+  .hero-rings { right: -22%; width: min(88vw, 340px); height: min(88vw, 340px); top: 44%; }
   /* Stats: single column */
   .stats-inner { display: flex; flex-direction: column; background: transparent; gap: 0; }
   .stat-item { border: none; border-bottom: 1px solid var(--border); padding: 14px 0; margin: 0; background: transparent; }
