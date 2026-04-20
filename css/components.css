@@ -38,6 +38,18 @@
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
+/* Mobile menu backdrop — dims page content; click to close */
+.nav-backdrop {
+  position: fixed; inset: 0; z-index: 98;
+  background: rgba(28,27,25,0.22);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s var(--ease-apple), visibility 0s 0.25s;
+}
+.nav-backdrop.open {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transition: opacity 0.25s var(--ease-apple), visibility 0s 0s;
+}
+
 /* Mobile menu — visibility/opacity approach so transitions work */
 .mobile-menu {
   position: fixed; top: var(--nav-height); left: 0; right: 0;
