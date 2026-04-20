@@ -14,7 +14,7 @@
   min-height: 100dvh;
   display: flex; flex-direction: column; justify-content: center;
   background: var(--surface);
-  padding: var(--nav-height) 0 0;
+  padding: var(--nav-full-height) 0 0;
   position: relative; overflow: hidden;
 }
 .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: clamp(40px,6vw,80px) 0; }
@@ -223,7 +223,7 @@
 
 /* ── Services Sub-nav ── */
 .svc-subnav {
-  position: sticky; top: var(--nav-height); z-index: 90;
+  position: sticky; top: var(--nav-full-height); z-index: 90;
   background: rgba(244,243,240,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
@@ -248,7 +248,7 @@
 /* ── Services page — per-service 2-col layout ── */
 /* Account for fixed navbar + sticky subnav (~48px) when anchor-linking */
 .svc-pg-section[id], #industries, #bundles {
-  scroll-margin-top: calc(var(--nav-height) + 56px);
+  scroll-margin-top: calc(var(--nav-full-height) + 56px);
 }
 .svc-pg-section {}
 .svc-pg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px); align-items: start; }
@@ -462,7 +462,7 @@
 /* ── Footer ── */
 footer {
   background: var(--ink);
-  padding: clamp(48px,6vw,80px) 0 clamp(28px,3vw,40px);
+  padding: clamp(48px,6vw,80px) 0 max(clamp(28px,3vw,40px), env(safe-area-inset-bottom, 0px));
   position: relative; overflow: hidden;
 }
 footer::before {
@@ -521,7 +521,10 @@ footer::before {
 /* ── Responsive: Tablet (641–900px) ── */
 @media (max-width: 900px) and (min-width: 641px) {
   .team-grid { grid-template-columns: repeat(2,1fr); }
-  .kl-grid { grid-template-columns: repeat(2,1fr); }
+  .kl-grid   { grid-template-columns: repeat(2,1fr); }
+  /* Stats: even 4-col grid instead of mismatched flex row */
+  .stats-inner { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); }
+  .stat-item { padding: 20px 16px; margin: 0; border: none; background: var(--surface-warm); }
 }
 
 /* ── Responsive: Large phone (481–640px) ── */

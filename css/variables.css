@@ -39,6 +39,8 @@
 
   /* Nav */
   --nav-height: 68px;
+  /* Total navbar height including iOS notch/Dynamic Island safe area */
+  --nav-full-height: calc(var(--nav-height) + env(safe-area-inset-top, 0px));
 
   /* Typography */
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;

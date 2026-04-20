@@ -3,7 +3,7 @@
 html { scroll-behavior: smooth; font-size: 16px; -webkit-text-size-adjust: 100%; }
 
 /* Prevent fixed navbar from covering anchor targets */
-section[id], [id].section { scroll-margin-top: calc(var(--nav-height) + 16px); }
+section[id], [id].section { scroll-margin-top: calc(var(--nav-full-height) + 16px); }
 
 body {
   font-family: var(--font);

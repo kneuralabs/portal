@@ -1,8 +1,17 @@
-.container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 48px); }
-.container-wide { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 48px); }
+/* clamp() for responsive rhythm; max() adds env() only when notch/safe-area is larger */
+.container {
+  width: 100%; max-width: 1080px; margin: 0 auto;
+  padding-left:  max(clamp(20px, 5vw, 48px), env(safe-area-inset-left,  0px));
+  padding-right: max(clamp(20px, 5vw, 48px), env(safe-area-inset-right, 0px));
+}
+.container-wide {
+  width: 100%; max-width: 1280px; margin: 0 auto;
+  padding-left:  max(clamp(20px, 5vw, 48px), env(safe-area-inset-left,  0px));
+  padding-right: max(clamp(20px, 5vw, 48px), env(safe-area-inset-right, 0px));
+}
 
 .section-lg { padding: clamp(80px, 10vw, 140px) 0; }
 .section-md { padding: clamp(64px, 8vw, 110px) 0; }
 .section-sm { padding: clamp(48px, 6vw, 80px) 0; }
 
-main { padding-top: var(--nav-height); }
+main { padding-top: var(--nav-full-height); }
