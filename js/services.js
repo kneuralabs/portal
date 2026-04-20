@@ -79,3 +79,38 @@ function closePanel() {
   overlay.classList.remove('open');
   document.body.style.overflow = '';
 }
+
+// Subnav scroll-spy: highlight which section is active
+(function initSubnavSpy() {
+  const subnavLinks = document.querySelectorAll('.svc-subnav a[href^="#"]');
+  if (!subnavLinks.length) return;
+
+  const sectionIds = Array.from(subnavLinks).map(a => a.getAttribute('href').slice(1));
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+  function setActive(id) {
+    subnavLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  // NavHeight + subnav height — use bottom of subnav as the trigger line
+  const subnavEl = document.querySelector('.svc-subnav');
+  const subnavH = subnavEl ? subnavEl.offsetHeight : 48;
+  const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 68;
+  const offset = navH + subnavH;
+
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, {
+    rootMargin: `-${offset}px 0px -55% 0px`,
+    threshold: 0,
+  });
+
+  sections.forEach(s => spy.observe(s));
+
+  // Set initial active on load
+  setActive(sectionIds[0]);
+})();
