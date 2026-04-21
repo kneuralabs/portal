@@ -13,6 +13,14 @@
   <meta property="og:url" content="https://www.kneuralabs.com/" />
   <meta property="og:title" content="Kneuralabs | AI Governance Consulting for U.S. Mid-Market Companies" />
   <meta property="og:description" content="Structural AI governance advisory for U.S. mid-market companies. NIST AI RMF · ISO/IEC 42001 · EU AI Act." />
+  <meta property="og:image" content="https://www.kneuralabs.com/assets/images/og-image.svg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@kneuralabs" />
+  <meta name="twitter:title" content="Kneuralabs | AI Governance Consulting for U.S. Mid-Market Companies" />
+  <meta name="twitter:description" content="Structural AI governance advisory for U.S. mid-market companies. NIST AI RMF · ISO/IEC 42001 · EU AI Act." />
+  <meta name="twitter:image" content="https://www.kneuralabs.com/assets/images/og-image.svg" />
   <link rel="canonical" href="https://www.kneuralabs.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,14 +33,79 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Kneuralabs LLC",
-    "description": "Structural AI governance advisory services for U.S. mid-market companies.",
-    "url": "https://www.kneuralabs.com",
-    "email": "hello@kneuralabs.com",
-    "foundingDate": "2024",
-    "address": { "@type": "PostalAddress", "addressLocality": "Manchester", "addressRegion": "CT", "postalCode": "06042", "addressCountry": "US" },
-    "founder": { "@type": "Person", "name": "Piyal Gupta", "jobTitle": "CEO" }
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.kneuralabs.com/#organization",
+        "name": "Kneuralabs LLC",
+        "alternateName": "Kneuralabs",
+        "description": "Structural AI governance advisory services for U.S. mid-market companies. Aligned with NIST AI RMF, ISO/IEC 42001, and the EU AI Act.",
+        "url": "https://www.kneuralabs.com",
+        "email": "hello@kneuralabs.com",
+        "foundingDate": "2024",
+        "logo": "https://www.kneuralabs.com/assets/images/logo.svg",
+        "image": "https://www.kneuralabs.com/assets/images/og-image.svg",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Manchester",
+          "addressRegion": "CT",
+          "postalCode": "06042",
+          "addressCountry": "US"
+        },
+        "founder": { "@type": "Person", "name": "Piyal Gupta", "jobTitle": "CEO" },
+        "sameAs": ["https://www.linkedin.com/company/kneuralabs"],
+        "areaServed": { "@type": "Country", "name": "United States" },
+        "knowsAbout": ["AI governance", "NIST AI RMF", "ISO/IEC 42001", "EU AI Act", "AI risk management", "AI compliance", "AI audit readiness"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "AI Governance Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Risk Assessment", "description": "Full AI system inventory, plain-language risk register, NIST AI RMF mapping, and a board-ready executive summary." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Governance Framework Setup", "description": "AI governance policy suite, RACI matrix, lifecycle controls, and dual-standard alignment to NIST AI RMF and ISO/IEC 42001." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Standards Readiness", "description": "KneuraLens™ readiness assessment, gap register, closure roadmap, and audit-ready evidence packs for ISO/IEC 42001 and NIST AI RMF." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Governance Retainer", "description": "Ongoing governance advisory with quarterly reviews, policy updates, and annual KneuraLens™ reassessment." } }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.kneuralabs.com/#website",
+        "url": "https://www.kneuralabs.com",
+        "name": "Kneuralabs",
+        "description": "AI governance consulting for U.S. mid-market companies",
+        "publisher": { "@id": "https://www.kneuralabs.com/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is AI governance?",
+            "acceptedAnswer": { "@type": "Answer", "text": "AI governance is the framework of policies, controls, accountability structures, and monitoring processes that organisations use to manage the risks and responsibilities of their AI systems. It covers how AI is inventoried, risk-classified, owned, monitored, and audited — and how decisions made by AI systems are documented and defensible." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is NIST AI RMF?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The NIST AI Risk Management Framework (AI RMF) is a voluntary framework published by the National Institute of Standards and Technology to help organisations identify, assess, and manage AI-related risks. It is structured around four core functions: GOVERN, MAP, MEASURE, and MANAGE. It is increasingly used as the reference standard by auditors, enterprise procurement teams, and U.S. federal contractors." }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the EU AI Act apply to U.S. companies?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The EU AI Act applies to any organisation that deploys AI systems to users in the European Union, regardless of where the organisation is incorporated. U.S. mid-market companies whose software, products, or services are used in Europe — or whose enterprise clients are subject to the Act — need to understand and address their obligations." }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does an AI governance engagement take?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Engagements range from 2–20 weeks depending on scope. A standalone AI Risk Assessment (S1) takes 2–4 weeks. A Governance Framework Setup (S2) takes 4–8 weeks. A full programme from first inventory through audit-ready certification readiness takes 10–20 weeks. All timelines are established transparently in the engagement letter before work begins." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is ISO/IEC 42001?",
+            "acceptedAnswer": { "@type": "Answer", "text": "ISO/IEC 42001 is the international standard for AI management systems, published by the International Organization for Standardization. It provides a framework for establishing, implementing, maintaining, and continually improving an AI management system. Certification is increasingly requested by enterprise procurement teams and regulators and is being written into vendor RFPs." }
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -323,6 +396,38 @@
         </div>
         <div class="services-preview-cta sr">
           <a href="services.html" class="btn btn-secondary">View all services &amp; bundles &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-md" id="faq">
+      <div class="container">
+        <div class="section-header sr">
+          <span class="section-tag">Common Questions</span>
+          <h2>What organisations ask before they engage.</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item sr">
+            <summary class="faq-question">What is AI governance and why does it matter now?</summary>
+            <div class="faq-answer"><p>AI governance is the framework of policies, controls, and accountability structures that determine how AI systems are owned, monitored, and audited within an organisation. It matters now because regulators, enterprise clients, and procurement teams are actively asking for evidence of it. Without a documented governance programme, organisations face contract losses, regulatory exposure, and liability that cannot be quantified.</p></div>
+          </details>
+          <details class="faq-item sr">
+            <summary class="faq-question">Does the EU AI Act apply to U.S. companies?</summary>
+            <div class="faq-answer"><p>Yes. The Act applies to any organisation deploying AI to users in the EU, regardless of where the organisation is incorporated. U.S. companies whose software or services reach European users — or whose enterprise clients are themselves subject to the Act — need to understand their obligations. Geography is not the qualifier most U.S. companies assume it is.</p></div>
+          </details>
+          <details class="faq-item sr">
+            <summary class="faq-question">What is NIST AI RMF and is alignment mandatory?</summary>
+            <div class="faq-answer"><p>The NIST AI Risk Management Framework is a voluntary federal framework for identifying, assessing, and managing AI risk. It is not currently mandatory for most organisations, but it is the de facto reference standard that auditors, enterprise procurement teams, and federal contractors use to evaluate whether an AI programme is defensible. Alignment is increasingly a commercial requirement rather than a compliance one.</p></div>
+          </details>
+          <details class="faq-item sr">
+            <summary class="faq-question">How long does a governance engagement take?</summary>
+            <div class="faq-answer"><p>Engagements range from 2–20 weeks. A standalone AI Risk Assessment (S1) takes 2–4 weeks. A Governance Framework Setup (S2) takes 4–8 weeks. A complete programme from first inventory to audit-ready certification readiness takes 10–20 weeks. Every timeline is set transparently in the engagement letter before work begins.</p></div>
+          </details>
+          <details class="faq-item sr">
+            <summary class="faq-question">What is ISO/IEC 42001 and should we pursue certification?</summary>
+            <div class="faq-answer"><p>ISO/IEC 42001 is the international standard for AI management systems. Certification is increasingly written into enterprise RFPs and vendor qualification requirements. Whether it is worth pursuing depends on your client base, regulatory exposure, and organisational maturity. We give you an honest assessment of that in the discovery call.</p></div>
+          </details>
         </div>
       </div>
     </section>

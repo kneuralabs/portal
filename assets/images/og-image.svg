@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#1C1B19"/>
+  <ellipse cx="980" cy="180" rx="480" ry="340" fill="rgba(126,155,138,0.07)"/>
+  <circle cx="80" cy="76" r="22" fill="#4D6E5E"/>
+  <text x="114" y="81" font-family="-apple-system,BlinkMacSystemFont,'Inter',sans-serif" font-size="20" font-weight="700" fill="white" letter-spacing="-0.02em">Kneuralabs</text>
+  <text x="114" y="100" font-family="-apple-system,BlinkMacSystemFont,'Inter',sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,0.38)" letter-spacing="0.14em">STRUCTURAL AI GOVERNANCE</text>
+  <text x="80" y="290" font-family="-apple-system,BlinkMacSystemFont,'Inter',sans-serif" font-size="58" font-weight="300" fill="rgba(255,255,255,0.65)" letter-spacing="-0.02em">Structural</text>
+  <text x="80" y="368" font-family="-apple-system,BlinkMacSystemFont,'Inter',sans-serif" font-size="68" font-weight="800" fill="white" letter-spacing="-0.035em">AI Governance.</text>
+  <text x="80" y="428" font-family="-apple-system,BlinkMacSystemFont,'Inter',sans-serif" font-size="26" font-weight="400" fill="rgba(255,255,255,0.48)" letter-spacing="-0.01em">Built for U.S. Mid-Market Companies.</text>
+  <rect x="80" y="492" width="156" height="34" rx="17" fill="rgba(77,110,94,0.18)" stroke="rgba(77,110,94,0.42)" stroke-width="1"/>
+  <text x="158" y="514" font-family="-apple-system,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="0.05em">NIST AI RMF</text>
+  <rect x="252" y="492" width="172" height="34" rx="17" fill="rgba(77,110,94,0.18)" stroke="rgba(77,110,94,0.42)" stroke-width="1"/>
+  <text x="338" y="514" font-family="-apple-system,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="0.05em">ISO/IEC 42001</text>
+  <rect x="440" y="492" width="138" height="34" rx="17" fill="rgba(77,110,94,0.18)" stroke="rgba(77,110,94,0.42)" stroke-width="1"/>
+  <text x="509" y="514" font-family="-apple-system,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="0.05em">EU AI ACT</text>
+  <text x="1120" y="590" font-family="-apple-system,sans-serif" font-size="13" font-weight="500" fill="rgba(255,255,255,0.22)" text-anchor="end">kneuralabs.com</text>
+</svg>

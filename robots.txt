@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Disallow: /pages/
+
+# AI crawlers — allow indexing for AI search results
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://www.kneuralabs.com/sitemap.xml
