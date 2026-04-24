@@ -42,7 +42,24 @@
   animation-play-state: paused;
   opacity: 0.85;
 }
-@media (max-width: 768px) { .hero-rings { right: -18%; width: min(72vw, 480px); height: min(72vw, 480px); } }
+/* Tablet 768–1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .hero-rings { width: min(48vw, 520px); height: min(48vw, 520px); right: clamp(-100px,-5vw,-10px); }
+}
+/* Tablet portrait — fade rings behind text column */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .hero-rings-inner { opacity: 0.6; }
+}
+/* Mobile portrait */
+@media (max-width: 767px) and (orientation: portrait) {
+  .hero-rings { width: min(68vw, 320px); height: min(68vw, 320px); right: -22%; }
+  .hero-rings-inner { opacity: 0.28; }
+}
+/* Mobile landscape — size off viewport height, not width */
+@media (max-width: 767px) and (orientation: landscape) {
+  .hero-rings { width: min(54vh, 280px); height: min(54vh, 280px); right: 1%; }
+  .hero-rings-inner { opacity: 0.42; }
+}
 
 /* Hero entrance sequence — staggered */
 .hero-eyebrow    { animation: heroIn 0.65s 0.05s var(--ease-apple) both; }
