@@ -31,6 +31,32 @@
 
   document.querySelectorAll('.sr').forEach(el => revealObserver.observe(el));
 
+  // Stat counter animation — triggers once on reveal
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.count, 10);
+    if (isNaN(target)) return;
+    const duration = 900;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
   // Scroll-down arrow — skip to first content section after hero
   document.querySelector('.scroll-arrow')?.addEventListener('click', () => {
     const target = document.querySelector('.hook-strip') ||

@@ -15,7 +15,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
+  opacity: 0;
+  transition: opacity 0.28s var(--ease-apple);
 }
+body.loaded { opacity: 1; }
+body.fade-out { opacity: 0; transition: opacity 0.18s var(--ease-snappy); }
 
 img, svg, video { max-width: 100%; height: auto; display: block; }
 button { font-family: var(--font); cursor: pointer; border: none; background: none; }
@@ -139,6 +143,7 @@ h4 { font-size: 1rem; font-weight: 600; line-height: var(--lh-heading); }
 
 /* Honour reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
+  body { opacity: 1 !important; transition: none !important; }
   .sr, .sr.sr-left, .sr.sr-right {
     opacity: 1; transform: none;
     transition: none;

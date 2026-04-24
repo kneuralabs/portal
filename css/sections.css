@@ -195,6 +195,12 @@
   position: relative;
   z-index: 1;
 }
+.hook-quote.sr {
+  border-left-color: transparent;
+  transition: opacity 0.6s var(--ease-apple), transform 0.6s var(--ease-apple-out),
+              border-left-color 0.5s 0.38s var(--ease-apple);
+}
+.hook-quote.sr.revealed { border-left-color: var(--kn-pine); }
 .hook-quote strong { font-weight: 700; color: white; }
 
 /* ── Stats Bar ── */
@@ -682,6 +688,7 @@ footer::before {
 .team-linkedin:focus-visible { outline: 2px solid var(--kn-pine-text); outline-offset: 3px; border-radius: 2px; }
 .about-contact-value { font-size: var(--text-sm); color: var(--text-secondary); word-break: break-all; }
 .about-contact-value a { color: var(--kn-pine-text); }
+a.about-contact-value { display: inline-block; margin-top: 16px; color: var(--kn-pine-text); }
 
 /* Careers extras */
 .careers-hero {
