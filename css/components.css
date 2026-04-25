@@ -9,6 +9,7 @@
   transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 .navbar.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow-sm); }
+[data-theme="dark"] .navbar { background: rgba(26, 25, 24, 0.94); }
 .nav-inner {
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px; height: var(--nav-height);
@@ -18,7 +19,7 @@
   padding-right: max(clamp(20px, 5vw, 48px), env(safe-area-inset-right, 0px));
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-.nav-logo-img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.nav-logo-img { width: 34px; height: 34px; flex-shrink: 0; }
 .nav-logo-text { display: flex; flex-direction: column; gap: 1px; }
 .nav-logo-name { font-size: var(--text-sm); font-weight: 700; color: var(--ink); line-height: 1; letter-spacing: -0.01em; }
 .nav-logo-sub { font-size: 0.60rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1; }
@@ -40,6 +41,28 @@
 }
 
 .nav-cta { flex-shrink: 0; }
+
+.theme-toggle {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: var(--radius-full);
+  background: var(--surface-warm); border: 1px solid var(--border);
+  color: var(--text-secondary); cursor: pointer; flex-shrink: 0;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.theme-toggle:hover { background: var(--border-mid); color: var(--ink); }
+.theme-toggle svg { width: 16px; height: 16px; }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+.mobile-theme-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px max(clamp(20px, 5vw, 48px), env(safe-area-inset-left, 0px));
+  padding-right: max(clamp(20px, 5vw, 48px), env(safe-area-inset-right, 0px));
+  font-size: var(--text-base); font-weight: 500; color: var(--ink);
+  border-bottom: 1px solid var(--border); min-height: 52px;
+}
 
 .hamburger {
   display: none; flex-direction: column; justify-content: center; align-items: center;
@@ -120,6 +143,7 @@
 @media (max-width: 900px) {
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
+  .nav-theme-toggle { display: none; }
 }
 
 /* ── Buttons ── */
