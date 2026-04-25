@@ -63,6 +63,8 @@
   --ls-wider: 0.12em;
   --ls-widest: 0.16em;
 
+  color-scheme: light;
+
   /* Easing */
   --ease-apple: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-apple-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -73,4 +75,19 @@
   --transition-fast: 0.15s ease;
   --transition-base: 0.25s ease;
   --transition-slow: 0.4s ease;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #F0EFEC;
+  --text-secondary: #A8A5A0;
+  --text-muted: #807D79;
+  --surface: #1A1918;
+  --surface-warm: #242220;
+  --surface-card: #2A2826;
+  --border: rgba(240, 239, 236, 0.10);
+  --border-mid: rgba(240, 239, 236, 0.18);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4), 0 16px 40px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.5), 0 32px 64px rgba(0,0,0,0.5);
 }
