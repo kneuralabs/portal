@@ -63,6 +63,8 @@
   --ls-wider: 0.12em;
   --ls-widest: 0.16em;
 
+  color-scheme: light;
+
   /* Easing */
   --ease-apple: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-apple-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -73,8 +75,6 @@
   --transition-fast: 0.15s ease;
   --transition-base: 0.25s ease;
   --transition-slow: 0.4s ease;
-
-  color-scheme: light;
 }
 
 [data-theme="dark"] {
