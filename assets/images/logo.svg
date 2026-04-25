@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <!-- Upper blue: light cyan at lower-left → deep blue at upper-right -->
+    <linearGradient id="gBlue" x1="23" y1="48" x2="77" y2="12" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#6DCEFF"/>
+      <stop offset="100%" stop-color="#0B3EC4"/>
+    </linearGradient>
+
+    <!-- Orange notch: bright orange at top → dark burnt-orange at bottom -->
+    <linearGradient id="gOrange" x1="47" y1="48" x2="23" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#FF4E10"/>
+      <stop offset="100%" stop-color="#A82800"/>
+    </linearGradient>
+
+    <!-- Lower arm: same cyan as blue piece → pale blue-grey at tip -->
+    <linearGradient id="gLower" x1="47" y1="48" x2="77" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#6DCEFF"/>
+      <stop offset="100%" stop-color="#B8DFF5"/>
+    </linearGradient>
+  </defs>
+
+  <!--
+    K shape — three pieces with transparent background:
+
+    1. Upper blue  : rounded-TL vertical stroke (top) + upper diagonal arm
+    2. Orange      : concave notch triangle (lower-left)
+    3. Lower arm   : lower diagonal arm (lower-right)
+
+    Key coordinates:
+      TL rounded corner : (23,12) r=4
+      Upper-arm tip     : (77,12)
+      Centre split      : (47,48)  right  |  (23,48)  left
+      Lower-arm tip     : (77,86)
+      Bottom-left       : (23,86)
+  -->
+
+  <!-- 1 · Upper blue piece -->
+  <path d="M 27,12 L 77,12 L 47,48 L 23,48 L 23,16 A 4,4 0 0,1 27,12 Z"
+        fill="url(#gBlue)"/>
+
+  <!-- 2 · Orange concave notch -->
+  <path d="M 23,48 L 47,48 L 23,86 Z"
+        fill="url(#gOrange)"/>
+
+  <!-- 3 · Lower light-blue arm -->
+  <path d="M 47,48 L 77,86 L 23,86 Z"
+        fill="url(#gLower)"/>
+</svg>
