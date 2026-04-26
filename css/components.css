@@ -122,6 +122,27 @@
   .hamburger { display: flex; }
 }
 
+/* ── Dark mode: navbar, hamburger, mobile menu ── */
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background: rgba(22, 21, 19, 0.94);
+    border-bottom-color: rgba(255,255,255,0.08);
+  }
+  .navbar.scrolled { border-bottom-color: rgba(255,255,255,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.3); }
+  .nav-logo-name { color: #F4F3F0; }
+  .nav-logo-sub { color: #9A9895; }
+  .nav-links a { color: #C8C6C2; }
+  .nav-links a:hover, .nav-links a.active { color: #F4F3F0; background: rgba(255,255,255,0.06); }
+  .hamburger span { background: #F4F3F0; }
+  .mobile-menu {
+    background: rgba(22, 21, 19, 0.97);
+    border-bottom-color: rgba(255,255,255,0.08);
+  }
+  .mobile-menu a { color: #C8C6C2; border-bottom-color: rgba(255,255,255,0.08); }
+  .mobile-menu a:hover, .mobile-menu a.active { color: #F4F3F0; }
+  .mobile-menu .mobile-cta { background: #F4F3F0; color: #1C1B19 !important; }
+}
+
 /* ── Buttons ── */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
