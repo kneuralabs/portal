@@ -1,4 +1,7 @@
 (function () {
+  // Apply saved theme immediately to avoid flash
+  var saved = localStorage.getItem('kn-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
   // Detect if we're inside a subdirectory (e.g. pages/)
   const parts = window.location.pathname.split('/').filter(Boolean);
   const lastPart = parts[parts.length - 1] || '';
@@ -109,6 +112,19 @@
     });
   }
 
+  function initThemeToggle() {
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+        (!document.documentElement.getAttribute('data-theme') &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches);
+      const next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('kn-theme', next);
+    });
+  }
+
   async function init() {
     await Promise.all([
       loadComponent('header', 'components/nav.html'),
@@ -116,6 +132,7 @@
     ]);
     setActiveLink();
     initNav();
+    initThemeToggle();
     initPageTransitions();
     document.body.classList.add('loaded');
   }
