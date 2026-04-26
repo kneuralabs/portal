@@ -245,6 +245,7 @@
 
 /* ── Button Loading Spinner ── */
 @keyframes spin { to { transform: rotate(360deg); } }
+.btn-loading { opacity: 0.82; }
 .btn-spinner {
   display: inline-block;
   width: 14px; height: 14px; flex-shrink: 0;

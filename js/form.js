@@ -18,7 +18,7 @@
     if (!submitBtn) return;
 
     submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.82';
+    submitBtn.classList.add('btn-loading');
     submitBtn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span> Sending…';
 
     const data = new FormData(form);

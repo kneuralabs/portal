@@ -14,7 +14,7 @@
 
   const subnavEl = document.querySelector('.svc-subnav');
   const subnavH = subnavEl ? subnavEl.offsetHeight : 48;
-  const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 68;
+  const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 68;
 
   const spy = new IntersectionObserver(entries => {
     entries.forEach(entry => {
