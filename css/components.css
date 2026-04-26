@@ -56,6 +56,18 @@
 [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
+.nav-theme-toggle { display: none; }
+
+.theme-toggle-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  z-index: 900;
+  box-shadow: var(--shadow-md);
+}
+
 .mobile-theme-row {
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px max(clamp(20px, 5vw, 48px), env(safe-area-inset-left, 0px));
@@ -143,7 +155,6 @@
 @media (max-width: 900px) {
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
-  .nav-theme-toggle { display: none; }
 }
 
 /* ── Buttons ── */
