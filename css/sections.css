@@ -186,6 +186,7 @@
 }
 .hook-quote.sr.revealed { border-left-color: var(--kn-pine); }
 .hook-quote strong { font-weight: 700; color: white; }
+[data-theme="dark"] .hook-strip { background: var(--kn-charcoal); }
 
 /* ── Stats Bar ── */
 .stats-bar { background: var(--surface-warm); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 36px 0; }

@@ -10,6 +10,7 @@
 }
 .navbar.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow-sm); }
 [data-theme="dark"] .navbar { background: rgba(26, 25, 24, 0.94); }
+[data-theme="dark"] .btn-primary { color: var(--surface); }
 .nav-inner {
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px; height: var(--nav-height);
