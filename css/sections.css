@@ -771,4 +771,20 @@ a.about-contact-value { display: inline-block; margin-top: 16px; color: var(--kn
 .next-step p { font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.65; }
 .next-step p a { color: var(--kn-pine-text); }
 
+/* ── Dark mode overrides ── */
+
+/* All sections using var(--ink) as background go cream in dark mode;
+   keep them dark so white text on them stays readable */
+[data-theme="dark"] .approach-hero,
+[data-theme="dark"] .getstarted-hero,
+[data-theme="dark"] .about-hero,
+[data-theme="dark"] .careers-hero,
+[data-theme="dark"] .cta-band,
+[data-theme="dark"] footer { background: var(--kn-charcoal); }
+
+/* Services sub-nav uses a hardcoded linen rgba that doesn't swap */
+[data-theme="dark"] .svc-subnav { background: rgba(26,25,24,0.97); }
+
+/* Problem row hover: white overlay looks too light on dark page bg */
+[data-theme="dark"] .problem-row:hover { background: var(--surface-warm); }
 
