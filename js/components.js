@@ -110,18 +110,23 @@
   }
 
   function initTheme() {
+    const KEY = 'theme';
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const apply = () => document.documentElement.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
-    apply();
+    const stored = () => { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+    const apply = theme => document.documentElement.setAttribute('data-theme', theme);
+
+    apply(stored() || (mq.matches ? 'dark' : 'light'));
 
     document.querySelectorAll('.theme-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
         const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
+        apply(next);
+        try { localStorage.setItem(KEY, next); } catch (e) {}
       });
     });
 
-    mq.addEventListener('change', apply);
+    // Track system preference only when the user hasn't picked one explicitly.
+    mq.addEventListener('change', e => { if (!stored()) apply(e.matches ? 'dark' : 'light'); });
   }
 
   async function init() {

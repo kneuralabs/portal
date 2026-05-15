@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <script>!function(){document.documentElement.setAttribute("data-theme",(window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light")}()</script>
+  <script>!function(){try{var s=localStorage.getItem("theme");document.documentElement.setAttribute("data-theme",s||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"))}catch(e){document.documentElement.setAttribute("data-theme","light")}}()</script>
   <link rel="icon" href="../assets/images/logo.png" type="image/png" />
   <meta name="theme-color" content="#F4F3F0" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="noindex" />
   <meta name="description" content="Kneuralabs Terms of Service — the agreement governing your use of our AI governance advisory services." />
+  <link rel="canonical" href="https://www.kneuralabs.com/pages/terms.html" />
   <title>Terms of Service | Kneuralabs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,7 +29,7 @@
     .prose li { margin-bottom: 6px; }
     .prose a { color: var(--kn-pine-text); }
     .legal-date { font-size:var(--text-xs); color:var(--text-muted); font-weight:600; letter-spacing:0.04em; margin-bottom:32px; }
-    .legal-notice { background:var(--bg-warm,#ECEAE5); padding:14px 18px; border-left:2px solid var(--kn-pine-text); margin-bottom:32px; font-size:var(--text-sm); color:var(--text-secondary); }
+    .legal-notice { background:var(--surface-warm); padding:14px 18px; border-left:2px solid var(--kn-pine-text); margin-bottom:32px; font-size:var(--text-sm); color:var(--text-secondary); }
     .back-link { display:inline-flex; align-items:center; gap:6px; font-size:var(--text-sm); font-weight:600; color:var(--kn-pine-text); margin-bottom:24px; }
     .back-link:hover { opacity:0.7; }
   </style>
@@ -75,5 +76,6 @@
   <footer></footer>
 
   <script src="../js/components.js"></script>
+  <script src="../js/scroll.js" defer></script>
 </body>
 </html>

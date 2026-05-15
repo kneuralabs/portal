@@ -59,11 +59,6 @@ h4 { font-size: 1rem; font-weight: 600; line-height: var(--lh-heading); }
   flex-shrink: 0;
 }
 
-/* Dark-surface variant — use on ink/dark backgrounds */
-.section-tag-inv {
-  color: rgba(255, 255, 255, 0.55);
-}
-
 /* Background utilities */
 .bg-surface { background: var(--surface); }
 .bg-warm { background: var(--surface-warm); }
