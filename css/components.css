@@ -243,7 +243,15 @@ footer.footer {
   padding-bottom: 32px;
   border-bottom: 1px solid var(--rule);
 }
-.foot-brand .brand { font-size: 22px; gap: 12px; margin-bottom: 14px; }
+.foot-brand .brand {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-size: 22px;
+  gap: 12px;
+  margin-bottom: 14px;
+}
 .foot-brand .brand .brand-img {
   width: 28px; height: 28px; border-radius: 8px;
 }
@@ -391,6 +399,34 @@ html[data-theme="dark"] .theme-toggle:hover { border-color: rgba(255,255,255,.40
 .theme-toggle .icon-moon { display: none; }
 html[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+
+/* Floating variant — fixed to the viewport, scrolls with nothing,
+   stays clear of content and the iOS home indicator. */
+.theme-toggle.theme-fab {
+  position: fixed;
+  right: max(18px, env(safe-area-inset-right, 0px));
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  z-index: 55;
+  width: 46px;
+  height: 46px;
+  background: color-mix(in oklab, var(--paper) 80%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-color: var(--rule);
+  box-shadow: var(--shadow-card);
+}
+.theme-toggle.theme-fab:hover {
+  background: color-mix(in oklab, var(--paper) 92%, transparent);
+  border-color: var(--ink);
+}
+html[data-theme="dark"] .theme-toggle.theme-fab { border-color: rgba(255,255,255,.16); }
+html[data-theme="dark"] .theme-toggle.theme-fab:hover { border-color: rgba(255,255,255,.40); }
+@media (max-width: 760px) {
+  .theme-toggle.theme-fab {
+    right: max(14px, env(safe-area-inset-right, 0px));
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  }
+}
 
 /* ── Hamburger ── */
 .hamburger {
