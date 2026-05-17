@@ -71,3 +71,42 @@
 @media (max-width: 600px) {
   .section { padding: 52px 0; }
 }
+
+/* ── Responsive polish ──────────────────────────────────────
+   Tablet, large-desktop, small-phone and landscape refinement
+   so every device / orientation reads cleanly.
+   ─────────────────────────────────────────────────────────── */
+
+/* Roomier gutters and a wider measure on large desktops */
+@media (min-width: 1600px) {
+  .frame { max-width: 1560px; padding: 0 56px; }
+}
+
+/* Tablet portrait — keep headings from crowding the gutter */
+@media (min-width: 821px) and (max-width: 1080px) {
+  .section-head { gap: 36px; }
+}
+
+/* Small phones — tighter rhythm, no clipped headlines */
+@media (max-width: 380px) {
+  .frame { padding: 0 16px; }
+  .section { padding: 44px 0; }
+  .svc-hero { padding: 52px 0 34px; }
+}
+
+/* Directional reveals translate vertically on narrow screens
+   so nothing slides in from off-canvas on a phone. */
+@media (max-width: 720px) {
+  .sr-left, .sr-right { transform: translate3d(0, 20px, 0); }
+}
+
+/* Landscape phones / short viewports — reclaim vertical space */
+@media (orientation: landscape) and (max-height: 560px) {
+  .hero { padding: 40px 0 32px; }
+  .svc-hero { padding: 44px 0 32px; }
+  .section { padding: 44px 0; }
+  .cta-strip { padding: 48px 0; }
+  .marks { margin-top: 28px; }
+  .mobile-menu { padding-top: 64px; gap: 0; }
+  .mobile-menu a { padding: 9px 0; font-size: 19px; }
+}

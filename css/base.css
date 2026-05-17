@@ -13,7 +13,13 @@ html, body {
   font-feature-settings: "ss01", "cv11";
 }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--nav-height) + 12px);
+}
+
+body { overflow-x: clip; }
 
 body {
   font-size: 16px;
@@ -74,10 +80,7 @@ h1, h2, h3, h4, p { margin: 0; }
   pointer-events: none;
 }
 
-/* ── Page-exit fade (multi-page transition) ── */
 main { position: relative; }
-body { opacity: 1; transition: opacity .18s var(--ease-out); }
-body.fade-out { opacity: 0; }
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {

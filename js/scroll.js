@@ -69,6 +69,20 @@
   }
   splitHero();
 
+  // ── Staggered reveal cadence ──
+  // Children of grouped containers cascade in sequence for a calm,
+  // curated entrance rather than every tile snapping in at once.
+  if (!reduce) {
+    const groups = '.services, .gaps, .princ, .deliverables, .stats-grid, .card-grid, .foot-grid, .hero-actions, .timeline';
+    document.querySelectorAll(groups).forEach(group => {
+      let i = 0;
+      group.querySelectorAll(':scope > .sr, :scope > * > .sr').forEach(el => {
+        if (el.style.getPropertyValue('--rd')) return;
+        el.style.setProperty('--rd', (i++ * 70) + 'ms');
+      });
+    });
+  }
+
   // ── Scroll reveals ──
   if (reduce) {
     document.querySelectorAll('.sr').forEach(el => el.classList.add('revealed'));

@@ -95,20 +95,6 @@
     });
   }
 
-  function initPageTransitions() {
-    document.addEventListener('click', e => {
-      const a = e.target.closest('a[href]');
-      if (!a) return;
-      const href = a.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('mailto') ||
-          href.startsWith('http') || a.target === '_blank' ||
-          e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      e.preventDefault();
-      document.body.classList.add('fade-out');
-      setTimeout(() => { window.location.href = a.href; }, 180);
-    });
-  }
-
   function initTheme() {
     const KEY = 'theme';
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
@@ -137,17 +123,7 @@
     setActiveLink();
     initNav();
     initTheme();
-    initPageTransitions();
-    document.body.classList.add('loaded');
   }
-
-  // Restore visibility on bfcache restore (back/forward navigation)
-  window.addEventListener('pageshow', e => {
-    if (e.persisted) {
-      document.body.classList.remove('fade-out');
-      document.body.classList.add('loaded');
-    }
-  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
