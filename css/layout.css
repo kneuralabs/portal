@@ -89,7 +89,7 @@
 
 /* Small phones — tighter rhythm, no clipped headlines */
 @media (max-width: 380px) {
-  .frame { padding: 0 16px; }
+  .frame { padding: 0 20px; }
   .section { padding: 44px 0; }
   .svc-hero { padding: 52px 0 34px; }
 }
