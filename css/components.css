@@ -194,6 +194,41 @@ details .body {
   details .body { padding: 0 8px 24px 50px; }
 }
 
+/* ── Question index (homepage FAQ teaser) ── */
+.q-index { border-top: 1px solid var(--ink); }
+.q-index a {
+  display: grid;
+  grid-template-columns: 44px 1fr 28px;
+  gap: 20px;
+  align-items: center;
+  padding: 22px 8px;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+  transition: padding-left var(--dur-s) var(--ease-spring), background-color var(--dur-xs) var(--ease-out);
+}
+.q-index a:hover, .q-index a:focus-visible { background: var(--paper-2); padding-left: 16px; outline: none; }
+.q-index .qn { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--ink-2); }
+.q-index .qt { font-family: var(--serif); font-weight: 400; font-size: 21px; letter-spacing: -.01em; }
+.q-index .go {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 0;
+  transition: background-color var(--dur-xs) var(--ease-out), color var(--dur-xs) var(--ease-out), transform var(--dur-s) var(--ease-spring);
+}
+.q-index a:hover .go, .q-index a:focus-visible .go { background: var(--ink); color: var(--paper); transform: translateX(2px); }
+html[data-theme="dark"] .q-index .go { border-color: rgba(255,255,255,.30); }
+@media (max-width: 720px) {
+  .q-index a { grid-template-columns: 30px 1fr 24px; gap: 14px; padding: 18px 2px; }
+  .q-index a:hover, .q-index a:focus-visible { padding-left: 8px; }
+  .q-index .qt { font-size: 17px; }
+}
+
 /* ── Footer ── */
 footer.footer {
   padding: 48px 0 32px;
