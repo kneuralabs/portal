@@ -444,31 +444,108 @@ html[data-theme="dark"] .cta-strip .btn-primary:hover { background: var(--accent
 /* ── Scroll reveal ── */
 .sr {
   opacity: 0;
-  transform: translate3d(0, 20px, 0);
-  will-change: opacity, transform;
+  transform: translate3d(0, 26px, 0);
+  filter: blur(7px);
+  will-change: opacity, transform, filter;
   transition:
     opacity var(--dur-m) var(--ease-soft),
     transform var(--dur-l) var(--ease-soft),
     filter var(--dur-m) var(--ease-soft);
   transition-delay: var(--rd, 0ms);
 }
-.sr-left  { transform: translate3d(-20px, 0, 0); }
-.sr-right { transform: translate3d(20px, 0, 0); }
-.sr-scale { transform: scale(.97); }
-.sr.revealed { opacity: 1; transform: none; filter: none; }
+.sr-left  { transform: translate3d(-26px, 0, 0); }
+.sr-right { transform: translate3d(26px, 0, 0); }
+.sr-scale { transform: scale(.96); }
+.sr.revealed {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.sr.revealed { will-change: auto; }
 
-/* Hero headline character reveal */
+/* Hero headline — word-grouped character reveal */
+.reveal-word { display: inline-block; white-space: nowrap; }
 .reveal-char {
   display: inline-block;
   opacity: 0;
-  transform: translate3d(0, .6em, 0);
+  transform: translate3d(0, .62em, 0) rotate(2deg);
+  filter: blur(5px);
   transition:
     opacity var(--dur-m) var(--ease-out),
-    transform var(--dur-l) var(--ease-soft);
+    transform var(--dur-l) var(--ease-spring),
+    filter var(--dur-m) var(--ease-out);
   transition-delay: var(--rd, 0ms);
 }
-.reveal-char.is-in { opacity: 1; transform: none; }
+.reveal-char.is-in { opacity: 1; transform: none; filter: none; }
 .reveal-char.space { width: .32em; }
+
+/* ── Load choreography — hero settles in on first paint ── */
+html.js:not(.is-ready) .hero .eyebrow,
+html.js:not(.is-ready) .hero-side,
+html.js:not(.is-ready) .hero-actions,
+html.js:not(.is-ready) .marks,
+html.js:not(.is-ready) .svc-hero .eyebrow,
+html.js:not(.is-ready) .svc-hero .lede {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+}
+.hero .eyebrow, .hero-side, .hero-actions, .marks,
+.svc-hero .eyebrow, .svc-hero .lede {
+  transition:
+    opacity var(--dur-m) var(--ease-soft),
+    transform var(--dur-l) var(--ease-soft);
+}
+html.is-ready .hero-side    { transition-delay: 90ms; }
+html.is-ready .hero-actions { transition-delay: 160ms; }
+html.is-ready .marks        { transition-delay: 230ms; }
+html.is-ready .svc-hero .lede { transition-delay: 120ms; }
+
+/* ── Premium micro-interactions ── */
+nav.primary a, .cta-mini, .btn, .foot-col a, .svc, .deliv,
+.card-grid > article, .gap, details summary .pm, .theme-toggle,
+.brand-img, .contact-info .row {
+  transition-timing-function: var(--ease-soft);
+}
+.btn { transition: transform var(--dur-s) var(--ease-spring), background-color var(--dur-s) var(--ease-out), color var(--dur-s) var(--ease-out), border-color var(--dur-s) var(--ease-out), box-shadow var(--dur-s) var(--ease-out); }
+.btn-primary:hover { box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--accent) 70%, transparent); }
+.btn-ghost:hover { box-shadow: 0 10px 28px -16px rgba(0,0,0,.4); }
+
+/* Animated underline for textual links */
+.prose a, .foot-meta a, .contact-info .val a, .form-success a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  transition: background-size var(--dur-s) var(--ease-soft), color var(--dur-xs) var(--ease-out);
+}
+.prose a:hover, .foot-meta a:hover, .contact-info .val a:hover, .form-success a:hover {
+  background-size: 100% 1px;
+}
+
+/* Footer column links — quiet slide on hover */
+.foot-col a { transition: color var(--dur-xs) var(--ease-out), transform var(--dur-s) var(--ease-soft); }
+.foot-col a:hover { transform: translateX(4px); }
+
+/* Card / tile lift refinement */
+.svc, .deliv, .card-grid > article {
+  transition: transform var(--dur-s) var(--ease-soft), background-color var(--dur-s) var(--ease-out), box-shadow var(--dur-m) var(--ease-soft);
+}
+
+/* FAQ disclosure — smoother toggle */
+details summary .pm { transition: transform var(--dur-s) var(--ease-spring), background-color var(--dur-xs) var(--ease-out), color var(--dur-xs) var(--ease-out); }
+details[open] summary { color: var(--ink); }
+
+/* Reusable reduced-motion safety for the new layer */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-word, .reveal-char { opacity: 1 !important; transform: none !important; filter: none !important; }
+  html.js:not(.is-ready) .hero .eyebrow,
+  html.js:not(.is-ready) .hero-side,
+  html.js:not(.is-ready) .hero-actions,
+  html.js:not(.is-ready) .marks,
+  html.js:not(.is-ready) .svc-hero .eyebrow,
+  html.js:not(.is-ready) .svc-hero .lede { opacity: 1; transform: none; }
+}
 
 /* Stat number rise */
 .stat.revealed .n { animation: numRise var(--dur-xl) var(--ease-soft) both; }
