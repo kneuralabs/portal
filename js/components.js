@@ -52,6 +52,12 @@
 
     if (!hamburger || !mobileMenu) return;
 
+    // The header uses backdrop-filter, which makes it the containing block
+    // for position:fixed descendants — that clips the overlay to the header.
+    // Reparent the menu + backdrop to <body> so they fill the viewport.
+    if (mobileMenu.parentElement !== document.body) document.body.appendChild(mobileMenu);
+    if (backdrop && backdrop.parentElement !== document.body) document.body.appendChild(backdrop);
+
     const focusable = () => Array.from(
       mobileMenu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
     ).filter(el => !el.closest('[hidden]'));

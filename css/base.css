@@ -19,7 +19,7 @@ html {
   scroll-padding-top: calc(var(--nav-height) + 12px);
 }
 
-body { overflow-x: clip; }
+html, body { overflow-x: clip; max-width: 100%; }
 
 body {
   font-size: 16px;
@@ -50,7 +50,8 @@ h1, h2, h3, h4, p { margin: 0; }
   padding: 0 40px;
 }
 @media (max-width: 980px) { .frame { padding: 0 28px; } }
-@media (max-width: 720px) { .frame { padding: 0 20px; } }
+@media (max-width: 720px) { .frame { padding: 0 24px; } }
+@media (max-width: 480px) { .frame { padding: 0 22px; } }
 
 /* ── Skip link ── */
 .skip-link {
