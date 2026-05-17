@@ -336,35 +336,36 @@ form.card button[disabled] { opacity: .7; cursor: progress; }
 .form-success p { color: var(--ink-2); font-size: 15px; line-height: 1.6; }
 .form-success a { color: var(--ink); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
 
-/* ── Floating theme toggle ── */
+/* ── Header action cluster ── */
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+
+/* ── Theme toggle (header control) ── */
 .theme-toggle {
-  position: fixed;
-  left: 24px;
-  bottom: 24px;
-  z-index: 55;
-  width: 44px;
-  height: 44px;
+  flex: none;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   border: 1px solid var(--rule);
-  background: color-mix(in oklab, var(--paper-2) 80%, transparent);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: transparent;
   color: var(--ink);
-  box-shadow: var(--shadow-card);
-  transition: border-color var(--dur-s) var(--ease-out), transform var(--dur-s) var(--ease-spring);
+  transition: border-color var(--dur-s) var(--ease-out), background-color var(--dur-s) var(--ease-out), transform var(--dur-s) var(--ease-spring);
 }
-.theme-toggle:hover { transform: scale(1.06); border-color: var(--ink); }
-html[data-theme="dark"] .theme-toggle { border-color: rgba(255,255,255,.14); }
+.theme-toggle:hover { transform: scale(1.06); border-color: var(--ink); background: var(--hover-fill); }
+html[data-theme="dark"] .theme-toggle { border-color: rgba(255,255,255,.18); }
 html[data-theme="dark"] .theme-toggle:hover { border-color: rgba(255,255,255,.40); }
 .theme-toggle svg { width: 18px; height: 18px; }
 .theme-toggle .icon-moon { display: none; }
 html[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
-@media (max-width: 720px) { .theme-toggle { left: 16px; bottom: 16px; width: 40px; height: 40px; } }
 
 /* ── Hamburger ── */
 .hamburger {
@@ -533,7 +534,7 @@ html[data-theme="dark"] .mobile-menu .mobile-cta { background: var(--ink); color
 .mobile-menu.open .mobile-cta { transition-delay: 320ms; }
 
 @media (max-width: 1080px) {
-  nav.primary, .topbar > .cta-mini { display: none; }
+  nav.primary, .cta-mini { display: none; }
   .hamburger { display: flex; }
   .topbar { min-height: 64px; gap: 12px; }
   header.top { --nav-height: 64px; }
