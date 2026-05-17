@@ -322,7 +322,8 @@ html[data-theme="dark"] .deliv:hover { box-shadow: var(--shadow-card); }
 .princ h4 { font-family: var(--serif); font-weight: 400; font-size: 22px; margin: 14px 0 8px; letter-spacing: -.01em; }
 .princ p { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; }
 .princ .num { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--accent); }
-@media (max-width: 820px) { .princ { grid-template-columns: 1fr; } .princ > div { min-height: 0; } }
+@media (max-width: 1080px) and (min-width: 561px) { .princ { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .princ { grid-template-columns: 1fr; } .princ > div { min-height: 0; } }
 
 /* ── Contact ── */
 .contact-grid {
@@ -347,6 +348,9 @@ html[data-theme="dark"] .deliv:hover { box-shadow: var(--shadow-card); }
 .contact-info .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
 .contact-info .val a { color: var(--ink); font-weight: 500; }
 @media (max-width: 820px) { .contact-grid { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; } }
+@media (max-width: 480px) {
+  .contact-info .row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+}
 
 /* ── CTA strip ── */
 .cta-strip {
