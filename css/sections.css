@@ -328,20 +328,50 @@ html[data-theme="dark"] .deliv:hover { box-shadow: var(--shadow-card); }
 }
 .t-row.revealed::before { transform: scale(1); }
 .t-row.active.revealed::before { animation: tlNodePulse 2.8s var(--ease-out) 700ms infinite; }
-.t-row.sr .t-body { transform: translate3d(8px, 0, 0); }
-.t-row.sr.revealed .t-body { transform: none; transition: transform var(--dur-l) var(--ease-soft) var(--rd, 0ms); }
+
+/* Content enters: fade + slide up + slight right drift */
+.t-row.sr .t-week {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--dur-m) var(--ease-soft), transform var(--dur-m) var(--ease-soft);
+}
+.t-row.sr.revealed .t-week {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--rd, 0ms) + 60ms);
+}
+.t-row.sr .t-body {
+  opacity: 0;
+  transform: translate3d(10px, 16px, 0);
+}
+.t-row.sr.revealed .t-body {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur-l) var(--ease-soft) var(--rd, 0ms),
+              transform var(--dur-l) var(--ease-soft) var(--rd, 0ms);
+}
+
 @keyframes tlNodePulse {
   0%, 100% { box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--accent),
              0 0 0 5px color-mix(in oklab, var(--accent) 0%, transparent); }
   50%      { box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--accent),
-             0 0 0 13px color-mix(in oklab, var(--accent) 20%, transparent); }
+             0 0 0 14px color-mix(in oklab, var(--accent) 25%, transparent); }
 }
+
+@keyframes tlLineGlow {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.55; }
+}
+
 html:not(.js) .timeline::before,
 html:not(.js) .t-row::before { transform: none; }
+html:not(.js) .t-row.sr .t-body,
+html:not(.js) .t-row.sr .t-week { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .timeline::before, .t-row::before { transform: none !important; transition: none !important; }
   .t-row.active.revealed::before { animation: none !important; }
-  .t-row.sr .t-body { transform: none !important; }
+  .t-row.sr .t-body,
+  .t-row.sr .t-week { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
 /* ── Principles ── */

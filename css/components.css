@@ -454,7 +454,7 @@ html[data-theme="dark"] .theme-toggle.theme-fab:hover { border-color: rgba(255,2
 .nav-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.5);
+  background: rgba(0,0,0,.3);
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--dur-s) var(--ease-out);
@@ -462,23 +462,37 @@ html[data-theme="dark"] .theme-toggle.theme-fab:hover { border-color: rgba(255,2
 }
 .nav-backdrop.open { opacity: 1; pointer-events: auto; }
 
-/* ── Mobile menu — full-screen overlay ── */
+/* ── Mobile menu — translucent card ── */
 .mobile-menu {
   position: fixed;
-  inset: 0;
-  background: var(--paper);
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 20px;
+  background: color-mix(in oklab, var(--paper) 80%, transparent);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid color-mix(in oklab, var(--rule) 60%, transparent);
+  box-shadow: 0 20px 60px rgba(0,0,0,.22), 0 2px 8px rgba(0,0,0,.12);
   z-index: 71;
   display: flex;
   flex-direction: column;
-  padding: 16px 28px calc(28px + env(safe-area-inset-bottom, 0px));
+  padding: 8px 24px calc(14px + env(safe-area-inset-bottom, 0px));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
+  transform: translateY(-10px) scale(0.97);
+  transform-origin: top center;
   transition: opacity var(--dur-s) var(--ease-out),
               transform var(--dur-m) var(--ease-out),
               visibility 0s linear var(--dur-m);
+}
+html[data-theme="dark"] .mobile-menu {
+  background: color-mix(in oklab, var(--paper) 84%, transparent);
+  border-color: rgba(255,255,255,.1);
+  box-shadow: 0 20px 60px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.2);
 }
 .mobile-menu.open {
   opacity: 1;
@@ -491,13 +505,10 @@ html[data-theme="dark"] .theme-toggle.theme-fab:hover { border-color: rgba(255,2
 .mobile-menu-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  min-height: 56px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--rule);
+  justify-content: flex-end;
+  min-height: 44px;
+  padding-bottom: 4px;
 }
-.mobile-menu-top .brand { font-size: 24px; }
-.mobile-menu-top .brand-img { width: 36px; height: 36px; }
 
 .menu-close {
   position: relative;
@@ -524,19 +535,19 @@ html[data-theme="dark"] .theme-toggle.theme-fab:hover { border-color: rgba(255,2
 .mobile-nav {
   display: flex;
   flex-direction: column;
-  margin: 8px 0 24px;
+  margin: 4px 0 16px;
 }
 .mobile-nav a {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: var(--serif);
-  font-size: clamp(24px, 7vw, 34px);
+  font-size: clamp(17px, 4.8vw, 22px);
   font-weight: 400;
   letter-spacing: -.02em;
   color: var(--ink-2);
-  padding: 15px 0;
-  border-bottom: 1px solid var(--rule);
+  padding: 9px 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--rule) 60%, transparent);
   transition: color var(--dur-xs) var(--ease-out);
 }
 .mobile-nav a::after {
@@ -559,40 +570,61 @@ html[data-theme="dark"] .theme-toggle.theme-fab:hover { border-color: rgba(255,2
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 18px 22px;
+  padding: 13px 20px;
   background: var(--ink);
   color: var(--paper);
   border-radius: 999px;
   font-family: var(--sans);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   transition: background-color var(--dur-s) var(--ease-out), color var(--dur-s) var(--ease-out);
 }
 html[data-theme="dark"] .mobile-menu .mobile-cta { background: var(--ink); color: var(--paper); }
 .mobile-menu .mobile-cta:hover { background: var(--accent); color: var(--on-accent); }
 
+/* Brand footer */
+.mobile-menu-brand {
+  display: flex;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid color-mix(in oklab, var(--rule) 50%, transparent);
+  margin-top: 10px;
+}
+.mobile-menu-brand .brand {
+  font-size: 13px;
+  color: var(--ink-2);
+  gap: 7px;
+}
+.mobile-menu-brand .brand-img {
+  width: 24px;
+  height: 24px;
+}
+
 /* Staggered entrance */
 .mobile-menu .mobile-nav a,
-.mobile-menu .mobile-cta {
+.mobile-menu .mobile-cta,
+.mobile-menu .mobile-menu-brand {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(12px);
 }
 .mobile-menu.open .mobile-nav a,
-.mobile-menu.open .mobile-cta {
+.mobile-menu.open .mobile-cta,
+.mobile-menu.open .mobile-menu-brand {
   opacity: 1;
   transform: none;
   transition: opacity var(--dur-m) var(--ease-out), transform var(--dur-m) var(--ease-out);
 }
 .mobile-menu.open .mobile-nav a:nth-child(1) { transition-delay: 40ms; }
-.mobile-menu.open .mobile-nav a:nth-child(2) { transition-delay: 70ms; }
-.mobile-menu.open .mobile-nav a:nth-child(3) { transition-delay: 100ms; }
-.mobile-menu.open .mobile-nav a:nth-child(4) { transition-delay: 130ms; }
-.mobile-menu.open .mobile-nav a:nth-child(5) { transition-delay: 160ms; }
-.mobile-menu.open .mobile-nav a:nth-child(6) { transition-delay: 190ms; }
-.mobile-menu.open .mobile-nav a:nth-child(7) { transition-delay: 220ms; }
-.mobile-menu.open .mobile-nav a:nth-child(8) { transition-delay: 250ms; }
-.mobile-menu.open .mobile-nav a:nth-child(9) { transition-delay: 280ms; }
-.mobile-menu.open .mobile-cta { transition-delay: 320ms; }
+.mobile-menu.open .mobile-nav a:nth-child(2) { transition-delay: 65ms; }
+.mobile-menu.open .mobile-nav a:nth-child(3) { transition-delay: 90ms; }
+.mobile-menu.open .mobile-nav a:nth-child(4) { transition-delay: 115ms; }
+.mobile-menu.open .mobile-nav a:nth-child(5) { transition-delay: 140ms; }
+.mobile-menu.open .mobile-nav a:nth-child(6) { transition-delay: 165ms; }
+.mobile-menu.open .mobile-nav a:nth-child(7) { transition-delay: 190ms; }
+.mobile-menu.open .mobile-nav a:nth-child(8) { transition-delay: 215ms; }
+.mobile-menu.open .mobile-nav a:nth-child(9) { transition-delay: 240ms; }
+.mobile-menu.open .mobile-cta { transition-delay: 265ms; }
+.mobile-menu.open .mobile-menu-brand { transition-delay: 300ms; }
 
 @media (max-width: 1080px) {
   nav.primary, .cta-mini { display: none; }
