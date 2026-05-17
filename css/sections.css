@@ -488,8 +488,8 @@ html[data-theme="dark"] .cta-strip .btn-primary:hover { background: var(--accent
 
   /* Rhythm — generous, safe-area-aware gutters */
   .frame {
-    padding-left: max(24px, env(safe-area-inset-left, 0px));
-    padding-right: max(24px, env(safe-area-inset-right, 0px));
+    padding-left: max(32px, env(safe-area-inset-left, 0px));
+    padding-right: max(32px, env(safe-area-inset-right, 0px));
   }
   .section, .svc-row, .approach { padding: 56px 0; }
   .svc-hero { padding: 52px 0 36px; }
@@ -555,8 +555,8 @@ html[data-theme="dark"] .cta-strip .btn-primary:hover { background: var(--accent
 
 @media (max-width: 400px) {
   .frame {
-    padding-left: max(20px, env(safe-area-inset-left, 0px));
-    padding-right: max(20px, env(safe-area-inset-right, 0px));
+    padding-left: max(26px, env(safe-area-inset-left, 0px));
+    padding-right: max(26px, env(safe-area-inset-right, 0px));
   }
   .topbar-actions { gap: 8px; }
   .brand { font-size: 19px; gap: 8px; }
