@@ -473,3 +473,80 @@ html[data-theme="dark"] .cta-strip .btn-primary:hover { background: var(--accent
   60% { opacity: 1; }
   100% { opacity: 1; transform: none; letter-spacing: -.02em; }
 }
+
+/* ============================================================
+   Mobile rebuild — one coherent phone/tablet system.
+   Loaded last; single source of truth for small screens.
+   ============================================================ */
+@media (max-width: 760px) {
+  /* Header */
+  .topbar { gap: 12px; min-height: 64px; padding: 12px 0; }
+
+  /* Rhythm */
+  .frame { padding: 0 20px; }
+  .section, .svc-row, .approach { padding: 56px 0; }
+  .svc-hero { padding: 56px 0 36px; }
+  .hero { padding: 44px 0 40px; }
+  .stats { padding: 28px 0; }
+  .contact-grid { padding: 44px 0; gap: 28px; }
+  .cta-strip { padding: 56px 0; }
+
+  /* Hero */
+  .hero-grid { gap: 26px; }
+  h1.display { font-size: clamp(34px, 10vw, 52px); margin-top: 16px; line-height: 1; }
+  .hero-side { max-width: none; font-size: 16px; }
+  .svc-hero h1 { font-size: clamp(36px, 11vw, 56px); }
+  .svc-hero .lede, .contact-grid .lede { max-width: none; font-size: 16px; }
+  .eyebrow { font-size: 10.5px; letter-spacing: .15em; }
+
+  /* Buttons — full-width, comfortable touch targets */
+  .hero-actions { gap: 12px; margin-top: 22px; }
+  .hero-actions .btn { width: 100%; justify-content: center; padding: 16px 20px; font-size: 15px; }
+
+  /* Section heads */
+  .section-head { gap: 12px; margin-bottom: 28px; }
+  .section-head h2 { font-size: clamp(28px, 8vw, 40px); }
+  .section-head p { font-size: 15px; max-width: none; }
+
+  /* Stats — two clean columns */
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 18px; }
+  .stat .n { font-size: clamp(30px, 11vw, 44px); }
+
+  /* Gap list — single column */
+  .gap { grid-template-columns: 1fr; gap: 8px; padding: 22px 2px; }
+  .gap h3 br { display: none; }
+  .gap h3 { font-size: 20px; }
+
+  /* Service rows */
+  .svc-row-grid { gap: 24px; }
+  .svc-row .id-big { font-size: 80px; }
+  .svc-row h2 { font-size: 32px; }
+  .svc-row .lede { font-size: 16px; max-width: none; }
+
+  /* Marks row wraps cleanly */
+  .marks { margin-top: 30px; gap: 14px 18px; font-size: 11px; }
+  .marks span[style] { margin-left: 0 !important; flex-basis: 100%; }
+
+  /* FAQ */
+  .faq details summary { padding: 20px 2px; }
+
+  /* Footer */
+  footer.footer { padding: 40px 0 28px; }
+  .foot-grid { gap: 28px; padding-bottom: 28px; }
+
+  /* Forms */
+  form.card { padding: 24px 20px; }
+
+  /* Theme toggle clear of content */
+  .theme-toggle { left: 16px; bottom: 16px; width: 42px; height: 42px; }
+}
+
+@media (max-width: 400px) {
+  .frame { padding: 0 16px; }
+  .brand { font-size: 19px; gap: 8px; }
+  .brand-img { width: 30px; height: 30px; }
+  h1.display { font-size: clamp(30px, 9.4vw, 40px); }
+  .stats-grid { grid-template-columns: 1fr; gap: 18px; }
+  .stat .n { font-size: 34px; }
+  .marks { margin-top: 24px; }
+}
