@@ -123,10 +123,4 @@
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
-
-  // ── Scroll-down arrow (optional) ──
-  document.querySelector('.scroll-arrow')?.addEventListener('click', () => {
-    const target = document.querySelector('main > section:nth-of-type(2), main .section');
-    target?.scrollIntoView({ behavior: 'smooth' });
-  });
 })();
