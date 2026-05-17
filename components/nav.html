@@ -1,46 +1,42 @@
-<nav class="navbar" role="navigation" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="Kneuralabs home">
-      <img src="assets/images/logo.png" class="nav-logo-img" alt="Kneuralabs logo" width="36" height="36">
-      <div class="nav-logo-text">
-        <span class="nav-logo-name">Kneuralabs</span>
-        <span class="nav-logo-sub">Structural AI Governance</span>
-      </div>
-    </a>
+<div class="frame topbar">
+  <a class="brand" href="index.html" aria-label="Kneuralabs home">
+    <img class="brand-img" src="assets/images/logo.png" alt="Kneuralabs logo" width="60" height="60" />
+    Kneuralabs
+  </a>
 
-    <ul class="nav-links" role="list">
-      <li><a href="services.html"  data-page="services">Services</a></li>
-      <li><a href="approach.html"  data-page="approach">Approach</a></li>
-      <li><a href="journey.html"   data-page="journey">Journey</a></li>
-      <li><a href="about.html"     data-page="about">About</a></li>
-      <li><a href="careers.html"   data-page="careers">Careers</a></li>
-      <li><a href="insights.html"  data-page="insights">Insights</a></li>
-      <li><a href="contact.html"   data-page="contact">Contact</a></li>
-    </ul>
+  <nav class="primary" aria-label="Primary">
+    <a href="index.html"     data-page="index">Home</a>
+    <a href="services.html"  data-page="services">Services</a>
+    <a href="approach.html"  data-page="approach">Approach</a>
+    <a href="insights.html"  data-page="insights">Insights</a>
+    <a href="contact.html"   data-page="contact">Contact</a>
+  </nav>
 
-    <a href="contact.html" class="btn btn-primary nav-cta">Start &rarr;</a>
+  <a class="cta-mini" href="contact.html">
+    <span class="dot" aria-hidden="true"></span>
+    Book discovery call
+  </a>
 
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</nav>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</div>
 
-<button class="theme-toggle theme-toggle-float" id="themeToggleFloat" aria-label="Toggle dark mode">
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  <a href="index.html"      data-page="index">Home</a>
+  <a href="services.html"   data-page="services">Services</a>
+  <a href="approach.html"   data-page="approach">Approach</a>
+  <a href="insights.html"   data-page="insights">Insights</a>
+  <a href="journey.html"    data-page="journey">Journey</a>
+  <a href="about.html"      data-page="about">About</a>
+  <a href="careers.html"    data-page="careers">Careers</a>
+  <a href="contact.html"    data-page="contact">Contact</a>
+  <a href="contact.html" class="mobile-cta">Book discovery call &rarr;</a>
+</div>
+
+<button class="theme-toggle" id="themeToggleFloat" aria-label="Toggle dark mode">
   <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
   <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
 </button>
-
-<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-  <a href="services.html"       data-page="services">Services</a>
-  <a href="approach.html"       data-page="approach">Approach</a>
-  <a href="journey.html"        data-page="journey">Journey</a>
-  <a href="about.html"          data-page="about">About</a>
-  <a href="careers.html"        data-page="careers">Careers</a>
-  <a href="insights.html"       data-page="insights">Insights</a>
-  <a href="contact.html"        data-page="contact">Contact</a>
-<a href="contact.html" class="mobile-cta">Start &rarr;</a>
-</div>

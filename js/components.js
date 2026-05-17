@@ -38,7 +38,7 @@
 
   function setActiveLink() {
     const page = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-links a[data-page], .mobile-menu a[data-page]').forEach(a => {
+    document.querySelectorAll('nav.primary a[data-page], .mobile-menu a[data-page]').forEach(a => {
       const href = a.getAttribute('href') || '';
       a.classList.toggle('active', href.split('/').pop() === page);
     });
