@@ -542,8 +542,8 @@ html[data-theme="dark"] .cta-strip .btn-primary:hover { background: var(--accent
   /* FAQ */
   .faq details summary { padding: 20px 2px; }
 
-  /* Footer */
-  footer.footer { padding: 40px 0 28px; }
+  /* Footer — clear the home indicator on iPhone Pro models */
+  footer.footer { padding: 40px 0 calc(28px + env(safe-area-inset-bottom, 0px)); }
   .foot-grid { gap: 28px; padding-bottom: 28px; }
 
   /* Forms */
