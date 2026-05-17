@@ -463,6 +463,11 @@ html[data-theme="dark"] .cta-strip .btn-primary:hover { background: var(--accent
 }
 .sr.revealed { will-change: auto; }
 
+/* No-JS / failed-load safety — content must never stay hidden if the
+   motion layer never runs. (scroll.js adds .js synchronously when present.) */
+html:not(.js) .sr,
+html:not(.js) .reveal-char { opacity: 1; transform: none; filter: none; }
+
 /* Hero headline — word-grouped character reveal */
 .reveal-word { display: inline-block; white-space: nowrap; }
 .reveal-char {
@@ -606,6 +611,12 @@ details[open] summary { color: var(--ink); }
   .gap h3 br { display: none; }
   .gap h3 { font-size: 20px; }
 
+  /* Desktop-tuned hard breaks fight the wrap at phone widths — let
+     text-wrap:balance rag these display headings cleanly instead. */
+  h1.display br,
+  .svc-hero h1 br,
+  .contact-grid h1 br { display: none; }
+
   /* Service rows */
   .svc-row-grid { gap: 24px; }
   .svc-row .id-big { font-size: 80px; }
@@ -622,12 +633,13 @@ details[open] summary { color: var(--ink); }
   /* Footer — clear the home indicator on iPhone Pro models */
   footer.footer { padding: 40px 0 calc(28px + env(safe-area-inset-bottom, 0px)); }
   .foot-grid { gap: 28px; padding-bottom: 28px; }
+  .foot-col a { padding: 12px 0; }
 
   /* Forms */
   form.card { padding: 24px 20px; }
 
-  /* Theme toggle clear of content */
-  .theme-toggle { left: 16px; bottom: 16px; width: 42px; height: 42px; }
+  /* Theme toggle — comfortable touch target */
+  .theme-toggle { width: 42px; height: 42px; }
 }
 
 @media (max-width: 400px) {

@@ -20,7 +20,7 @@
   /* ── Interaction overlays ── */
   --hover-fill:   rgba(0, 0, 0, 0.05);
   --hover-fill-2: rgba(0, 0, 0, 0.08);
-  --focus-ring:   rgba(0, 0, 0, 0.10);
+  --focus-ring:   color-mix(in oklab, var(--accent) 32%, transparent);
   --shadow-card:  0 1px 2px rgba(0,0,0,.04), 0 8px 24px -16px rgba(0,0,0,.18);
 
   /* ── Type ── */
@@ -59,7 +59,7 @@ html[data-theme="dark"] {
 
   --hover-fill:   rgba(255, 255, 255, 0.06);
   --hover-fill-2: rgba(255, 255, 255, 0.10);
-  --focus-ring:   rgba(255, 255, 255, 0.18);
+  --focus-ring:   color-mix(in oklab, var(--accent) 45%, transparent);
   --shadow-card:  0 1px 0 rgba(255,255,255,.04) inset, 0 12px 36px -20px rgba(0,0,0,.6);
 
   color-scheme: dark;
