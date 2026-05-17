@@ -48,6 +48,7 @@
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     const backdrop = document.getElementById('navBackdrop');
+    const closeBtn = document.getElementById('menuClose');
 
     if (!hamburger || !mobileMenu) return;
 
@@ -60,7 +61,8 @@
       hamburger.classList.add('open');
       hamburger.setAttribute('aria-expanded', 'true');
       if (backdrop) backdrop.classList.add('open');
-      setTimeout(() => { focusable()[0]?.focus(); }, 50);
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => { closeBtn?.focus(); }, 50);
     }
 
     function closeMenu() {
@@ -68,12 +70,15 @@
       hamburger.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
       if (backdrop) backdrop.classList.remove('open');
+      document.body.style.overflow = '';
       hamburger.focus();
     }
 
     hamburger.addEventListener('click', () => {
       mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
     });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
 
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeMenu);
