@@ -309,6 +309,40 @@ html[data-theme="dark"] .deliv:hover { box-shadow: var(--shadow-card); }
   .t-row::before { left: 56px; }
 }
 
+/* ── Timeline motion — line draws, nodes pop, active node breathes.
+   Transform-only, staggered with the row reveal (--rd), reduced-motion
+   safe, and overflow-free on every viewport. ── */
+.timeline::before {
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform var(--dur-xl) var(--ease-soft) 80ms;
+}
+.timeline:has(.t-row.revealed)::before { transform: scaleY(1); }
+.t-row::before {
+  transform: scale(0);
+  transition: transform var(--dur-s) var(--ease-spring),
+              background-color var(--dur-s) var(--ease-out),
+              box-shadow var(--dur-s) var(--ease-out);
+  transition-delay: var(--rd, 0ms);
+}
+.t-row.revealed::before { transform: scale(1); }
+.t-row.active.revealed::before { animation: tlNodePulse 2.8s var(--ease-out) 700ms infinite; }
+.t-row.sr .t-body { transform: translate3d(8px, 0, 0); }
+.t-row.sr.revealed .t-body { transform: none; transition: transform var(--dur-l) var(--ease-soft) var(--rd, 0ms); }
+@keyframes tlNodePulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--accent),
+             0 0 0 5px color-mix(in oklab, var(--accent) 0%, transparent); }
+  50%      { box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--accent),
+             0 0 0 13px color-mix(in oklab, var(--accent) 20%, transparent); }
+}
+html:not(.js) .timeline::before,
+html:not(.js) .t-row::before { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .timeline::before, .t-row::before { transform: none !important; transition: none !important; }
+  .t-row.active.revealed::before { animation: none !important; }
+  .t-row.sr .t-body { transform: none !important; }
+}
+
 /* ── Principles ── */
 .princ {
   display: grid;

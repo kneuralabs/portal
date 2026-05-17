@@ -106,34 +106,96 @@
     });
   }
 
-  function initTheme() {
-    const KEY = 'theme';
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const stored = () => { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
-    const apply = theme => document.documentElement.setAttribute('data-theme', theme);
+  // ── Theme: follows local sunrise / sunset, manual toggle overrides ──
+  const THEME_KEY = 'theme';
+  let themeTimer = 0;
+  const themeStored = () => { try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; } };
+  const applyTheme = t => document.documentElement.setAttribute('data-theme', t);
 
-    apply(stored() || (mq.matches ? 'dark' : 'light'));
+  // Approximate sunrise/sunset for the viewer's local position.
+  // Longitude is derived from the device timezone offset; latitude uses a
+  // sensible mid-latitude default so no geolocation prompt is needed.
+  function sunTheme() {
+    const now = new Date();
+    const lng = -now.getTimezoneOffset() / 4;
+    const lat = 40;
+    const rad = Math.PI / 180, deg = 180 / Math.PI;
+    function sun(rise) {
+      const start = Date.UTC(now.getUTCFullYear(), 0, 0);
+      const day = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+      const N = Math.round((day - start) / 864e5);
+      const lngHour = lng / 15;
+      const t = N + ((rise ? 6 : 18) - lngHour) / 24;
+      const M = 0.9856 * t - 3.289;
+      let L = M + 1.916 * Math.sin(M * rad) + 0.020 * Math.sin(2 * M * rad) + 282.634;
+      L = (L % 360 + 360) % 360;
+      let RA = deg * Math.atan(0.91764 * Math.tan(L * rad));
+      RA = (RA % 360 + 360) % 360;
+      RA += Math.floor(L / 90) * 90 - Math.floor(RA / 90) * 90;
+      RA /= 15;
+      const sinDec = 0.39782 * Math.sin(L * rad);
+      const cosDec = Math.cos(Math.asin(sinDec));
+      const cosH = (Math.cos(90.833 * rad) - sinDec * Math.sin(lat * rad)) / (cosDec * Math.cos(lat * rad));
+      if (cosH > 1) return null;        // sun never rises today
+      if (cosH < -1) return rise ? 0 : 24; // sun never sets today
+      let H = (rise ? 360 - deg * Math.acos(cosH) : deg * Math.acos(cosH)) / 15;
+      const T = H + RA - 0.06571 * t - 6.622;
+      return ((T - lngHour) % 24 + 24) % 24; // UTC hours
+    }
+    const riseUTC = sun(true), setUTC = sun(false);
+    const hrs = now.getUTCHours() + now.getUTCMinutes() / 60 + now.getUTCSeconds() / 3600;
+    let isDay;
+    if (riseUTC == null || setUTC == null) {
+      isDay = riseUTC != null;
+    } else if (setUTC > riseUTC) {
+      isDay = hrs >= riseUTC && hrs < setUTC;
+    } else {
+      isDay = hrs >= riseUTC || hrs < setUTC;
+    }
+    const until = h => { let d = h - hrs; if (d <= 0) d += 24; return d * 36e5; };
+    const ms = isDay ? until(setUTC == null ? 24 : setUTC)
+                     : until(riseUTC == null ? 24 : riseUTC);
+    return { theme: isDay ? 'light' : 'dark', ms: Math.max(6e4, Math.min(ms, 6 * 36e5)) };
+  }
 
+  function autoTheme() {
+    if (themeStored()) return;            // explicit user choice wins
+    const s = sunTheme();
+    applyTheme(s.theme);
+    clearTimeout(themeTimer);
+    themeTimer = setTimeout(autoTheme, s.ms);
+  }
+
+  function resolveTheme() {
+    const manual = themeStored();
+    if (manual) applyTheme(manual);
+    else autoTheme();
+  }
+
+  function wireTheme() {
     document.querySelectorAll('.theme-toggle').forEach(btn => {
+      if (btn.id === 'themeToggleFloat' && btn.parentElement !== document.body) {
+        document.body.appendChild(btn);
+        btn.classList.add('theme-fab');
+      }
       btn.addEventListener('click', () => {
         const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        apply(next);
-        try { localStorage.setItem(KEY, next); } catch (e) {}
+        applyTheme(next);
+        try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+        clearTimeout(themeTimer);
       });
     });
-
-    // Track system preference only when the user hasn't picked one explicitly.
-    mq.addEventListener('change', e => { if (!stored()) apply(e.matches ? 'dark' : 'light'); });
   }
 
   async function init() {
+    resolveTheme();
     await Promise.all([
       loadComponent('header', 'components/nav.html'),
       loadComponent('footer', 'components/footer.html'),
     ]);
     setActiveLink();
     initNav();
-    initTheme();
+    wireTheme();
   }
 
   if (document.readyState === 'loading') {
