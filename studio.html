@@ -277,8 +277,20 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
 /* ══════════════════════════════════
    REVEAL
 ══════════════════════════════════ */
-.reveal { opacity:0; transform:translateY(28px); transition:opacity .75s ease,transform .75s ease; }
-.reveal.vis { opacity:1; transform:none; }
+.reveal { 
+  opacity: 0; 
+  transform: translateY(30px) translateZ(0); 
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+.reveal.vis { opacity: 1; transform: translate3d(0, 0, 0); }
+
+/* Stagger delays */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
 @media(prefers-reduced-motion:reduce){
   .reveal { opacity:1; transform:none; transition:none; }
   * { animation-duration:.01ms !important; transition-duration:.01ms !important; }
@@ -321,12 +333,13 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
 
 /* ── Small phone (≤ 480px) ── */
 @media(max-width:480px){
-  .hero-footer { flex-direction:column; align-items:flex-start; gap:1.2rem; }
-  .hero-ctas   { width:100%; }
-  .s-btn-primary, .s-btn-ghost { width:100%; text-align:center; justify-content:center; }
+  .hero-footer { flex-direction:column; align-items:flex-start; gap:1.5rem; }
+  .hero-ctas   { width:100%; flex-direction: column; }
+  .s-btn-primary, .s-btn-ghost { width:100%; text-align:center; justify-content:center; padding: 1rem; }
   .feat-grid { grid-template-columns:1fr; }
-  .tools-list { grid-template-columns:repeat(3,1fr); }
-  .footer-cta-h { font-size:clamp(1.9rem,10vw,2.6rem); }
+  .tools-list { grid-template-columns:repeat(2,1fr); gap: 0.4rem; }
+  .footer-cta-h { font-size:clamp(2rem,10vw,2.8rem); }
+  .stat-item { padding: 2rem 1.5rem; }
 }
 
 /* ── Very small phone (≤ 380px) ── */
@@ -355,9 +368,9 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
 <section class="s-hero">
   <div class="hero-eyebrow"><span>Innovation Studio — Est. 2024</span></div>
   <h1 class="hero-h1">
-    <span class="r1">This is where</span>
+    <span class="r1">Where the world's most</span>
     <span class="r2">Impossible</span>
-    <span class="r3">becomes real.</span>
+    <span class="r3">ideas take flight.</span>
   </h1>
   <div class="hero-footer">
     <p class="hero-sub">We plug every frontier AI — ChatGPT, Claude, Gemini, Grok, all of it — into one studio that builds things nobody's built before.</p>
@@ -377,23 +390,23 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     <p class="sec-label">What we actually do</p>
     <h2 class="sec-title">We ship things.<br><em>Not decks. Not vibes.</em></h2>
   </div>
-  <div class="feat-grid reveal">
-    <div class="feat-card"><div class="feat-line"></div>
+  <div class="feat-grid">
+    <div class="feat-card reveal reveal-delay-1"><div class="feat-line"></div>
       <span class="feat-num">01</span>
       <h3 class="feat-h">Every AI, one team</h3>
       <p class="feat-p">We don't pick one model and call it a day. We stack them. ChatGPT for this, Claude for that — whatever gets the best result, we use it.</p>
     </div>
-    <div class="feat-card"><div class="feat-line"></div>
+    <div class="feat-card reveal reveal-delay-2"><div class="feat-line"></div>
       <span class="feat-num">02</span>
       <h3 class="feat-h">Idea → Real thing. Fast.</h3>
       <p class="feat-p">Days, not months. Wild idea lands on Monday, working prototype ships by Friday. That's just how we move.</p>
     </div>
-    <div class="feat-card"><div class="feat-line"></div>
+    <div class="feat-card reveal reveal-delay-3"><div class="feat-line"></div>
       <span class="feat-num">03</span>
       <h3 class="feat-h">Outcomes, not experiments</h3>
       <p class="feat-p">Everything we build has a number attached to it. More revenue, less churn, faster ops. The AI is the how — your goal is the why.</p>
     </div>
-    <div class="feat-card"><div class="feat-line"></div>
+    <div class="feat-card reveal reveal-delay-4"><div class="feat-line"></div>
       <span class="feat-num">04</span>
       <h3 class="feat-h">Always on the next thing</h3>
       <p class="feat-p">We track every model drop, every new tool, every shift in the landscape. By the time it's news, we've already tested it.</p>
@@ -408,14 +421,27 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     <h2 class="sec-title">Every frontier AI.<br><em>One studio.</em></h2>
     <p class="tools-desc">No brand loyalty, no vendor lock-in. Just whatever works best for your project — and we know all of them.</p>
   </div>
-  <div class="tools-list reveal">
-    <div class="tool-item">ChatGPT</div><div class="tool-item">Claude</div>
-    <div class="tool-item">Gemini</div><div class="tool-item">Grok</div>
-    <div class="tool-item">Llama</div><div class="tool-item">Midjourney</div>
-    <div class="tool-item">Perplexity</div><div class="tool-item">Copilot</div>
-    <div class="tool-item">Runway</div><div class="tool-item">Sora</div>
-    <div class="tool-item">Stable Diff</div><div class="tool-item">Mistral</div>
-    <div class="tool-item">+ way more</div>
+  <div class="tools-list">
+    <div class="tool-item reveal reveal-delay-1">ChatGPT</div>
+    <div class="tool-item reveal reveal-delay-2">Claude</div>
+    <div class="tool-item reveal reveal-delay-3">Gemini</div>
+    <div class="tool-item reveal reveal-delay-4">Grok</div>
+    <div class="tool-item reveal reveal-delay-1">Llama 3</div>
+    <div class="tool-item reveal reveal-delay-2">Midjourney</div>
+    <div class="tool-item reveal reveal-delay-3">Perplexity</div>
+    <div class="tool-item reveal reveal-delay-4">Copilot</div>
+    <div class="tool-item reveal reveal-delay-1">Runway Gen-3</div>
+    <div class="tool-item reveal reveal-delay-2">Sora</div>
+    <div class="tool-item reveal reveal-delay-3">Stable Diffusion</div>
+    <div class="tool-item reveal reveal-delay-4">Mistral Large</div>
+    <div class="tool-item reveal reveal-delay-1">Cohere</div>
+    <div class="tool-item reveal reveal-delay-2">ElevenLabs</div>
+    <div class="tool-item reveal reveal-delay-3">Cursor</div>
+    <div class="tool-item reveal reveal-delay-4">DALL-E 3</div>
+    <div class="tool-item reveal reveal-delay-1">Flux.1</div>
+    <div class="tool-item reveal reveal-delay-2">Pika Labs</div>
+    <div class="tool-item reveal reveal-delay-3">Udio</div>
+    <div class="tool-item reveal reveal-delay-4">+ way more</div>
   </div>
 </section>
 
@@ -443,7 +469,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     <a href="mailto:hello@kneuralabs.com" class="s-btn-primary">Start something →</a>
   </div>
   <div class="footer-bar">
-    <span>© 2025 Kneuralabs Innovation Studio. All rights reserved.</span>
+    <span>© 2026 Kneuralabs LLC. All rights reserved.</span>
     <span>hello@kneuralabs.com</span>
   </div>
 </section>
@@ -470,71 +496,126 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     'Ideogram','Kling','HailuoAI','NovAI','Luma','Veo2',
   ];
   const RAND = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>{}[]|/\\:;~^*+-=#@!'.split('');
-  const COL_W = 16, FONT_SZ = 13;
+  const COL_W = 20, FONT_SZ = 14;
   const isDark = ()=> document.documentElement.getAttribute('data-theme') !== 'light';
 
-  let cols, streams, frameReq;
+  let cols, streams, frameReq, lastTime = 0;
 
   function mkStream(col){
-    return { col, drop:-(Math.random()*(window.innerHeight/FONT_SZ+60)), speed:0.06+Math.random()*0.10,
-      name:Math.random()<0.42?NAMES[Math.floor(Math.random()*NAMES.length)]:null,
-      bright:0.55+Math.random()*0.45, randCache:[] };
+    return { 
+      col, 
+      drop: -(Math.random() * (window.innerHeight / FONT_SZ + 50)), 
+      speed: 0.08 + Math.random() * 0.12,
+      name: Math.random() < 0.35 ? NAMES[Math.floor(Math.random() * NAMES.length)] : null,
+      bright: 0.4 + Math.random() * 0.5, 
+      randCache: [] 
+    };
   }
+
   function init(){
-    canvas.width=window.innerWidth; canvas.height=window.innerHeight;
-    cols=Math.ceil(canvas.width/COL_W);
-    streams=Array.from({length:cols},(_,i)=>mkStream(i));
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    ctx.scale(dpr, dpr);
+    cols = Math.ceil(window.innerWidth / COL_W);
+    // Optimization: fewer streams on mobile
+    const density = window.innerWidth < 768 ? 0.45 : 0.75;
+    streams = [];
+    for(let i=0; i<cols; i++) {
+      if(Math.random() < density) streams.push(mkStream(i));
+    }
   }
-  function charAt(s,row){
-    if(s.name){ const h=Math.floor(s.drop),d=h-row; if(d>=0&&d<s.name.length) return s.name[s.name.length-1-d]; }
-    if(!s.randCache[row]||Math.random()<0.008) s.randCache[row]=RAND[Math.floor(Math.random()*RAND.length)];
+
+  function charAt(s, row){
+    if(s.name){ 
+      const h = Math.floor(s.drop), d = h - row; 
+      if(d >= 0 && d < s.name.length) return s.name[s.name.length - 1 - d]; 
+    }
+    if(!s.randCache[row] || Math.random() < 0.01) s.randCache[row] = RAND[Math.floor(Math.random() * RAND.length)];
     return s.randCache[row];
   }
-  let lastTime=0;
+
   function draw(ts){
-    frameReq=requestAnimationFrame(draw);
-    const dt=Math.min((ts-lastTime)/16.67,3); lastTime=ts;
-    const dark=isDark();
-    ctx.fillStyle=dark?'rgba(9,9,15,0.12)':'rgba(246,244,255,0.14)';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.font=`${FONT_SZ}px "Courier New",monospace`;
-    const G=dark?[0,255,65]:[0,140,60], GH=dark?[200,255,210]:[0,80,30];
+    frameReq = requestAnimationFrame(draw);
+    const dt = Math.min((ts - lastTime) / 16.67, 3); 
+    if (dt < 1.5) return; // Cap at ~40fps for performance and battery
+    lastTime = ts;
+
+    const dark = isDark();
+    // Use clearRect for better performance and manual alpha trail
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    
+    ctx.font = `400 ${FONT_SZ}px "JetBrains Mono", monospace`;
+    // Using theme-consistent colors: Lime (#c8ff35) and Violet (#a78bfa)
+    const V = [167, 139, 250], L = [200, 255, 53];
+    
     for(const s of streams){
-      s.drop+=s.speed*dt;
-      const x=s.col*COL_W, head=Math.floor(s.drop);
-      const trailLen=s.name?s.name.length+Math.floor(8+Math.random()*6):Math.floor(12+Math.random()*10);
-      for(let t=0;t<=trailLen;t++){
-        const row=head-t, y=row*FONT_SZ;
-        if(y<-FONT_SZ||y>canvas.height) continue;
-        if(t===0){ ctx.fillStyle=`rgba(${GH[0]},${GH[1]},${GH[2]},${s.bright})`; }
-        else {
-          const isN=s.name&&(head-row)<s.name.length;
-          ctx.fillStyle=`rgba(${G[0]},${G[1]},${G[2]},${s.bright*(isN?.72:.55)*Math.pow(1-t/trailLen,1.6)})`;
+      s.drop += s.speed * dt;
+      const x = s.col * COL_W, head = Math.floor(s.drop);
+      const trailLen = s.name ? s.name.length + 10 : 15;
+      
+      for(let t = 0; t <= trailLen; t++){
+        const row = head - t, y = row * FONT_SZ;
+        if(y < -FONT_SZ || y > window.innerHeight) continue;
+        
+        if(t === 0){ 
+          ctx.fillStyle = `rgba(${L[0]}, ${L[1]}, ${L[2]}, ${s.bright})`; 
+        } else {
+          const isN = s.name && (head - row) < s.name.length;
+          const alpha = s.bright * (isN ? 0.7 : 0.4) * Math.pow(1 - t / trailLen, 1.5);
+          ctx.fillStyle = `rgba(${V[0]}, ${V[1]}, ${V[2]}, ${alpha})`;
         }
-        ctx.fillText(charAt(s,row),x,y);
+        ctx.fillText(charAt(s, row), x, y);
       }
-      if(s.drop*FONT_SZ>canvas.height+trailLen*FONT_SZ+40){ Object.assign(s,mkStream(s.col)); s.drop=-(Math.random()*30+5); }
+      if(s.drop * FONT_SZ > window.innerHeight + trailLen * FONT_SZ + 50){ 
+        Object.assign(s, mkStream(s.col)); 
+        s.drop = -5; 
+      }
     }
   }
   init();
-  requestAnimationFrame(t=>{ lastTime=t; draw(t); });
-  let resizeT;
-  window.addEventListener('resize',()=>{ clearTimeout(resizeT); resizeT=setTimeout(()=>{ cancelAnimationFrame(frameReq); init(); requestAnimationFrame(t=>{ lastTime=t; draw(t); }); },220); });
-  document.addEventListener('visibilitychange',()=>{ if(document.hidden) cancelAnimationFrame(frameReq); else requestAnimationFrame(t=>{ lastTime=t; draw(t); }); });
+  frameReq = requestAnimationFrame(draw);
 
-  // Mobile: iOS Safari pauses rAF during scroll momentum. Restart after scroll ends.
+  let resizeT;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(() => {
+      cancelAnimationFrame(frameReq);
+      init();
+      frameReq = requestAnimationFrame(draw);
+    }, 250);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(frameReq);
+    } else {
+      frameReq = requestAnimationFrame(draw);
+    }
+  });
+
   let scrollT;
   window.addEventListener('scroll', () => {
+    if (frameReq) cancelAnimationFrame(frameReq);
     clearTimeout(scrollT);
     scrollT = setTimeout(() => {
-      if (!document.hidden) { cancelAnimationFrame(frameReq); frameReq = requestAnimationFrame(t=>{ lastTime=t; draw(t); }); }
-    }, 66);
+      if (!document.hidden) frameReq = requestAnimationFrame(draw);
+    }, 100);
   }, { passive: true });
 })();
 
 /* ── Reveal ── */
-const obs=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);} }); },{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+(function() {
+  const obs = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('vis');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+})();
 </script>
 </body>
 </html>
