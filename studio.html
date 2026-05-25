@@ -8,9 +8,9 @@
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Satisfy&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Satisfy&display=swap" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Satisfy&display=swap" /></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Pacifico&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Pacifico&display=swap" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Pacifico&display=swap" /></noscript>
 <link rel="stylesheet" href="css/variables.css" />
 <link rel="stylesheet" href="css/base.css" />
 <link rel="stylesheet" href="css/layout.css" />
@@ -116,10 +116,10 @@ html[data-theme="light"] .s-hero::before {
 .hero-h1 .r1 { display:block; font-size:clamp(1.6rem,5.5vw,5rem); font-weight:300; color:var(--ink-dim); }
 .hero-h1 .r2 {
   display:block;
-  font-family:'Satisfy', cursive;
-  font-size:clamp(3rem,11.5vw,10.5rem);
+  font-family:'Pacifico', cursive;
+  font-size:clamp(2.6rem,10.5vw,9.5rem);
   font-weight:400;
-  line-height:1.15;
+  line-height:1.2;
   color:#c8ff35;
   -webkit-text-stroke:0px transparent;
   text-shadow:
@@ -571,14 +571,18 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     ctx.fillRect(0, 0, w, h);
     ctx.font = `${FONT_SZ}px "Courier New",monospace`;
 
-    const G  = dark ? '0,255,65'   : '0,130,55';
-    const GH = dark ? '210,255,215': '0,80,30';
-
     for(const s of streams){
       s.drop += s.speed * dt;
       const x    = s.col * COL_W;
       const head = Math.floor(s.drop);
       const tLen = s.name ? s.name.length + Math.floor(8 + Math.random()*6) : Math.floor(12 + Math.random()*10);
+
+      /* alternate columns: even = red, odd = blue */
+      const isRed = s.col % 2 === 0;
+      const GH = dark ? '255,255,255' : '200,200,255';           /* leading char: white */
+      const G  = isRed
+        ? (dark ? '255,30,60'  : '200,0,40')                     /* red trail */
+        : (dark ? '30,120,255' : '20,80,220');                   /* blue trail */
 
       for(let t = 0; t <= tLen; t++){
         const row = head - t;

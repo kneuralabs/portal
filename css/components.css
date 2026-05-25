@@ -26,9 +26,9 @@ header.top.scrolled { box-shadow: 0 1px 0 var(--rule); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 88px;
+  min-height: 72px;
   gap: 18px;
-  padding: 16px 0;
+  padding: 22px 0;
 }
 
 .brand {
