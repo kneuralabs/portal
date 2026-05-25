@@ -113,6 +113,8 @@
   .section { padding-top: 44px; padding-bottom: 44px; }
   .cta-strip { padding-top: 48px; padding-bottom: 48px; }
   .marks { margin-top: 28px; }
+  /* Marks: reset right-float on landscape phones so the row wraps cleanly */
+  .marks span[style] { margin-left: 0 !important; }
   .mobile-menu { padding-top: 64px; gap: 0; }
   .mobile-menu a { padding: 9px 0; font-size: 19px; }
   .frame {
@@ -120,4 +122,15 @@
     padding-right: max(28px, env(safe-area-inset-right, 0px));
   }
   footer.footer { padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* ── Tablet with hamburger nav (821px – 1080px)
+   Step section spacing down from the full desktop value (96px) so pages
+   breathe on tablets without wasting as much vertical real-estate.       ── */
+@media (min-width: 821px) and (max-width: 1080px) {
+  .section,
+  .approach    { padding-top: 80px; padding-bottom: 80px; }
+  .svc-row     { padding-top: 80px; padding-bottom: 80px; }
+  .svc-hero    { padding-top: 80px; padding-bottom: 48px; }
+  .cta-strip   { padding-top: 80px; padding-bottom: 80px; }
 }
