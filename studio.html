@@ -8,9 +8,9 @@
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" /></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Satisfy&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Satisfy&display=swap" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Satisfy&display=swap" /></noscript>
 <link rel="stylesheet" href="css/variables.css" />
 <link rel="stylesheet" href="css/base.css" />
 <link rel="stylesheet" href="css/layout.css" />
@@ -115,10 +115,75 @@ html[data-theme="light"] .s-hero::before {
 }
 .hero-h1 .r1 { display:block; font-size:clamp(1.6rem,5.5vw,5rem); font-weight:300; color:var(--ink-dim); }
 .hero-h1 .r2 {
-  display:block; font-size:clamp(3.2rem,12vw,11rem); font-weight:200;
-  color:transparent; -webkit-text-stroke:1px rgba(200,255,53,.55);
+  display:block;
+  font-family:'Satisfy', cursive;
+  font-size:clamp(3rem,11.5vw,10.5rem);
+  font-weight:400;
+  line-height:1.15;
+  color:#c8ff35;
+  -webkit-text-stroke:0px transparent;
+  text-shadow:
+    0 0 6px  #fff,
+    0 0 14px #fff,
+    0 0 22px #c8ff35,
+    0 0 44px #c8ff35,
+    0 0 88px #85ff00,
+    0 0 130px #85ff00;
+  animation: fadeUp .9s .38s var(--ease-spring) both,
+             neonFlicker 7s 2.2s infinite;
 }
-html[data-theme="light"] .hero-h1 .r2 { -webkit-text-stroke-color:rgba(79,61,245,.35); }
+html[data-theme="light"] .hero-h1 .r2 {
+  color:#4f3df5;
+  text-shadow:
+    0 0 6px  #fff,
+    0 0 14px #fff,
+    0 0 22px #4f3df5,
+    0 0 44px #7c3aed,
+    0 0 88px #7c3aed,
+    0 0 130px #7c3aed;
+}
+
+/* ── Neon flicker — faulty tube behaviour ── */
+@keyframes neonFlicker {
+  /* ---- mostly on ---- */
+  0%,100% {
+    opacity:1;
+    text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00;
+  }
+  /* gentle breathe */
+  10%  { opacity:.97; text-shadow:0 0 5px #fff,0 0 11px #c8ff35,0 0 35px #c8ff35,0 0 70px #85ff00; }
+  13%  { opacity:1;   text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+
+  /* ---- first fault: quick double-blink ---- */
+  18%  { opacity:1; }
+  18.1%{ opacity:.08; text-shadow:0 0 2px #c8ff35; }
+  18.3%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 10px #c8ff35,0 0 20px #c8ff35; }
+  18.5%{ opacity:.4; text-shadow:0 0 3px #c8ff35; }
+  18.8%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+
+  /* ---- slow dim mid-way ---- */
+  38%  { opacity:.88; text-shadow:0 0 5px #fff,0 0 12px #c8ff35,0 0 30px #c8ff35,0 0 60px #85ff00; }
+  44%  { opacity:1;   text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+
+  /* ---- second fault: longer dropout + recovery buzz ---- */
+  57%  { opacity:1; }
+  57.1%{ opacity:0;  text-shadow:none; }
+  57.4%{ opacity:0;  text-shadow:none; }
+  57.5%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 10px #c8ff35; }
+  57.6%{ opacity:.3; text-shadow:none; }
+  57.8%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 14px #c8ff35,0 0 30px #c8ff35; }
+  57.9%{ opacity:.7; }
+  58.1%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+
+  /* ---- power surge — briefly over-bright ---- */
+  74%  { text-shadow:0 0 8px #fff,0 0 18px #fff,0 0 30px #c8ff35,0 0 60px #c8ff35,0 0 110px #85ff00,0 0 160px #85ff00; }
+  77%  { text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+
+  /* ---- third fault: single fast blink ---- */
+  91%  { opacity:1; }
+  91.1%{ opacity:.05; text-shadow:none; }
+  91.2%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+}
 .hero-h1 .r3 { display:block; font-size:clamp(2rem,7.5vw,7rem); font-weight:300; }
 
 .hero-footer {
@@ -328,7 +393,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
   .stat-item:nth-child(3),.stat-item:nth-child(4) { border-top:1px solid var(--line); }
 }
 @media(max-width:340px) {
-  .hero-h1 .r1{font-size:1.4rem;} .hero-h1 .r2{font-size:2.6rem;} .hero-h1 .r3{font-size:1.7rem;}
+  .hero-h1 .r1{font-size:1.4rem;} .hero-h1 .r2{font-size:2.8rem;line-height:1.2;} .hero-h1 .r3{font-size:1.7rem;}
   .tools-list{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-height:500px) and (orientation:landscape) {
