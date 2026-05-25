@@ -42,9 +42,9 @@ html[data-theme="light"] {
 /* ══════════════════════════════════
    STUDIO BASE
 ══════════════════════════════════ */
-body { overflow-x: hidden; }
+body { overflow-x: hidden; background: var(--bg-studio); }
   .studio-wrap {
-    background: var(--bg-studio);
+    background: transparent;
     color: var(--ink, #f0edff);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -166,7 +166,7 @@ html[data-theme="light"] .hero-h1 .r2 { -webkit-text-stroke-color:rgba(79,61,245
    MATRIX CANVAS
 ══════════════════════════════════ */
   #matrix-canvas {
-    position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:0.5;
+    position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.5;
     will-change: transform;
     transform: translateZ(0);
   }
@@ -193,7 +193,8 @@ html[data-theme="light"] .hero-h1 .r2 { -webkit-text-stroke-color:rgba(79,61,245
   display:grid; grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));
   gap:1px; background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden;
 }
-.feat-card { background:var(--bg-studio); padding:clamp(1.8rem,3.5vw,2.8rem) clamp(1.4rem,2.5vw,2.2rem); position:relative; overflow:hidden; transition:background .3s,transform .3s,box-shadow .3s; border-radius:6px; }
+.feat-card { background:rgba(255,255,255,0.03); backdrop-filter: blur(2px); padding:clamp(1.8rem,3.5vw,2.8rem) clamp(1.4rem,2.5vw,2.2rem); position:relative; overflow:hidden; transition:background .3s,transform .3s,box-shadow .3s; border-radius:6px; }
+html[data-theme="light"] .feat-card { background:rgba(0,0,0,0.02); }
 .feat-card:hover { background:color-mix(in srgb,var(--violet) 4%,var(--bg-studio)); transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,.1); }
 .feat-card:focus-within { outline:2px solid rgba(167,139,250,.3); outline-offset:2px; }
 .feat-line { position:absolute; top:0; left:0; width:0; height:3px; transition:width .45s ease; }
