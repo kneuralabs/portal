@@ -29,7 +29,25 @@
     try {
       const res = await fetch(base + path);
       if (!res.ok) return;
-      el.innerHTML = await res.text();
+      const html = await res.text();
+      
+      if (selector === 'header' && el.querySelector('.topbar')) {
+        // Special case for studio.html or pages that already have the .frame .topbar wrapper
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        const newTopbar = temp.querySelector('.topbar');
+        if (newTopbar) {
+          el.querySelector('.topbar').innerHTML = newTopbar.innerHTML;
+          // Transfer attributes if needed
+          Array.from(newTopbar.attributes).forEach(attr => {
+            if (attr.name !== 'class') el.querySelector('.topbar').setAttribute(attr.name, attr.value);
+          });
+        } else {
+          el.innerHTML = html;
+        }
+      } else {
+        el.innerHTML = html;
+      }
       fixPaths(el);
     } catch (e) {
       console.warn('Component load failed:', path, e);
