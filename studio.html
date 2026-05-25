@@ -40,12 +40,18 @@ html[data-theme="light"] {
    STUDIO BASE
 ══════════════════════════════════ */
 body { overflow-x: hidden; }
-.studio-wrap {
-  background: var(--bg-studio);
-  color: var(--ink, #f0edff);
-  font-family: 'Aptos Display','Segoe UI',sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
+  .studio-wrap {
+    background: var(--bg-studio);
+    color: var(--ink, #f0edff);
+    font-family: 'Aptos Display','Segoe UI',sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* ── Header overrides for Studio ── */
+  header.top .topbar {
+    padding-left: clamp(1rem, 3vw, 2rem);
+    padding-right: clamp(1rem, 3vw, 2rem);
+  }
 html[data-theme="dark"] .studio-wrap { --ink: #f0edff; --ink-dim: rgba(240,237,255,0.44); }
 html[data-theme="light"] .studio-wrap { --ink: #0c0b14; --ink-dim: rgba(12,11,20,0.48); }
 
@@ -565,7 +571,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     'Ideogram','Kling','HailuoAI','NovAI','Luma','Veo2',
   ];
   const RAND = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>{}[]|/\\:;~^*+-=#@!'.split('');
-  const COL_W = 20, FONT_SZ = 14;
+  const COL_W = 14, FONT_SZ = 10;
   const RED = [255, 59, 48], BLUE = [0, 122, 255];
 
   let cols, streams, frameReq, lastTime = 0;
@@ -588,7 +594,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     ctx.scale(dpr, dpr);
     cols = Math.ceil(window.innerWidth / COL_W);
     // Optimization: fewer streams on mobile and smaller screens
-    const density = window.innerWidth < 768 ? 0.45 : (window.innerWidth < 1024 ? 0.6 : 0.75);
+    const density = window.innerWidth < 768 ? 0.7 : (window.innerWidth < 1024 ? 0.85 : 0.95);
     streams = [];
     for(let i=0; i<cols; i++) {
       if(Math.random() < density) streams.push(mkStream(i));
@@ -611,7 +617,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     lastTime = ts;
 
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    ctx.font = `400 ${FONT_SZ}px "JetBrains Mono", monospace`;
+    ctx.font = `400 ${FONT_SZ}px "Inter", sans-serif`;
     
     for(const s of streams){
       s.drop += s.speed * dt;
