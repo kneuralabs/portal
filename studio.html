@@ -56,8 +56,8 @@ body { overflow-x: hidden; }
     padding-right: 40px;
   }
   @media (max-width: 980px) { header.top .topbar { padding-left: 28px; padding-right: 28px; } }
-  @media (max-width: 720px) { header.top .topbar { padding-left: 24px; padding-right: 24px; } }
-  @media (max-width: 480px) { header.top .topbar { padding-left: 22px; padding-right: 22px; } }
+  @media (max-width: 720px) { header.top .topbar { padding-left: 32px; padding-right: 32px; } }
+  @media (max-width: 480px) { header.top .topbar { padding-left: 28px; padding-right: 28px; } }
 html[data-theme="dark"] .studio-wrap { --ink: #f0edff; --ink-dim: rgba(240,237,255,0.44); }
 html[data-theme="light"] .studio-wrap { --ink: #0c0b14; --ink-dim: rgba(12,11,20,0.48); }
 
@@ -113,14 +113,14 @@ html[data-theme="light"] .s-hero::before {
   line-height:.94; letter-spacing:-.032em; max-width:1100px;
   color: var(--ink);
 }
-.hero-h1 .r1 { display:block; font-size:clamp(1.6rem,5.5vw,5rem); font-weight:300; color:var(--ink-dim); animation:up .9s .32s ease both; }
+.hero-h1 .r1 { display:block; font-size:clamp(1.4rem,4.5vw,4rem); font-weight:300; color:var(--ink-dim); animation:up .9s .32s ease both; }
 .hero-h1 .r2 {
-  display:block; font-size:clamp(3.2rem,12vw,11rem); font-weight:200;
+  display:block; font-size:clamp(2.8rem,10vw,9rem); font-weight:200;
   color:transparent; -webkit-text-stroke:1px rgba(200,255,53,.55);
   animation:up .9s .44s ease both;
 }
 html[data-theme="light"] .hero-h1 .r2 { -webkit-text-stroke-color:rgba(79,61,245,.35); }
-.hero-h1 .r3 { display:block; font-size:clamp(2rem,7.5vw,7rem); font-weight:300; animation:up .9s .56s ease both; }
+.hero-h1 .r3 { display:block; font-size:clamp(1.8rem,6.5vw,6rem); font-weight:300; animation:up .9s .56s ease both; }
 @keyframes up { from{opacity:0;transform:translateY(38px)} to{opacity:1;transform:none} }
 .hero-footer {
   position:relative; z-index:10;
@@ -577,7 +577,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     'Ideogram','Kling','HailuoAI','NovAI','Luma','Veo2',
   ];
   const RAND = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>{}[]|/\\:;~^*+-=#@!'.split('');
-  const COL_W = 14, FONT_SZ = 10;
+  const COL_W = 10, FONT_SZ = 8;
   const RED = [255, 59, 48], BLUE = [0, 122, 255];
 
   let cols, streams, frameReq, lastTime = 0;
@@ -586,7 +586,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     return { 
       col, 
       drop: -(Math.random() * (window.innerHeight / FONT_SZ + 50)), 
-      speed: 0.08 + Math.random() * 0.12,
+      speed: 0.12 + Math.random() * 0.18,
       name: Math.random() < 0.35 ? NAMES[Math.floor(Math.random() * NAMES.length)] : null,
       bright: 0.4 + Math.random() * 0.5, 
       randCache: [] 
@@ -600,7 +600,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     ctx.scale(dpr, dpr);
     cols = Math.ceil(window.innerWidth / COL_W);
     // Optimization: fewer streams on mobile and smaller screens
-    const density = window.innerWidth < 768 ? 0.7 : (window.innerWidth < 1024 ? 0.85 : 0.95);
+    const density = window.innerWidth < 768 ? 0.85 : (window.innerWidth < 1024 ? 0.95 : 1.0);
     streams = [];
     for(let i=0; i<cols; i++) {
       if(Math.random() < density) streams.push(mkStream(i));
