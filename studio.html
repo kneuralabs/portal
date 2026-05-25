@@ -166,7 +166,7 @@ html[data-theme="light"] .hero-h1 .r2 { -webkit-text-stroke-color:rgba(79,61,245
    MATRIX CANVAS
 ══════════════════════════════════ */
   #matrix-canvas {
-    position:fixed; inset:0; pointer-events:none; z-index:5; opacity:0.6;
+    position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:0.5;
     will-change: transform;
     transform: translateZ(0);
   }
@@ -577,7 +577,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     'Ideogram','Kling','HailuoAI','NovAI','Luma','Veo2',
   ];
   const RAND = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>{}[]|/\\:;~^*+-=#@!'.split('');
-  const COL_W = 10, FONT_SZ = 8;
+  const COL_W = 7, FONT_SZ = 6;
   const RED = [255, 59, 48], BLUE = [0, 122, 255];
 
   let cols, streams, frameReq, lastTime = 0;
@@ -600,7 +600,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     ctx.scale(dpr, dpr);
     cols = Math.ceil(window.innerWidth / COL_W);
     // Optimization: fewer streams on mobile and smaller screens
-    const density = window.innerWidth < 768 ? 0.85 : (window.innerWidth < 1024 ? 0.95 : 1.0);
+    const density = 1.0;
     streams = [];
     for(let i=0; i<cols; i++) {
       if(Math.random() < density) streams.push(mkStream(i));
