@@ -8,9 +8,9 @@
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Pacifico&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Pacifico&display=swap" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Pacifico&display=swap" /></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Great+Vibes&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Great+Vibes&display=swap" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Great+Vibes&display=swap" /></noscript>
 <link rel="stylesheet" href="css/variables.css" />
 <link rel="stylesheet" href="css/base.css" />
 <link rel="stylesheet" href="css/layout.css" />
@@ -116,73 +116,77 @@ html[data-theme="light"] .s-hero::before {
 .hero-h1 .r1 { display:block; font-size:clamp(1.6rem,5.5vw,5rem); font-weight:300; color:var(--ink-dim); }
 .hero-h1 .r2 {
   display:block;
-  font-family:'Pacifico', cursive;
-  font-size:clamp(2.6rem,10.5vw,9.5rem);
+  font-family:'Great Vibes', cursive;
+  font-size:clamp(3.8rem,15vw,14rem);
   font-weight:400;
-  line-height:1.2;
+  line-height:1.25;
   color:#c8ff35;
   -webkit-text-stroke:0px transparent;
+  /* layered glow: tight white core → lime halo → wide outer bloom */
   text-shadow:
-    0 0 6px  #fff,
-    0 0 14px #fff,
-    0 0 22px #c8ff35,
-    0 0 44px #c8ff35,
-    0 0 88px #85ff00,
-    0 0 130px #85ff00;
-  animation: fadeUp .9s .38s var(--ease-spring) both,
-             neonFlicker 7s 2.2s infinite;
+    0 0 4px  #fff,
+    0 0 10px #fff,
+    0 0 18px #fff,
+    0 0 36px #c8ff35,
+    0 0 70px #c8ff35,
+    0 0 120px #85ff00,
+    0 0 180px rgba(133,255,0,.45),
+    0 0 260px rgba(133,255,0,.2);
+  animation: fadeUp .9s .38s var(--ease-spring) both;
 }
 html[data-theme="light"] .hero-h1 .r2 {
-  color:#4f3df5;
+  color:#5b3fff;
   text-shadow:
-    0 0 6px  #fff,
-    0 0 14px #fff,
-    0 0 22px #4f3df5,
-    0 0 44px #7c3aed,
-    0 0 88px #7c3aed,
-    0 0 130px #7c3aed;
+    0 0 4px  #fff,
+    0 0 10px #fff,
+    0 0 18px #fff,
+    0 0 36px #7c3aed,
+    0 0 70px #7c3aed,
+    0 0 120px #4f3df5,
+    0 0 180px rgba(79,61,245,.4),
+    0 0 260px rgba(79,61,245,.18);
 }
 
-/* ── Neon flicker — faulty tube behaviour ── */
-@keyframes neonFlicker {
-  /* ---- mostly on ---- */
-  0%,100% {
-    opacity:1;
-    text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00;
-  }
-  /* gentle breathe */
-  10%  { opacity:.97; text-shadow:0 0 5px #fff,0 0 11px #c8ff35,0 0 35px #c8ff35,0 0 70px #85ff00; }
-  13%  { opacity:1;   text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+/* ── Per-letter neon flicker spans ── */
+.nfl { display:inline; }
 
-  /* ---- first fault: quick double-blink ---- */
-  18%  { opacity:1; }
-  18.1%{ opacity:.08; text-shadow:0 0 2px #c8ff35; }
-  18.3%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 10px #c8ff35,0 0 20px #c8ff35; }
-  18.5%{ opacity:.4; text-shadow:0 0 3px #c8ff35; }
-  18.8%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+/* flk-a: rapid buzz — loose wire */
+.nfl.flk-a { animation: neonBuzz  5.5s 3.1s infinite; }
+/* flk-b: long dropout + gas re-ignition */
+.nfl.flk-b { animation: neonDrop  9s   5.7s infinite; }
+/* flk-c: pressure stutter — tube half-failing */
+.nfl.flk-c { animation: neonStutter 6.5s 1.9s infinite; }
 
-  /* ---- slow dim mid-way ---- */
-  38%  { opacity:.88; text-shadow:0 0 5px #fff,0 0 12px #c8ff35,0 0 30px #c8ff35,0 0 60px #85ff00; }
-  44%  { opacity:1;   text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+@keyframes neonBuzz {
+  0%,86%,100% { opacity:1; }
+  86.4% { opacity:.1; }
+  86.8% { opacity:1;  }
+  87.2% { opacity:.4; }
+  87.6% { opacity:1;  }
+  88.0% { opacity:.05;}
+  88.4% { opacity:1;  }
+  88.8% { opacity:.65;}
+  89.2% { opacity:1;  }
+}
 
-  /* ---- second fault: longer dropout + recovery buzz ---- */
-  57%  { opacity:1; }
-  57.1%{ opacity:0;  text-shadow:none; }
-  57.4%{ opacity:0;  text-shadow:none; }
-  57.5%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 10px #c8ff35; }
-  57.6%{ opacity:.3; text-shadow:none; }
-  57.8%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 14px #c8ff35,0 0 30px #c8ff35; }
-  57.9%{ opacity:.7; }
-  58.1%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+@keyframes neonDrop {
+  0%,52%,100% { opacity:1; }
+  52.5% { opacity:0;  }
+  54.5% { opacity:0;  }
+  55.0% { opacity:.9; }
+  55.4% { opacity:.2; }
+  55.8% { opacity:1;  }
+}
 
-  /* ---- power surge — briefly over-bright ---- */
-  74%  { text-shadow:0 0 8px #fff,0 0 18px #fff,0 0 30px #c8ff35,0 0 60px #c8ff35,0 0 110px #85ff00,0 0 160px #85ff00; }
-  77%  { text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
-
-  /* ---- third fault: single fast blink ---- */
-  91%  { opacity:1; }
-  91.1%{ opacity:.05; text-shadow:none; }
-  91.2%{ opacity:1;  text-shadow:0 0 6px #fff,0 0 14px #fff,0 0 22px #c8ff35,0 0 44px #c8ff35,0 0 88px #85ff00,0 0 130px #85ff00; }
+@keyframes neonStutter {
+  0%,71%,100% { opacity:1;  }
+  71.5% { opacity:.4; }
+  72.0% { opacity:1;  }
+  72.5% { opacity:.75;}
+  73.0% { opacity:.25;}
+  73.5% { opacity:1;  }
+  74.0% { opacity:.55;}
+  74.5% { opacity:1;  }
 }
 .hero-h1 .r3 { display:block; font-size:clamp(2rem,7.5vw,7rem); font-weight:300; }
 
@@ -393,7 +397,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
   .stat-item:nth-child(3),.stat-item:nth-child(4) { border-top:1px solid var(--line); }
 }
 @media(max-width:340px) {
-  .hero-h1 .r1{font-size:1.4rem;} .hero-h1 .r2{font-size:2.8rem;line-height:1.2;} .hero-h1 .r3{font-size:1.7rem;}
+  .hero-h1 .r1{font-size:1.4rem;} .hero-h1 .r2{font-size:3.2rem;line-height:1.3;} .hero-h1 .r3{font-size:1.7rem;}
   .tools-list{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-height:500px) and (orientation:landscape) {
@@ -415,7 +419,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     <div class="hero-eyebrow"><span>Innovation Studio — Est. 2024</span></div>
     <h1 class="hero-h1">
       <span class="r1">This is where</span>
-      <span class="r2">Impossible</span>
+      <span class="r2">Im<span class="nfl flk-a">p</span>o<span class="nfl flk-b">s</span>si<span class="nfl flk-c">b</span>le</span>
       <span class="r3">becomes real.</span>
     </h1>
     <div class="hero-footer">
