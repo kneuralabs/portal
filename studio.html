@@ -148,7 +148,11 @@ html[data-theme="light"] .hero-h1 .r2 { -webkit-text-stroke-color:rgba(79,61,245
 /* ══════════════════════════════════
    MATRIX CANVAS
 ══════════════════════════════════ */
-#matrix-canvas { position:fixed; inset:0; pointer-events:none; z-index:2; opacity:1; }
+#matrix-canvas {
+  position:fixed; inset:0; pointer-events:none; z-index:2; opacity:1;
+  will-change: transform; /* force GPU compositing — prevents iOS pausing during scroll */
+  transform: translateZ(0);
+}
 
 /* ══════════════════════════════════
    SHARED
@@ -475,6 +479,15 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
   let resizeT;
   window.addEventListener('resize',()=>{ clearTimeout(resizeT); resizeT=setTimeout(()=>{ cancelAnimationFrame(frameReq); init(); requestAnimationFrame(t=>{ lastTime=t; draw(t); }); },220); });
   document.addEventListener('visibilitychange',()=>{ if(document.hidden) cancelAnimationFrame(frameReq); else requestAnimationFrame(t=>{ lastTime=t; draw(t); }); });
+
+  // Mobile: iOS Safari pauses rAF during scroll momentum. Restart after scroll ends.
+  let scrollT;
+  window.addEventListener('scroll', () => {
+    clearTimeout(scrollT);
+    scrollT = setTimeout(() => {
+      if (!document.hidden) { cancelAnimationFrame(frameReq); frameReq = requestAnimationFrame(t=>{ lastTime=t; draw(t); }); }
+    }, 66);
+  }, { passive: true });
 })();
 
 /* ── Reveal ── */
