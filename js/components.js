@@ -86,7 +86,21 @@
 
     if (closeBtn) closeBtn.addEventListener('click', closeMenu);
 
-    mobileMenu.querySelectorAll('a').forEach(link => {
+    // Mobile accordion toggles
+    mobileMenu.querySelectorAll('.nav-group > a').forEach(trigger => {
+      trigger.addEventListener('click', e => {
+        const group = trigger.closest('.nav-group');
+        if (!group.querySelector('.mobile-sub')) return;
+        e.preventDefault();
+        group.classList.toggle('open');
+      });
+    });
+
+    mobileMenu.querySelectorAll('.mobile-sub a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    mobileMenu.querySelectorAll('a:not(.nav-group > a)').forEach(link => {
       link.addEventListener('click', closeMenu);
     });
 
