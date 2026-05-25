@@ -14,15 +14,7 @@
 /* ══════════════════════════════════
    SLOPDOGZ FONT
 ══════════════════════════════════ */
-@font-face {
-  font-family: 'Slopdogz';
-  src: url('assets/fonts/Slopdogz.woff2') format('woff2'),
-       url('assets/fonts/Slopdogz.woff') format('woff'),
-       url('assets/fonts/Slopdogz.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@1,14..32,400;1,14..32,600&display=swap');
 
 /* ══════════════════════════════════
    STUDIO TOKENS
@@ -114,7 +106,8 @@ html[data-theme="light"] .s-hero::before {
 .hero-h1 .r1 { display:block; font-size:clamp(1.6rem,5.5vw,5rem); font-weight:300; color:var(--ink-dim); animation:up .9s .32s ease both; }
 .hero-h1 .r2 {
   display:block;
-  font-family: 'Slopdogz', cursive;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
   font-size:clamp(3.2rem,12vw,11rem); font-weight:400;
   letter-spacing:.01em;
   color:transparent; -webkit-text-stroke:1px rgba(200,255,53,.55);
