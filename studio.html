@@ -52,8 +52,8 @@ html[data-theme="light"] .studio-wrap { --ink: #0c0b14; --ink-dim: rgba(12,11,20
 
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg-studio); }
-::-webkit-scrollbar-thumb { background: rgba(200,255,53,.22); border-radius: 2px; }
-html[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(79,61,245,.22); }
+::-webkit-scrollbar-thumb { background: rgba(19,78,142,.35); border-radius: 2px; }
+html[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(179,2,2,.25); }
 
 /* ══════════════════════════════════
    HERO
@@ -466,7 +466,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     ctx.fillStyle=dark?'rgba(9,9,15,0.12)':`rgba(246,244,255,0.14)`;
     ctx.fillRect(0,0,canvas.width,canvas.height);
     ctx.font=`${FONT_SZ}px "Courier New",monospace`;
-    const G=dark?[0,255,65]:[0,140,60], GH=dark?[200,255,210]:[0,80,30];
+    const G=dark?[19,78,142]:[10,50,110], GH=dark?[80,150,220]:[179,2,2];
     for(const s of streams){
       s.drop+=s.speed*dt;
       const x=s.col*COL_W, head=Math.floor(s.drop);
