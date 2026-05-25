@@ -330,6 +330,11 @@ footer.footer {
   .foot-brand { grid-column: 1 / -1; }
 }
 @media (max-width: 520px) { .foot-grid { grid-template-columns: 1fr; gap: 24px; } }
+/* Footer meta — stack copyright + tagline on small phones to prevent overflow */
+@media (max-width: 480px) {
+  .foot-meta { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .foot-meta .mono { font-size: 10.5px; }
+}
 
 /* ── Form ── */
 form.card {
