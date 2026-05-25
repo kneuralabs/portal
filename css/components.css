@@ -41,6 +41,7 @@ header.top.scrolled { box-shadow: 0 1px 0 var(--rule); }
   letter-spacing: -.02em;
   line-height: 1;
   flex: none;
+  font-style: normal;
 }
 .brand-img {
   display: block;
@@ -70,6 +71,7 @@ nav.primary a {
   padding: 7px 11px;
   border-radius: 999px;
   white-space: nowrap;
+  font-style: normal;
   transition: color var(--dur-xs) var(--ease-out), background-color var(--dur-xs) var(--ease-out);
 }
 @media (max-width: 1240px) {
