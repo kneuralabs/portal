@@ -115,11 +115,21 @@ html[data-theme="light"] .s-hero::before {
 }
 .hero-h1 .r1 { display:block; font-size:clamp(1.4rem,4.5vw,4rem); font-weight:300; color:var(--ink-dim); animation:up .9s .32s ease both; }
 .hero-h1 .r2 {
-  display:block; font-size:clamp(2.8rem,10vw,9rem); font-weight:200;
-  color:transparent; -webkit-text-stroke:1px rgba(200,255,53,.55);
-  animation:up .9s .44s ease both;
+  display:block; font-size:clamp(2.8rem,10vw,9.5rem); font-weight:100;
+  color:transparent; -webkit-text-stroke:1px rgba(200,255,53,.45);
+  letter-spacing: -0.01em;
+  font-style: italic;
+  animation: up-glow 1.2s .44s ease both;
+  text-shadow: 0 0 30px rgba(200,255,53,0.1);
 }
-html[data-theme="light"] .hero-h1 .r2 { -webkit-text-stroke-color:rgba(79,61,245,.35); }
+html[data-theme="light"] .hero-h1 .r2 { 
+  -webkit-text-stroke-color:rgba(79,61,245,.3); 
+  text-shadow: 0 0 30px rgba(79,61,245,0.05);
+}
+@keyframes up-glow { 
+  from{opacity:0;transform:translateY(38px); filter: blur(10px);} 
+  to{opacity:1;transform:none; filter: blur(0);} 
+}
 .hero-h1 .r3 { display:block; font-size:clamp(1.8rem,6.5vw,6rem); font-weight:300; animation:up .9s .56s ease both; }
 @keyframes up { from{opacity:0;transform:translateY(38px)} to{opacity:1;transform:none} }
 .hero-footer {
@@ -444,7 +454,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
 
 <!-- HERO -->
 <section class="s-hero">
-  <div class="hero-eyebrow"><span>Innovation Studio — Est. 2024</span></div>
+  <div class="hero-eyebrow"><span>Innovation Studio — Est. 2026</span></div>
   <h1 class="hero-h1">
     <span class="r1">Where the world's most</span>
     <span class="r2">Impossible</span>
