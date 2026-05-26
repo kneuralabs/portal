@@ -28,7 +28,8 @@ header.top.scrolled { box-shadow: 0 1px 0 var(--rule); }
   justify-content: space-between;
   min-height: 72px;
   gap: 18px;
-  padding: 22px 0;
+  padding-top: 22px;
+  padding-bottom: 22px;
 }
 
 .brand {
