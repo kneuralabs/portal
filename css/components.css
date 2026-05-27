@@ -26,9 +26,10 @@ header.top.scrolled { box-shadow: 0 1px 0 var(--rule); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 88px;
+  min-height: 72px;
   gap: 18px;
-  padding: 16px 0;
+  padding-top: 22px;
+  padding-bottom: 22px;
 }
 
 .brand {
@@ -41,6 +42,7 @@ header.top.scrolled { box-shadow: 0 1px 0 var(--rule); }
   letter-spacing: -.02em;
   line-height: 1;
   flex: none;
+  font-style: normal;
 }
 .brand-img {
   display: block;
@@ -70,6 +72,7 @@ nav.primary a {
   padding: 7px 11px;
   border-radius: 999px;
   white-space: nowrap;
+  font-style: normal;
   transition: color var(--dur-xs) var(--ease-out), background-color var(--dur-xs) var(--ease-out);
 }
 @media (max-width: 1240px) {
@@ -80,6 +83,54 @@ nav.primary a {
 nav.primary a:hover { color: var(--ink); background: var(--hover-fill-2); }
 nav.primary a.active { color: var(--paper); background: var(--ink); }
 html[data-theme="dark"] nav.primary a.active { background: var(--ink); color: var(--paper); }
+
+/* Dropdown menus */
+nav.primary .nav-group { position: relative; display: inline-flex; }
+nav.primary .nav-group > a { gap: 4px; }
+nav.primary .nav-group > a .chevron {
+  display: inline-block; width: 10px; height: 10px; flex-shrink: 0;
+  transition: transform var(--dur-xs) var(--ease-out);
+}
+nav.primary .nav-group:hover > a .chevron,
+nav.primary .nav-group:focus-within > a .chevron { transform: rotate(180deg); }
+nav.primary .dropdown {
+  position: absolute; top: calc(100% + 6px); left: 50%;
+  background: var(--paper); border: 1px solid var(--stroke);
+  border-radius: 12px; padding: 6px; min-width: 150px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.10);
+  opacity: 0; pointer-events: none; visibility: hidden;
+  /* hide: delay 120ms so mouse can travel from trigger → dropdown */
+  transition: opacity .15s var(--ease-out) .12s, transform .15s var(--ease-out) .12s, visibility 0s .27s;
+  transform: translateX(-50%) translateY(-4px);
+  z-index: 200;
+}
+/* Invisible bridge fills the 6px gap so hover isn't broken mid-travel */
+nav.primary .dropdown::before {
+  content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px;
+}
+html[data-theme="dark"] nav.primary .dropdown { box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+nav.primary .nav-group:hover .dropdown,
+nav.primary .nav-group:focus-within .dropdown {
+  opacity: 1; pointer-events: auto; visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  /* show: no delay */
+  transition: opacity .15s var(--ease-out), transform .15s var(--ease-out), visibility 0s;
+}
+nav.primary .dropdown a {
+  display: flex; width: 100%; border-radius: 8px;
+  padding: 7px 12px; white-space: nowrap;
+}
+
+/* Mobile accordion dropdowns */
+.mobile-nav .nav-group { display: flex; flex-direction: column; }
+.mobile-nav .nav-group > a { display: flex; justify-content: space-between; align-items: center; }
+.mobile-nav .nav-group > a .chevron { width: 12px; height: 12px; transition: transform var(--dur-xs) var(--ease-out); }
+.mobile-nav .nav-group.open > a .chevron { transform: rotate(180deg); }
+.mobile-nav .mobile-sub {
+  display: none; flex-direction: column; padding-left: 16px;
+}
+.mobile-nav .nav-group.open .mobile-sub { display: flex; }
+.mobile-nav .mobile-sub a { font-size: 14px; padding: 8px 0; opacity: .8; }
 
 .cta-mini {
   display: inline-flex;
@@ -282,6 +333,11 @@ footer.footer {
   .foot-brand { grid-column: 1 / -1; }
 }
 @media (max-width: 520px) { .foot-grid { grid-template-columns: 1fr; gap: 24px; } }
+/* Footer meta — stack copyright + tagline on small phones to prevent overflow */
+@media (max-width: 480px) {
+  .foot-meta { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .foot-meta .mono { font-size: 10.5px; }
+}
 
 /* ── Form ── */
 form.card {
