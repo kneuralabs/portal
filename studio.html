@@ -310,7 +310,95 @@ footer.footer { position:relative; z-index:10; }
 <body>
 
 <!-- GLOBAL NAV -->
-<header class="top"></header>
+<header class="top">
+<div class="frame topbar">
+  <a class="brand" href="index.html" aria-label="Kneuralabs home">
+    <img class="brand-img" src="assets/images/logo.png" alt="Kneuralabs logo" width="60" height="60" />
+    Kneuralabs
+  </a>
+
+  <nav class="primary" aria-label="Primary">
+    <a href="index.html" data-page="index">Home</a>
+
+    <div class="nav-group">
+      <a href="services.html" data-page="services">Services <svg class="chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg></a>
+      <div class="dropdown">
+        <a href="journey.html"  data-page="journey">Journey</a>
+        <a href="insights.html" data-page="insights">Insights</a>
+        <a href="studio.html"   data-page="studio" class="active">Studio</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <a href="about.html" data-page="about">About <svg class="chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg></a>
+      <div class="dropdown">
+        <a href="careers.html" data-page="careers">Careers</a>
+      </div>
+    </div>
+
+    <a href="contact.html"        data-page="contact">Contact</a>
+    <a href="launch-program.html" data-page="launch-program">Launch</a>
+  </nav>
+
+  <div class="topbar-actions">
+    <a class="cta-mini" href="contact.html">
+      <span class="dot" aria-hidden="true"></span>
+      Book discovery call
+    </a>
+
+    <button class="theme-toggle" id="themeToggleFloat" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</div>
+
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  <div class="mobile-menu-top">
+    <button class="menu-close" id="menuClose" aria-label="Close menu">
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Mobile primary">
+    <a href="index.html" data-page="index">Home</a>
+
+    <div class="nav-group">
+      <a href="services.html" data-page="services">Services <svg class="chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg></a>
+      <div class="mobile-sub">
+        <a href="journey.html"  data-page="journey">Journey</a>
+        <a href="insights.html" data-page="insights">Insights</a>
+        <a href="studio.html"   data-page="studio">Studio</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <a href="about.html" data-page="about">About <svg class="chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg></a>
+      <div class="mobile-sub">
+        <a href="careers.html" data-page="careers">Careers</a>
+      </div>
+    </div>
+
+    <a href="contact.html"        data-page="contact">Contact</a>
+    <a href="launch-program.html" data-page="launch-program">Launch</a>
+  </nav>
+
+  <a href="contact.html" class="mobile-cta">Book discovery call &rarr;</a>
+
+  <div class="mobile-menu-brand">
+    <a class="brand" href="index.html" aria-label="Kneuralabs home">
+      <img class="brand-img" src="assets/images/logo.png" alt="" width="26" height="26" />
+      Kneuralabs
+    </a>
+  </div>
+</div>
+</header>
 
 <div class="studio-wrap">
 
@@ -413,7 +501,50 @@ footer.footer { position:relative; z-index:10; }
 
 </div><!-- /studio-wrap -->
 
-<footer class="footer"></footer>
+<footer class="footer">
+<div class="frame">
+  <div class="foot-grid">
+    <div class="foot-col foot-brand">
+      <a class="brand" href="index.html" aria-label="Kneuralabs home">
+        <img class="brand-img" src="assets/images/logo.png" alt="Kneuralabs logo" width="28" height="28" />
+        Kneuralabs
+      </a>
+      <p class="foot-tagline">Structural AI governance advisory for U.S. mid-market companies. NIST AI RMF &middot; ISO/IEC 42001 &middot; EU AI Act.</p>
+    </div>
+
+    <div class="foot-col">
+      <h4>Services</h4>
+      <a href="services.html">S1 &middot; Risk Assessment</a>
+      <a href="services.html">S2 &middot; Framework Setup</a>
+      <a href="services.html">S3 &middot; Standards Readiness</a>
+      <a href="services.html">S4 &middot; IT Modernization</a>
+    </div>
+
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="journey.html">Journey</a>
+      <a href="launch-program.html">Launch Program</a>
+      <a href="studio.html">Studio</a>
+      <a href="about.html">About</a>
+      <a href="careers.html">Careers</a>
+      <a href="insights.html">Insights</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@kneuralabs.com">hello@kneuralabs.com</a>
+      <a href="contact.html">Book discovery call</a>
+      <a href="https://www.linkedin.com/company/kneuralabs" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="foot-meta">
+    <div class="mono">&copy; 2026 KNEURALABS LLC &middot; MANCHESTER, CT 06042 &middot; <a href="pages/privacy.html">PRIVACY</a> &middot; <a href="pages/terms.html">TERMS</a></div>
+    <div class="mono">NIST AI RMF &middot; ISO/IEC 42001 &middot; EU AI ACT</div>
+  </div>
+</div>
+</footer>
 
 <script src="js/components.js"></script>
 <script src="js/scroll.js" defer></script>
