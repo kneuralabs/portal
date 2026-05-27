@@ -407,6 +407,8 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
 
 </div><!-- /studio-wrap -->
 
+<footer class="footer"></footer>
+
 <script src="js/components.js"></script>
 <script>
 /* ── Matrix Rain — Red & Blue ── */
@@ -453,7 +455,7 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
       speed:   0.06 + Math.random()*0.10,
       name:    Math.random() < 0.42 ? NAMES[Math.floor(Math.random()*NAMES.length)] : null,
       bright:  0.55 + Math.random()*0.45,
-      hue:     Math.random() < 0.5 ? 'red' : 'blue',   /* ← red or blue */
+      hue:     Math.random() < 0.5 ? 'red' : 'blue',
       randCache: []
     };
   }
@@ -504,7 +506,6 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
         if(y < -FONT_SZ || y > canvas.height) continue;
 
         if(t === 0){
-          /* brightest head character */
           const [r,g,b] = col.head;
           ctx.fillStyle = `rgba(${r},${g},${b},${s.bright})`;
         } else {
@@ -516,7 +517,6 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
         ctx.fillText(charAt(s, row), x, y);
       }
 
-      /* reset stream when it scrolls off bottom */
       if(s.drop * FONT_SZ > canvas.height + trailLen * FONT_SZ + 40){
         const col = s.col;
         Object.assign(s, mkStream(col));
@@ -528,7 +528,6 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
   init();
   requestAnimationFrame(t => { lastTime = t; draw(t); });
 
-  /* resize */
   let resizeT;
   window.addEventListener('resize', () => {
     clearTimeout(resizeT);
@@ -539,13 +538,11 @@ html[data-theme="light"] .footer-cta-h em { -webkit-text-stroke-color:rgba(79,61
     }, 220);
   });
 
-  /* pause when tab hidden */
   document.addEventListener('visibilitychange', () => {
     if(document.hidden) cancelAnimationFrame(frameReq);
     else requestAnimationFrame(t => { lastTime = t; draw(t); });
   });
 
-  /* iOS Safari: resume after scroll momentum ends */
   let scrollT;
   window.addEventListener('scroll', () => {
     clearTimeout(scrollT);
