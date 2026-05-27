@@ -1,11 +1,10 @@
 (function () {
   // Detect if we're inside a subdirectory (e.g. pages/)
-  const parts = window.location.pathname.split('/').filter(Boolean);
+  const parts   = window.location.pathname.split('/').filter(Boolean);
   const lastPart = parts[parts.length - 1] || '';
-  const depth = lastPart.includes('.') ? parts.length - 1 : parts.length;
-  // pages/ is one level deep; root pages are at depth 0
+  const depth    = lastPart.includes('.') ? parts.length - 1 : parts.length;
   const inSubdir = depth >= 1 && parts.some(p => p === 'pages');
-  const base = inSubdir ? '../' : '';
+  const base     = inSubdir ? '../' : '';
 
   // Fix all relative href/src attributes in an element after injection
   function fixPaths(root) {
@@ -30,15 +29,12 @@
       const res = await fetch(base + path);
       if (!res.ok) return;
       const html = await res.text();
-      
       if (selector === 'header' && el.querySelector('.topbar')) {
-        // Special case for studio.html or pages that already have the .frame .topbar wrapper
-        const temp = document.createElement('div');
-        temp.innerHTML = html;
+        const temp      = document.createElement('div');
+        temp.innerHTML  = html;
         const newTopbar = temp.querySelector('.topbar');
         if (newTopbar) {
           el.querySelector('.topbar').innerHTML = newTopbar.innerHTML;
-          // Transfer attributes if needed
           Array.from(newTopbar.attributes).forEach(attr => {
             if (attr.name !== 'class') el.querySelector('.topbar').setAttribute(attr.name, attr.value);
           });
@@ -63,16 +59,12 @@
   }
 
   function initNav() {
-    const hamburger = document.getElementById('hamburger');
+    const hamburger  = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-    const backdrop = document.getElementById('navBackdrop');
-    const closeBtn = document.getElementById('menuClose');
-
+    const backdrop   = document.getElementById('navBackdrop');
+    const closeBtn   = document.getElementById('menuClose');
     if (!hamburger || !mobileMenu) return;
 
-    // The header uses backdrop-filter, which makes it the containing block
-    // for position:fixed descendants — that clips the overlay to the header.
-    // Reparent the menu + backdrop to <body> so they fill the viewport.
     if (mobileMenu.parentElement !== document.body) document.body.appendChild(mobileMenu);
     if (backdrop && backdrop.parentElement !== document.body) document.body.appendChild(backdrop);
 
@@ -101,10 +93,8 @@
     hamburger.addEventListener('click', () => {
       mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
     });
-
     if (closeBtn) closeBtn.addEventListener('click', closeMenu);
 
-    // Mobile accordion toggles
     mobileMenu.querySelectorAll('.nav-group > a').forEach(trigger => {
       trigger.addEventListener('click', e => {
         const group = trigger.closest('.nav-group');
@@ -113,15 +103,8 @@
         group.classList.toggle('open');
       });
     });
-
-    mobileMenu.querySelectorAll('.mobile-sub a').forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
-
-    mobileMenu.querySelectorAll('a:not(.nav-group > a)').forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
-
+    mobileMenu.querySelectorAll('.mobile-sub a').forEach(link => { link.addEventListener('click', closeMenu); });
+    mobileMenu.querySelectorAll('a:not(.nav-group > a)').forEach(link => { link.addEventListener('click', closeMenu); });
     if (backdrop) backdrop.addEventListener('click', closeMenu);
 
     document.addEventListener('keydown', e => {
@@ -130,33 +113,25 @@
       const items = focusable();
       if (!items.length) return;
       const first = items[0], last = items[items.length - 1];
-      if (e.shiftKey) {
-        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-      } else {
-        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-      }
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+      else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
     });
   }
 
-  // ── Theme: follows local sunrise / sunset, manual toggle overrides ──
-  const THEME_KEY = 'theme';
-  let themeTimer = 0;
-  const themeStored = () => { try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; } };
-  const applyTheme = t => document.documentElement.setAttribute('data-theme', t);
+  // ── Theme: follows local sunrise/sunset, manual toggle overrides ────────────
+  const THEME_KEY   = 'theme';
+  let   themeTimer  = 0;
+  const themeStored = () => { try { return localStorage.getItem(THEME_KEY); } catch { return null; } };
+  const applyTheme  = t => document.documentElement.setAttribute('data-theme', t);
 
-  // Approximate sunrise/sunset for the viewer's local position.
-  // Longitude is derived from the device timezone offset; latitude uses a
-  // sensible mid-latitude default so no geolocation prompt is needed.
   function sunTheme() {
     const now = new Date();
-    const lng = -now.getTimezoneOffset() / 4;
-    const lat = 40;
+    const lng = -now.getTimezoneOffset() / 4, lat = 40;
     const rad = Math.PI / 180, deg = 180 / Math.PI;
     function sun(rise) {
       const start = Date.UTC(now.getUTCFullYear(), 0, 0);
-      const day = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-      const N = Math.round((day - start) / 864e5);
-      const lngHour = lng / 15;
+      const day   = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+      const N = Math.round((day - start) / 864e5), lngHour = lng / 15;
       const t = N + ((rise ? 6 : 18) - lngHour) / 24;
       const M = 0.9856 * t - 3.289;
       let L = M + 1.916 * Math.sin(M * rad) + 0.020 * Math.sin(2 * M * rad) + 282.634;
@@ -167,31 +142,27 @@
       RA /= 15;
       const sinDec = 0.39782 * Math.sin(L * rad);
       const cosDec = Math.cos(Math.asin(sinDec));
-      const cosH = (Math.cos(90.833 * rad) - sinDec * Math.sin(lat * rad)) / (cosDec * Math.cos(lat * rad));
-      if (cosH > 1) return null;        // sun never rises today
-      if (cosH < -1) return rise ? 0 : 24; // sun never sets today
+      const cosH   = (Math.cos(90.833 * rad) - sinDec * Math.sin(lat * rad)) / (cosDec * Math.cos(lat * rad));
+      if (cosH > 1)  return null;
+      if (cosH < -1) return rise ? 0 : 24;
       let H = (rise ? 360 - deg * Math.acos(cosH) : deg * Math.acos(cosH)) / 15;
       const T = H + RA - 0.06571 * t - 6.622;
-      return ((T - lngHour) % 24 + 24) % 24; // UTC hours
+      return ((T - lngHour) % 24 + 24) % 24;
     }
     const riseUTC = sun(true), setUTC = sun(false);
     const hrs = now.getUTCHours() + now.getUTCMinutes() / 60 + now.getUTCSeconds() / 3600;
     let isDay;
-    if (riseUTC == null || setUTC == null) {
-      isDay = riseUTC != null;
-    } else if (setUTC > riseUTC) {
-      isDay = hrs >= riseUTC && hrs < setUTC;
-    } else {
-      isDay = hrs >= riseUTC || hrs < setUTC;
-    }
+    if (riseUTC == null || setUTC == null) { isDay = riseUTC != null; }
+    else if (setUTC > riseUTC)             { isDay = hrs >= riseUTC && hrs < setUTC; }
+    else                                   { isDay = hrs >= riseUTC || hrs < setUTC; }
     const until = h => { let d = h - hrs; if (d <= 0) d += 24; return d * 36e5; };
-    const ms = isDay ? until(setUTC == null ? 24 : setUTC)
+    const ms = isDay ? until(setUTC  == null ? 24 : setUTC)
                      : until(riseUTC == null ? 24 : riseUTC);
     return { theme: isDay ? 'light' : 'dark', ms: Math.max(6e4, Math.min(ms, 6 * 36e5)) };
   }
 
   function autoTheme() {
-    if (themeStored()) return;            // explicit user choice wins
+    if (themeStored()) return;
     const s = sunTheme();
     applyTheme(s.theme);
     clearTimeout(themeTimer);
@@ -213,7 +184,7 @@
       btn.addEventListener('click', () => {
         const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         applyTheme(next);
-        try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+        try { localStorage.setItem(THEME_KEY, next); } catch {}
         clearTimeout(themeTimer);
       });
     });
@@ -228,11 +199,10 @@
     setActiveLink();
     initNav();
     wireTheme();
+    // Notify scroll.js (and any other scripts) that the nav is live in the DOM
+    document.dispatchEvent(new CustomEvent('kn:nav-ready'));
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();

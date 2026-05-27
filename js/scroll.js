@@ -6,12 +6,11 @@
 (function () {
   'use strict';
 
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduce      = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; };
-  var docEl = document.documentElement;
+  var clamp       = function (v, a, b) { return v < a ? a : v > b ? b : v; };
+  var docEl       = document.documentElement;
   docEl.classList.add('js');
-  // Backstops: content must never stay hidden if the load frame is missed.
   window.addEventListener('load', function () { docEl.classList.add('is-ready'); });
   setTimeout(function () { docEl.classList.add('is-ready'); }, 1400);
 
@@ -21,29 +20,34 @@
   progressBar.setAttribute('aria-hidden', 'true');
   document.body.prepend(progressBar);
 
-  /* ── Header shadow (header is injected async) ──────────── */
-  var header = null, tries = 0;
-  (function waitHeader() {
-    header = document.querySelector('header.top');
-    if (header) return;
-    if (tries++ < 60) setTimeout(waitHeader, 50);
-  })();
+  /* ── Header shadow ─────────────────────────────────────────
+     Header is injected async by components.js. We listen for
+     its 'kn:nav-ready' event instead of polling with setTimeout.
+  ─────────────────────────────────────────────────────────── */
+  var header = null;
 
-  /* ── Shared scroll-frame work (progress + header) ──────── */
+  function bindHeader(el) { header = el; frameUpdate(); }
+
+  document.addEventListener('kn:nav-ready', function () {
+    var el = document.querySelector('header.top');
+    if (el) bindHeader(el);
+  }, { once: true });
+
+  // Instant bind if components.js already finished (cached / fast connection)
+  (function () { var el = document.querySelector('header.top'); if (el) bindHeader(el); })();
+
+  /* ── Shared scroll-frame work ───────────────────────────── */
   function frameUpdate() {
-    var y = window.scrollY;
+    var y     = window.scrollY;
     var total = docEl.scrollHeight - window.innerHeight;
     progressBar.style.transform = 'scaleX(' + (total > 0 ? clamp(y / total, 0, 1) : 0) + ')';
     if (header) header.classList.toggle('scrolled', y > 12);
   }
 
-  /* ── Smooth scroll engine (desktop wheel, dependency-free) ─
-     Touch keeps native momentum (more accessible, better feel).
-     We always drive the real scroll position, so IntersectionObserver,
-     sticky, and the progress bar keep working untouched. ───────── */
-  var smooth = !reduce && finePointer && !('ontouchstart' in window);
-  var target = window.scrollY, current = target, ticking = false, raf = 0;
-  var EASE = 0.115;
+  /* ── Smooth scroll engine ───────────────────────────────── */
+  var smooth  = !reduce && finePointer && !('ontouchstart' in window);
+  var target  = window.scrollY, current = target, ticking = false, raf = 0;
+  var EASE    = 0.115;
 
   function maxScroll() { return Math.max(0, docEl.scrollHeight - window.innerHeight); }
 
@@ -53,8 +57,7 @@
       current = target;
       window.scrollTo(0, Math.round(current));
       frameUpdate(); parallax();
-      ticking = false; raf = 0;
-      return;
+      ticking = false; raf = 0; return;
     }
     current += diff * EASE;
     window.scrollTo(0, current);
@@ -66,41 +69,33 @@
   if (smooth) {
     docEl.style.scrollBehavior = 'auto';
     window.addEventListener('wheel', function (e) {
-      // Don't hijack when the mobile menu (or any locked overlay) is open,
-      // or when the pointer is over an independently scrollable region.
       if (document.body.style.overflow === 'hidden') return;
-      if (e.ctrlKey) return; // pinch-zoom
+      if (e.ctrlKey) return;
       var d = e.deltaY;
       if (e.deltaMode === 1) d *= 16; else if (e.deltaMode === 2) d *= window.innerHeight;
       e.preventDefault();
       target = clamp(target + d, 0, maxScroll());
       start();
     }, { passive: false });
-
-    // Keep target in sync with scrolls we didn't drive (keyboard, drag, find)
-    // and keep dependent UI live during those scrolls.
     window.addEventListener('scroll', function () {
-      if (!ticking) {
-        target = current = window.scrollY;
-        frameUpdate(); parallax();
-      }
+      if (!ticking) { target = current = window.scrollY; frameUpdate(); parallax(); }
     }, { passive: true });
     window.addEventListener('resize', function () {
       target = current = window.scrollY;
+      cacheParallaxOffsets();
     }, { passive: true });
     document.addEventListener('visibilitychange', function () {
       if (document.hidden && raf) { cancelAnimationFrame(raf); ticking = false; raf = 0; }
     });
   } else {
     window.addEventListener('scroll', function () { frameUpdate(); parallax(); }, { passive: true });
+    window.addEventListener('resize', function () { cacheParallaxOffsets(); }, { passive: true });
   }
   frameUpdate();
 
   /* ── Smooth in-page anchors with accessible focus ──────── */
-  function navOffset() {
-    var h = header ? header.getBoundingClientRect().height : 72;
-    return h + 14;
-  }
+  function navOffset() { return (header ? header.getBoundingClientRect().height : 72) + 14; }
+
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]');
     if (!a) return;
@@ -117,8 +112,25 @@
     if (history.replaceState) history.replaceState(null, '', href);
   });
 
-  /* ── Scroll-linked parallax (subtle, transform-only) ───── */
+  /* ── Scroll-linked parallax ─────────────────────────────────
+     Offsets are cached at collect-time and refreshed on resize.
+     parallax() only reads pre-cached values — zero getBoundingClientRect
+     calls inside the scroll loop, eliminating forced layout reflows.
+  ─────────────────────────────────────────────────────────── */
   var pxEls = [];
+
+  function cacheParallaxOffsets() {
+    if (!pxEls.length) return;
+    // Strip transforms so natural position is measured
+    pxEls.forEach(function (p) { p.el.style.transform = ''; });
+    var sy = window.scrollY;
+    pxEls.forEach(function (p) {
+      var r    = p.el.getBoundingClientRect();
+      p.docTop = r.top + sy;
+      p.docH   = r.height;
+    });
+  }
+
   function collectParallax() {
     if (reduce || !finePointer) return;
     var map = [
@@ -128,17 +140,19 @@
     map.forEach(function (pair) {
       document.querySelectorAll(pair[0]).forEach(function (el) {
         el.style.willChange = 'transform';
-        pxEls.push({ el: el, k: pair[1], base: 0 });
+        pxEls.push({ el: el, k: pair[1], docTop: 0, docH: 0 });
       });
     });
+    cacheParallaxOffsets();
   }
+
   function parallax() {
     if (!pxEls.length) return;
-    var vh = window.innerHeight;
+    var vh = window.innerHeight, sy = window.scrollY;
     for (var i = 0; i < pxEls.length; i++) {
-      var p = pxEls[i], r = p.el.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > vh + 200) continue;
-      var mid = r.top + r.height / 2 - vh / 2;
+      var p = pxEls[i], elTop = p.docTop - sy;
+      if (elTop + p.docH < -200 || elTop > vh + 200) continue;
+      var mid = elTop + p.docH / 2 - vh / 2;
       p.el.style.transform = 'translate3d(0,' + (mid * p.k).toFixed(2) + 'px,0)';
     }
   }
@@ -154,15 +168,12 @@
       node.textContent.split(/(\s+)/).forEach(function (word) {
         if (word === '') return;
         if (/^\s+$/.test(word)) { frag.appendChild(document.createTextNode(' ')); return; }
-        var w = document.createElement('span');
-        w.className = 'reveal-word';
+        var w = document.createElement('span'); w.className = 'reveal-word';
         word.split('').forEach(function (ch) {
           var sp = document.createElement('span');
           sp.className = 'reveal-char';
           sp.style.setProperty('--rd', (i * 26) + 'ms');
-          sp.textContent = ch;
-          w.appendChild(sp);
-          i++;
+          sp.textContent = ch; w.appendChild(sp); i++;
         });
         frag.appendChild(w);
       });
@@ -170,10 +181,8 @@
     }
     (function walk(root) {
       Array.prototype.slice.call(root.childNodes).forEach(function (n) {
-        if (n.nodeType === 3) {
-          if (n.textContent.trim() === '') return;
-          n.replaceWith(wrapText(n));
-        } else if (n.nodeType === 1 && n.tagName !== 'BR') { walk(n); }
+        if (n.nodeType === 3) { if (n.textContent.trim() === '') return; n.replaceWith(wrapText(n)); }
+        else if (n.nodeType === 1 && n.tagName !== 'BR') { walk(n); }
       });
     })(h);
     var go = function () { h.querySelectorAll('.reveal-char').forEach(function (el) { el.classList.add('is-in'); }); };
@@ -182,9 +191,7 @@
   splitHero();
 
   /* ── Load choreography ─────────────────────────────────── */
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () { docEl.classList.add('is-ready'); });
-  });
+  requestAnimationFrame(function () { requestAnimationFrame(function () { docEl.classList.add('is-ready'); }); });
 
   /* ── Staggered reveal cadence ──────────────────────────── */
   if (!reduce) {
@@ -220,8 +227,8 @@
     document.querySelectorAll('.btn, .cta-mini').forEach(function (btn) {
       btn.addEventListener('pointermove', function (e) {
         var r = btn.getBoundingClientRect();
-        var mx = (e.clientX - r.left - r.width / 2) / r.width;
-        var my = (e.clientY - r.top - r.height / 2) / r.height;
+        var mx = (e.clientX - r.left - r.width  / 2) / r.width;
+        var my = (e.clientY - r.top  - r.height / 2) / r.height;
         btn.style.transform = 'translate(' + (mx * 7).toFixed(2) + 'px,' + (my * 7).toFixed(2) + 'px)';
       });
       btn.addEventListener('pointerleave', function () { btn.style.transform = ''; });
@@ -235,8 +242,7 @@
     if (reduce) { el.textContent = el.dataset.countLabel || goal; return; }
     var pad = el.dataset.count.length, dur = 1100, t0 = performance.now();
     (function tick(now) {
-      var p = Math.min((now - t0) / dur, 1);
-      var e = 1 - Math.pow(1 - p, 4);
+      var p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 4);
       el.textContent = String(Math.round(e * goal)).padStart(pad, '0');
       if (p < 1) requestAnimationFrame(tick);
     })(performance.now());
