@@ -417,8 +417,29 @@
     /* ── Reveal ── */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
     .reveal.vis { opacity: 1; transform: none; }
+
+    /* ── Hero entrance ── */
+    @keyframes fadeUp  { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+    @keyframes tickDraw { from { width:0; opacity:0; } to { width:18px; opacity:1; } }
+    .ha { animation: fadeUp var(--dur-m) var(--ease-soft) both; }
+
+    /* ── Staggered child items ── */
+    .si {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .55s var(--ease-soft), transform .55s var(--ease-soft);
+    }
+    .si.lft { transform: translateX(-22px); }
+    .si.sc  { transform: scale(.96) translateY(14px); }
+    .si.vis { opacity: 1 !important; transform: none !important; }
+
+    /* ── Eyebrow tick draws when section enters ── */
+    .reveal.vis .eyebrow .tick { animation: tickDraw .5s var(--ease-out) .12s both; }
+
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
+      .ha  { animation: none; opacity: 1; transform: none; }
+      .si  { opacity: 1; transform: none; transition: none; }
+      .reveal.vis .eyebrow .tick { animation: none; width: 18px; opacity: 1; }
     }
   </style>
 </head>
@@ -523,25 +544,25 @@
   <section class="frame hero">
     <div class="hero-grid">
       <div>
-        <div class="eyebrow"><span class="tick"></span> Innovation Studio · Est. 2026</div>
-        <h1 class="display">
+        <div class="eyebrow ha" style="animation-delay:.05s"><span class="tick"></span> Innovation Studio · Est. 2026</div>
+        <h1 class="display ha" style="animation-delay:.2s">
           This is where <em>impossible</em><br />
           becomes a working<br />
           prototype.
         </h1>
       </div>
       <div>
-        <p class="hero-side">
+        <p class="hero-side ha" style="animation-delay:.38s">
           The studio plugs every frontier AI model into one workshop. Wild idea on Monday, working prototype on real data by Friday — with a measurable outcome attached to every build.
         </p>
-        <div class="hero-actions">
+        <div class="hero-actions ha" style="animation-delay:.52s">
           <a class="btn btn-primary" href="contact.html">Bring us an idea <span class="arr">→</span></a>
           <a class="btn btn-ghost" href="#how">How it works</a>
         </div>
       </div>
     </div>
 
-    <div class="marks">
+    <div class="marks ha" style="animation-delay:.68s">
       <span><span class="sq"></span> Model-agnostic</span>
       <span><span class="sq"></span> Five-day prototype cycle</span>
       <span><span class="sq"></span> KPI on every build</span>
@@ -553,17 +574,17 @@
   <section class="frame stats reveal">
     <div class="stats-grid">
       <div class="stat">
-        <div class="n">10+</div>
+        <div class="n"><span data-count="10" data-suffix="+">10+</span></div>
         <div class="l">AIs in the stack</div>
         <div class="sub">Stacked like libraries — we pick what wins per task.</div>
       </div>
       <div class="stat">
-        <div class="n">5<span style="font-size:24px;color:var(--ink-2)">&nbsp;days</span></div>
+        <div class="n"><span data-count="5">5</span><span style="font-size:24px;color:var(--ink-2)">&nbsp;days</span></div>
         <div class="l">Idea → working prototype</div>
         <div class="sub">Standard cycle. Mondays to Fridays. Real data.</div>
       </div>
       <div class="stat">
-        <div class="n">1</div>
+        <div class="n"><span data-count="1">1</span></div>
         <div class="l">KPI per build</div>
         <div class="sub">Revenue, churn, cycle time — picked up front.</div>
       </div>
@@ -588,25 +609,25 @@
     </div>
 
     <div class="principles">
-      <article class="principle">
+      <article class="principle si lft">
         <div class="idx">P · 01</div>
         <h3>Every AI, one team.</h3>
         <p>We don't pick a model and call it a day. ChatGPT, Claude, Gemini, Grok, Llama, Midjourney, Sora — whichever wins on this task is the one in the loop. No vendor loyalty. The stack is a toolbox, not an identity.</p>
       </article>
 
-      <article class="principle">
+      <article class="principle si lft">
         <div class="idx">P · 02</div>
         <h3>Idea to real thing — fast.</h3>
         <p>Days, not months. A wild idea lands on Monday. By Friday it's a working prototype running on real data. Scope is killed early; surface area is small; the goal is something you can click, not a slide deck.</p>
       </article>
 
-      <article class="principle">
+      <article class="principle si lft">
         <div class="idx">P · 03</div>
         <h3>Outcomes, not experiments.</h3>
         <p>Every build has a number attached: more revenue, less churn, faster ops. AI is the <em style="font-style:italic;color:var(--accent);">how</em>. The KPI is the <em style="font-style:italic;color:var(--accent);">why</em>. If the number doesn't move, we tear it down and rebuild.</p>
       </article>
 
-      <article class="principle">
+      <article class="principle si lft">
         <div class="idx">P · 04</div>
         <h3>Always on the next thing.</h3>
         <p>We track every model drop, every new tool, every shift in the landscape. By the time it's news, we've already tested it. The stack you'll be using six months from now — we're in it this week.</p>
@@ -627,35 +648,35 @@
     </div>
 
     <div class="timeline">
-      <div class="t-row">
+      <div class="t-row si">
         <div class="t-day">Mon · D1</div>
         <div class="t-body">
           <h3>Frame the wild idea.</h3>
           <p>Map the ambition to one measurable outcome. Kill 80% of the surface area. Pick the model stack — and the failure case we'd rather see.</p>
         </div>
       </div>
-      <div class="t-row">
+      <div class="t-row si">
         <div class="t-day">Tue · D2</div>
         <div class="t-body">
           <h3>Wire the stack.</h3>
           <p>Pull the right models, plug them into your data, instrument the metric. Vibes-test outputs ourselves before anyone else sees them.</p>
         </div>
       </div>
-      <div class="t-row active">
+      <div class="t-row active si">
         <div class="t-day">Wed · D3</div>
         <div class="t-body">
           <h3>Build the thin slice.</h3>
           <p>Ugly UI, real data, end-to-end. The first version you can actually click. The version that tells us whether the idea has legs.</p>
         </div>
       </div>
-      <div class="t-row">
+      <div class="t-row si">
         <div class="t-day">Thu · D4</div>
         <div class="t-body">
           <h3>Tune for the number.</h3>
           <p>Swap models, prompt strategies, eval sets — whatever moves the KPI. Cull the prompts that aren't pulling weight. Lock the winning configuration.</p>
         </div>
       </div>
-      <div class="t-row">
+      <div class="t-row si">
         <div class="t-day">Fri · D5</div>
         <div class="t-body">
           <h3>Ship &amp; hand off.</h3>
@@ -678,7 +699,7 @@
     </div>
 
     <div class="caps">
-      <article class="cap">
+      <article class="cap si sc">
         <div class="tag"><span>Build 01</span><span>5 days</span></div>
         <div class="id">B1</div>
         <h3>Idea Prototype</h3>
@@ -692,7 +713,7 @@
         <div class="foot">5 days · standalone</div>
       </article>
 
-      <article class="cap feature">
+      <article class="cap feature si sc">
         <div class="tag"><span>Build 02 · Featured</span><span>2–4 wks</span></div>
         <div class="id">B2</div>
         <h3>AI Agent or Pipeline</h3>
@@ -706,7 +727,7 @@
         <div class="foot">2–4 weeks · production-grade</div>
       </article>
 
-      <article class="cap">
+      <article class="cap si sc">
         <div class="tag"><span>Build 03</span><span>1–3 wks</span></div>
         <div class="id">B3</div>
         <h3>Model Bake-off</h3>
@@ -720,7 +741,7 @@
         <div class="foot">1–3 weeks · decision-ready</div>
       </article>
 
-      <article class="cap">
+      <article class="cap si sc">
         <div class="tag"><span>Build 04</span><span>2–6 wks</span></div>
         <div class="id">B4</div>
         <h3>Embedded Studio</h3>
@@ -755,23 +776,23 @@
       </div>
 
       <div class="stack-grid">
-        <div class="model feature"><div class="n">M-01</div><div class="name">Claude</div><div class="use">Reasoning · code · long context</div></div>
-        <div class="model feature"><div class="n">M-02</div><div class="name">ChatGPT</div><div class="use">Generalist · multimodal</div></div>
-        <div class="model"><div class="n">M-03</div><div class="name">Gemini</div><div class="use">Multimodal · grounding</div></div>
-        <div class="model"><div class="n">M-04</div><div class="name">Grok</div><div class="use">Real-time signals</div></div>
-        <div class="model"><div class="n">M-05</div><div class="name">Llama</div><div class="use">Open weights · on-prem</div></div>
-        <div class="model"><div class="n">M-06</div><div class="name">Mistral</div><div class="use">Open weights · EU stack</div></div>
+        <div class="model feature si"><div class="n">M-01</div><div class="name">Claude</div><div class="use">Reasoning · code · long context</div></div>
+        <div class="model feature si"><div class="n">M-02</div><div class="name">ChatGPT</div><div class="use">Generalist · multimodal</div></div>
+        <div class="model si"><div class="n">M-03</div><div class="name">Gemini</div><div class="use">Multimodal · grounding</div></div>
+        <div class="model si"><div class="n">M-04</div><div class="name">Grok</div><div class="use">Real-time signals</div></div>
+        <div class="model si"><div class="n">M-05</div><div class="name">Llama</div><div class="use">Open weights · on-prem</div></div>
+        <div class="model si"><div class="n">M-06</div><div class="name">Mistral</div><div class="use">Open weights · EU stack</div></div>
 
-        <div class="model"><div class="n">M-07</div><div class="name">DeepSeek</div><div class="use">Reasoning · code · cost</div></div>
-        <div class="model"><div class="n">M-08</div><div class="name">Perplexity</div><div class="use">Retrieval · citations</div></div>
-        <div class="model feature"><div class="n">M-09</div><div class="name">Midjourney</div><div class="use">Image · brand · concept</div></div>
-        <div class="model"><div class="n">M-10</div><div class="name">Stable Diffusion</div><div class="use">Image · open weights</div></div>
-        <div class="model"><div class="n">M-11</div><div class="name">Sora</div><div class="use">Video · short-form</div></div>
-        <div class="model"><div class="n">M-12</div><div class="name">Runway</div><div class="use">Video · editing</div></div>
+        <div class="model si"><div class="n">M-07</div><div class="name">DeepSeek</div><div class="use">Reasoning · code · cost</div></div>
+        <div class="model si"><div class="n">M-08</div><div class="name">Perplexity</div><div class="use">Retrieval · citations</div></div>
+        <div class="model feature si"><div class="n">M-09</div><div class="name">Midjourney</div><div class="use">Image · brand · concept</div></div>
+        <div class="model si"><div class="n">M-10</div><div class="name">Stable Diffusion</div><div class="use">Image · open weights</div></div>
+        <div class="model si"><div class="n">M-11</div><div class="name">Sora</div><div class="use">Video · short-form</div></div>
+        <div class="model si"><div class="n">M-12</div><div class="name">Runway</div><div class="use">Video · editing</div></div>
 
-        <div class="model"><div class="n">M-13</div><div class="name">Copilot</div><div class="use">Engineering pair</div></div>
-        <div class="model"><div class="n">M-14</div><div class="name">Cursor</div><div class="use">Engineering pair · agents</div></div>
-        <div class="model"><div class="n">M-15</div><div class="name">v0</div><div class="use">UI scaffolds</div></div>
+        <div class="model si"><div class="n">M-13</div><div class="name">Copilot</div><div class="use">Engineering pair</div></div>
+        <div class="model si"><div class="n">M-14</div><div class="name">Cursor</div><div class="use">Engineering pair · agents</div></div>
+        <div class="model si"><div class="n">M-15</div><div class="name">v0</div><div class="use">UI scaffolds</div></div>
       </div>
     </div>
   </section>
@@ -1021,12 +1042,69 @@
 })();
 </script>
 
-<!-- Reveal on scroll -->
+<!-- Scroll animations: reveal, stagger, countup -->
 <script>
-var obs = new IntersectionObserver(function(es){
-  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); } });
-}, { threshold: .08 });
-document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+(function(){
+  var pref = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── 1. Plain reveal ── */
+  var revObs = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      e.target.classList.add('vis');
+      revObs.unobserve(e.target);
+    });
+  }, { threshold: .06 });
+  document.querySelectorAll('.reveal').forEach(function(el){ revObs.observe(el); });
+
+  /* ── 2. Staggered children (.si) inside container ── */
+  var STAGGER_MS = 80;
+  var stgObs = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var items = e.target.querySelectorAll('.si');
+      if (pref){
+        items.forEach(function(el){ el.classList.add('vis'); });
+      } else {
+        items.forEach(function(el, i){
+          setTimeout(function(){ el.classList.add('vis'); }, i * STAGGER_MS);
+        });
+      }
+      stgObs.unobserve(e.target);
+    });
+  }, { threshold: .05 });
+
+  ['.principles', '.timeline', '.caps', '.stack-grid'].forEach(function(sel){
+    var el = document.querySelector(sel);
+    if (el) stgObs.observe(el);
+  });
+
+  /* ── 3. Stat number countup ── */
+  function countUp(el, target, suffix, dur){
+    if (pref){ el.textContent = target + suffix; return; }
+    var start = performance.now();
+    (function step(now){
+      var t    = Math.min((now - start) / dur, 1);
+      var ease = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(ease * target) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    })(start);
+  }
+
+  var statsEl = document.querySelector('.stats');
+  if (statsEl){
+    var statObs = new IntersectionObserver(function(es){
+      if (!es[0].isIntersecting) return;
+      statsEl.querySelectorAll('[data-count]').forEach(function(el){
+        var target = +el.dataset.count;
+        var suffix = el.dataset.suffix || '';
+        countUp(el, target, suffix, 1100);
+      });
+      statObs.disconnect();
+    }, { threshold: .3 });
+    statObs.observe(statsEl);
+  }
+})();
 </script>
 
 </body>
