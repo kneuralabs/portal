@@ -377,9 +377,10 @@
     @media (max-width: 820px) { .pull { padding: 64px 0; } }
 
     /* ── CTA strip ── */
+    /* CTA strip is intentionally always-dark — hardcoded out of the theme system */
     .cta-strip {
       padding: 96px 0;
-      background: var(--ink); color: var(--paper);
+      background: #15140F; color: #F4F3F0;
       overflow: hidden;
     }
     .cta-strip::before {
@@ -396,19 +397,20 @@
       font-family: var(--serif); font-weight: 380;
       font-size: clamp(36px, 5vw, 72px);
       letter-spacing: -.02em; line-height: 1.02; margin-top: 18px;
+      color: #F4F3F0;
     }
     .cta-strip h2 em { font-style: italic; color: oklch(0.78 0.1 70); font-weight: 340; }
     .cta-strip p {
-      color: rgba(255,255,255,.69);
+      color: rgba(244,243,240,.72);
       font-size: 15.5px; max-width: 48ch;
       line-height: 1.6; margin: 0 0 18px;
     }
-    .cta-strip .eyebrow { color: rgba(255,255,255,.69); }
-    .cta-strip .eyebrow .tick { background: #fff; }
-    .cta-strip .btn-primary { background: var(--paper); color: var(--ink); }
-    .cta-strip .btn-primary:hover { background: var(--accent); color: var(--on-accent); }
-    .cta-strip .btn-ghost { border: 1px solid rgba(255,255,255,.34); color: var(--paper); }
-    .cta-strip .btn-ghost:hover { background: var(--paper); color: var(--ink); }
+    .cta-strip .eyebrow { color: rgba(244,243,240,.65); }
+    .cta-strip .eyebrow .tick { background: #F4F3F0; }
+    .cta-strip .btn-primary { background: #F4F3F0; color: #15140F; }
+    .cta-strip .btn-primary:hover { background: var(--accent); color: #fff; }
+    .cta-strip .btn-ghost { border: 1px solid rgba(244,243,240,.30); color: #F4F3F0; }
+    .cta-strip .btn-ghost:hover { background: #F4F3F0; color: #15140F; }
     @media (max-width: 820px) {
       .cta-strip { padding-top: 64px; padding-bottom: 64px; }
       .cta-grid { grid-template-columns: 1fr; gap: 24px; }
