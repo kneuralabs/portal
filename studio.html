@@ -854,7 +854,7 @@
 <script src="js/components.js"></script>
 <script src="js/scroll.js" defer></script>
 
-<!-- Matrix rain — sienna heads, ink trails, AI tool names -->
+<!-- Matrix rain — slower, interactive (hover + click ripple) -->
 <script>
 (function(){
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -871,24 +871,60 @@
 
   var isDark = function(){ return document.documentElement.getAttribute('data-theme') === 'dark'; };
 
+  /* ── Interaction state ── */
+  var mouseX = -9999;
+  var ripples = []; // { x, y, startMs }
+
+  document.addEventListener('mousemove', function(e){ mouseX = e.clientX; });
+  document.addEventListener('mouseleave', function(){ mouseX = -9999; });
+
+  function addRipple(x, y){
+    ripples.push({ x: x, y: y, startMs: performance.now() });
+    if (ripples.length > 8) ripples.shift();
+  }
+  document.addEventListener('click', function(e){ addRipple(e.clientX, e.clientY); });
+  document.addEventListener('touchstart', function(e){
+    addRipple(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+
+  var RIPPLE_DURATION = 1600; // ms
+  var RIPPLE_SPEED    = 280;  // px / sec — how fast the ring expands
+  var RIPPLE_WIDTH    = 90;   // ring thickness in px
+  var MOUSE_RADIUS    = 180;  // px
+
+  function rippleInfluence(colX, now){
+    var best = 0;
+    for (var i = ripples.length - 1; i >= 0; i--){
+      var rip = ripples[i];
+      var age = now - rip.startMs;
+      if (age > RIPPLE_DURATION){ ripples.splice(i, 1); continue; }
+      var radius = (age / 1000) * RIPPLE_SPEED;
+      var ring   = Math.abs(Math.abs(colX - rip.x) - radius);
+      if (ring < RIPPLE_WIDTH){
+        var strength = (1 - ring / RIPPLE_WIDTH) * (1 - age / RIPPLE_DURATION);
+        if (strength > best) best = strength;
+      }
+    }
+    return best;
+  }
+
+  function mouseInfluence(colX){
+    var dist = Math.abs(colX - mouseX);
+    return dist < MOUSE_RADIUS ? Math.pow(1 - dist / MOUSE_RADIUS, 1.6) : 0;
+  }
+
+  /* ── Color helpers ── */
+  function sienna(a, dark){ return dark ? 'rgba(210,120,60,'+a+')' : 'rgba(176,80,36,'+a+')'; }
+  function ink(a, dark)   { return dark ? 'rgba(237,235,228,'+a+')' : 'rgba(21,20,15,'+a+')'; }
+  function fade(dark)     { return dark ? 'rgba(11,12,15,0.052)'    : 'rgba(244,243,240,0.052)'; }
+
   var W, H, dpr, fontSize, cols, drops, raf, resizeT;
 
-  function siennaColor(dark){
-    return dark ? 'rgba(210,120,60,0.88)' : 'rgba(176,80,36,0.92)';
-  }
-  function inkColor(dark, lo){
-    if (dark) return lo ? 'rgba(237,235,228,0.35)' : 'rgba(237,235,228,0.65)';
-    return lo ? 'rgba(21,20,15,0.38)' : 'rgba(21,20,15,0.68)';
-  }
-  function paperFade(dark){
-    return dark ? 'rgba(11,12,15,0.09)' : 'rgba(244,243,240,0.085)';
-  }
-
   function setup(){
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = window.innerWidth;
-    H = window.innerHeight;
-    fontSize = W < 600 ? 13 : (W < 1100 ? 15 : 16);
+    dpr      = Math.min(window.devicePixelRatio || 1, 2);
+    W        = window.innerWidth;
+    H        = window.innerHeight;
+    fontSize = W < 600 ? 13 : W < 1100 ? 15 : 16;
 
     c.width  = Math.floor(W * dpr);
     c.height = Math.floor(H * dpr);
@@ -896,34 +932,43 @@
     c.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    cols = Math.floor(W / fontSize);
-    drops = new Array(cols);
+    cols  = Math.floor(W / fontSize);
+    drops = [];
     for (var i = 0; i < cols; i++){
       drops[i] = {
         row:    Math.floor(Math.random() * (H / fontSize)),
         tick:   Math.floor(Math.random() * stream.length),
-        speed:  0.35 + Math.random() * 0.85,
+        speed:  0.09 + Math.random() * 0.19,   /* ~3–4× slower than before */
         acc:    Math.random(),
         headOn: Math.random() < 0.18
       };
     }
 
-    var dark = isDark();
-    ctx.fillStyle = dark ? '#0B0C0F' : '#F4F3F0';
+    ctx.fillStyle = isDark() ? '#0B0C0F' : '#F4F3F0';
     ctx.fillRect(0, 0, W, H);
   }
 
   function tick(){
+    var now  = performance.now();
     var dark = isDark();
-    ctx.fillStyle = paperFade(dark);
+
+    /* slower fade → longer, more atmospheric trails */
+    ctx.fillStyle = fade(dark);
     ctx.fillRect(0, 0, W, H);
 
-    ctx.font = '500 ' + fontSize + 'px "JetBrains Mono", ui-monospace, SFMono-Regular, monospace';
+    ctx.font         = '500 ' + fontSize + 'px "JetBrains Mono", ui-monospace, monospace';
     ctx.textBaseline = 'top';
 
     for (var i = 0; i < cols; i++){
-      var d = drops[i];
-      d.acc += d.speed;
+      var d    = drops[i];
+      var colX = (i + 0.5) * fontSize;
+
+      var mi = mouseInfluence(colX);
+      var ri = rippleInfluence(colX, now);
+      var boost = Math.max(mi, ri);
+
+      /* interaction speeds up the column subtly */
+      d.acc += d.speed + mi * 0.28 + ri * 0.55;
       if (d.acc < 1) continue;
       d.acc -= Math.floor(d.acc);
 
@@ -931,13 +976,17 @@
       var y  = d.row * fontSize;
       var ch = stream[d.tick % stream.length];
 
-      if (d.headOn && Math.random() < 0.65){
-        ctx.fillStyle = siennaColor(dark);
-      } else if (Math.random() < 0.08){
-        ctx.fillStyle = siennaColor(dark);
+      if (boost > 0.04){
+        /* inside hover glow or ripple ring — bright sienna */
+        ctx.fillStyle = sienna((0.42 + boost * 0.58).toFixed(2), dark);
+      } else if (d.headOn && Math.random() < 0.65){
+        ctx.fillStyle = sienna('0.88', dark);
+      } else if (Math.random() < 0.06){
+        ctx.fillStyle = sienna('0.68', dark);
       } else {
-        ctx.fillStyle = inkColor(dark, Math.random() > 0.55);
+        ctx.fillStyle = ink(Math.random() < 0.55 ? '0.62' : '0.36', dark);
       }
+
       ctx.fillText(ch, x, y);
 
       d.row  += 1;
@@ -946,7 +995,7 @@
       if (y > H && Math.random() > 0.972){
         d.row    = -Math.floor(2 + Math.random() * 10);
         d.tick   = Math.floor(Math.random() * stream.length);
-        d.speed  = 0.35 + Math.random() * 0.85;
+        d.speed  = 0.09 + Math.random() * 0.19;
         d.headOn = Math.random() < 0.18;
       }
     }
