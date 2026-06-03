@@ -95,16 +95,41 @@
     });
     if (closeBtn) closeBtn.addEventListener('click', closeMenu);
 
-    mobileMenu.querySelectorAll('.nav-group > a').forEach(trigger => {
-      trigger.addEventListener('click', e => {
-        const group = trigger.closest('.nav-group');
-        if (!group.querySelector('.mobile-sub')) return;
-        e.preventDefault();
-        group.classList.toggle('open');
+    // Section labels (Services, About) navigate like any other link; a
+    // dedicated chevron button — injected here so the markup stays a single
+    // source of truth — reveals the sub-pages. Two unambiguous affordances on
+    // touch: tap the word to go to the page, tap the chevron to expand.
+    mobileMenu.querySelectorAll('.mobile-nav .nav-group').forEach(group => {
+      const link = group.querySelector(':scope > a');
+      const sub  = group.querySelector(':scope > .mobile-sub');
+      if (!link || !sub) return;
+
+      if (!sub.id) sub.id = 'msub-' + Math.random().toString(36).slice(2, 8);
+
+      const row = document.createElement('div');
+      row.className = 'mobile-row';
+      link.replaceWith(row);
+      row.appendChild(link);
+
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'sub-toggle';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-controls', sub.id);
+      toggle.setAttribute('aria-label', 'Show ' + link.textContent.trim() + ' sub-pages');
+      toggle.innerHTML = '<svg viewBox="0 0 14 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5"/></svg>';
+      row.appendChild(toggle);
+
+      toggle.addEventListener('click', () => {
+        const open = group.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
       });
     });
-    mobileMenu.querySelectorAll('.mobile-sub a').forEach(link => { link.addEventListener('click', closeMenu); });
-    mobileMenu.querySelectorAll('a:not(.nav-group > a)').forEach(link => { link.addEventListener('click', closeMenu); });
+
+    // Any real navigation (page links + CTA) closes the menu first.
+    mobileMenu.querySelectorAll('.mobile-nav a, .mobile-cta').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
     if (backdrop) backdrop.addEventListener('click', closeMenu);
 
     document.addEventListener('keydown', e => {
