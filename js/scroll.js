@@ -237,13 +237,19 @@
 
   /* ── Stat counter ──────────────────────────────────────── */
   function animateCounter(el) {
-    var goal = parseInt(el.dataset.count, 10);
+    var raw  = el.dataset.count;
+    var goal = parseInt(raw, 10);
     if (isNaN(goal)) return;
-    if (reduce) { el.textContent = el.dataset.countLabel || goal; return; }
-    var pad = el.dataset.count.length, dur = 1100, t0 = performance.now();
+    var suffix = el.dataset.suffix || '';
+    // Only zero-pad when the author wrote a leading zero (e.g. "04"). A plain
+    // "10" with a "+" suffix must read "10+", not "10" or "010".
+    var pad = raw.charAt(0) === '0' ? raw.length : 0;
+    var fmt = function (v) { return String(v).padStart(pad, '0') + suffix; };
+    if (reduce) { el.textContent = el.dataset.countLabel || fmt(goal); return; }
+    var dur = 1100, t0 = performance.now();
     (function tick(now) {
       var p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 4);
-      el.textContent = String(Math.round(e * goal)).padStart(pad, '0');
+      el.textContent = fmt(Math.round(e * goal));
       if (p < 1) requestAnimationFrame(tick);
     })(performance.now());
   }

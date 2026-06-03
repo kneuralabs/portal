@@ -1081,31 +1081,9 @@
     if (el) stgObs.observe(el);
   });
 
-  /* ── 3. Stat number countup ── */
-  function countUp(el, target, suffix, dur){
-    if (pref){ el.textContent = target + suffix; return; }
-    var start = performance.now();
-    (function step(now){
-      var t    = Math.min((now - start) / dur, 1);
-      var ease = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.round(ease * target) + suffix;
-      if (t < 1) requestAnimationFrame(step);
-    })(start);
-  }
-
-  var statsEl = document.querySelector('.stats');
-  if (statsEl){
-    var statObs = new IntersectionObserver(function(es){
-      if (!es[0].isIntersecting) return;
-      statsEl.querySelectorAll('[data-count]').forEach(function(el){
-        var target = +el.dataset.count;
-        var suffix = el.dataset.suffix || '';
-        countUp(el, target, suffix, 1100);
-      });
-      statObs.disconnect();
-    }, { threshold: .3 });
-    statObs.observe(statsEl);
-  }
+  /* ── 3. Stat number countup ──
+     Handled globally (and suffix-aware) by js/scroll.js. A second observer
+     here would double-bind the same [data-count] nodes and fight it. */
 })();
 </script>
 
