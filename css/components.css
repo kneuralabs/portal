@@ -726,7 +726,7 @@ html[data-theme="dark"] .menu-close:hover { background: var(--ink); border-color
   border-bottom: none;
 }
 .mobile-row > a::after { display: none; }              /* the chevron speaks for it */
-.mobile-nav .nav-group > a .chevron { display: none; } /* drop the inline svg */
+.mobile-nav .nav-group a .chevron { display: none; } /* drop the inline svg */
 
 /* Circular expand toggle — fills with ink when open */
 .sub-toggle {
