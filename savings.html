@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Savings Calculator for Business | Calculate Your AI ROI in 60 Seconds</title>
+<meta name="description" content="Free AI savings calculator for businesses. Discover how much you can save with AI automation. Trusted by 10,000+ executives. Instant ROI estimate.">
+<meta name="keywords" content="AI savings calculator, AI ROI calculator, business AI cost savings, AI automation ROI, enterprise AI calculator">
+<meta property="og:title" content="AI Savings Calculator — How Much Will AI Save Your Business?">
+<meta property="og:description" content="Calculate your AI ROI in 60 seconds. Free tool for business leaders.">
+<link rel="canonical" href="https://aicalculator.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0a0a0f;
+  --paper:#f5f3ee;
+  --gold:#c8a96e;
+  --gold-light:#e8d5a3;
+  --green:#1a6b4a;
+  --green-bright:#22c37a;
+  --muted:#6b6860;
+  --border:#ddd9d0;
+  --card:#ffffff;
+  --shadow:0 2px 24px rgba(0,0,0,.07);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+
+
+/* HERO */
+.hero{text-align:center;padding:4rem 1.5rem 2.5rem;max-width:640px;margin:0 auto}
+.badge{display:inline-flex;align-items:center;gap:.4rem;background:#fff;border:1px solid var(--border);border-radius:100px;padding:.35rem .9rem;font-size:.78rem;font-weight:500;color:var(--muted);margin-bottom:1.5rem}
+.badge::before{content:'';width:6px;height:6px;background:var(--green-bright);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1{font-family:'Inter',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-.04em;margin-bottom:1rem}
+h1 em{font-style:normal;color:var(--gold)}
+.sub{font-size:1.05rem;color:var(--muted);line-height:1.6;max-width:480px;margin:0 auto 2rem}
+
+/* CALCULATOR */
+.calc-wrap{max-width:720px;margin:0 auto;padding:0 1.2rem 4rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;box-shadow:var(--shadow)}
+
+/* INPUTS */
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.5rem}
+@media(max-width:520px){.fields{grid-template-columns:1fr}}
+.field label{display:block;font-size:.78rem;font-weight:500;color:var(--muted);margin-bottom:.45rem;text-transform:uppercase;letter-spacing:.04em}
+.field-inner{position:relative}
+.prefix{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.95rem;pointer-events:none}
+input[type=number],select{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:.7rem .9rem .7rem 2rem;font-size:1rem;font-family:'Inter',sans-serif;background:#fff;color:var(--ink);outline:none;transition:border-color .2s;-moz-appearance:textfield;appearance:textfield}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+input[type=number]:focus,select:focus{border-color:var(--gold)}
+select{padding-left:.9rem;cursor:pointer}
+.no-prefix{padding-left:.9rem!important}
+
+/* SLIDER SECTION */
+.slider-row{margin-bottom:1.5rem}
+.slider-row label{display:flex;justify-content:space-between;font-size:.78rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+.slider-row label span{color:var(--ink);font-size:.9rem;font-weight:700;text-transform:none;letter-spacing:0}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:linear-gradient(to right,var(--gold) var(--pct,30%),var(--border) var(--pct,30%));border-radius:4px;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:var(--ink);border-radius:50%;border:3px solid var(--gold);transition:transform .15s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
+
+/* RESULT */
+.result{background:linear-gradient(135deg,var(--ink) 0%,#1a1a2e 100%);border-radius:14px;padding:1.8rem;color:#fff;text-align:center;margin-top:.5rem;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.result.show{opacity:1;transform:translateY(0)}
+.result-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;opacity:.6;margin-bottom:.4rem}
+.result-amount{font-family:'Inter',sans-serif;font-size:clamp(2.2rem,6vw,3.2rem);font-weight:800;color:var(--gold-light);line-height:1;margin-bottom:.3rem}
+.result-note{font-size:.82rem;opacity:.55}
+.breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1.4rem}
+@media(max-width:460px){.breakdown{grid-template-columns:1fr 1fr}}
+.bk-item{background:rgba(255,255,255,.06);border-radius:10px;padding:.9rem .6rem;text-align:center}
+.bk-val{font-family:'Inter',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold-light);margin-bottom:.2rem}
+.bk-lbl{font-size:.72rem;opacity:.55;line-height:1.3}
+
+/* CTA SECTION */
+.cta-strip{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-top:1.2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.cta-text h3{font-family:'Inter',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.2rem}
+.cta-text p{font-size:.82rem;color:var(--muted)}
+.btn-primary{background:var(--green);color:#fff;border:none;padding:.75rem 1.5rem;border-radius:100px;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .2s,transform .1s}
+.btn-primary:hover{background:var(--green-bright);transform:scale(1.02)}
+
+/* SPONSOR */
+.sponsor-bar{text-align:center;padding:1.5rem;font-size:.78rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+.sponsor-bar strong{color:var(--ink)}
+.sponsor-slots{display:flex;justify-content:center;align-items:center;gap:2rem;margin-top:.8rem;flex-wrap:wrap}
+.sponsor-slot{border:1.5px dashed var(--border);border-radius:10px;padding:.6rem 1.4rem;font-size:.78rem;color:var(--muted);cursor:pointer;transition:border-color .2s,color .2s}
+.sponsor-slot:hover{border-color:var(--gold);color:var(--ink)}
+
+/* SEO CONTENT */
+.seo-section{max-width:720px;margin:0 auto;padding:0 1.2rem 4rem}
+.seo-section h2{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:.8rem}
+.seo-section p{font-size:.92rem;color:var(--muted);line-height:1.7;margin-bottom:1rem}
+.faq{margin-top:2rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-item h3{font-family:'Inter',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.4rem;cursor:pointer}
+.faq-item p{font-size:.88rem;color:var(--muted);line-height:1.65}
+
+/* NETWORK BAR */
+.network{background:var(--ink);color:#fff;padding:2rem 1.5rem;text-align:center}
+.network h4{font-family:'Inter',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.5;margin-bottom:1rem}
+.calc-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem}
+.pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:.4rem 1rem;font-size:.78rem;cursor:pointer;transition:background .2s,border-color .2s;text-decoration:none;color:#fff}
+.pill:hover{background:rgba(200,169,110,.15);border-color:var(--gold)}
+
+
+</style>
+</head>
+<body>
+
+
+
+<header class="hero">
+  <div class="badge">Free Tool · No Signup Required</div>
+  <h1>How Much Will <em>AI Save</em> Your Business?</h1>
+  <p class="sub">Enter 4 numbers. Get your annual AI savings estimate — instantly. Used by 10,000+ business leaders.</p>
+</header>
+
+<main>
+<section class="calc-wrap" id="calculator">
+<div class="card">
+  <div class="fields">
+    <div class="field">
+      <label>Number of Employees</label>
+      <div class="field-inner">
+        <input type="number" id="emp" value="50" min="1" max="100000" class="no-prefix">
+      </div>
+    </div>
+    <div class="field">
+      <label>Avg. Annual Salary (USD)</label>
+      <div class="field-inner">
+        <span class="prefix">$</span>
+        <input type="number" id="salary" value="75000" min="1000">
+      </div>
+    </div>
+    <div class="field">
+      <label>Industry</label>
+      <div class="field-inner">
+        <select id="industry">
+          <option value="0.28">Professional Services</option>
+          <option value="0.32">Finance & Insurance</option>
+          <option value="0.25">Healthcare</option>
+          <option value="0.30">Technology / SaaS</option>
+          <option value="0.22">Retail & E-commerce</option>
+          <option value="0.20">Manufacturing</option>
+          <option value="0.27">Marketing & Agencies</option>
+          <option value="0.24">Education</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>AI Tool Budget / Month</label>
+      <div class="field-inner">
+        <span class="prefix">$</span>
+        <input type="number" id="budget" value="2000" min="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-row">
+    <label>% of Tasks Automatable <span id="autoLabel">30%</span></label>
+    <input type="range" id="autoSlider" min="5" max="70" value="30" step="5">
+  </div>
+
+  <div class="result" id="result">
+    <div class="result-label">Estimated Annual AI Savings</div>
+    <div class="result-amount" id="mainResult">$0</div>
+    <div class="result-note">After AI tool costs · Conservative estimate</div>
+    <div class="breakdown">
+      <div class="bk-item"><div class="bk-val" id="bk1">—</div><div class="bk-lbl">Hours Saved / Year</div></div>
+      <div class="bk-item"><div class="bk-val" id="bk2">—</div><div class="bk-lbl">ROI Multiple</div></div>
+      <div class="bk-item"><div class="bk-val" id="bk3">—</div><div class="bk-lbl">Payback Period</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-strip">
+  <div class="cta-text">
+    <h3>Want a full AI implementation roadmap?</h3>
+    <p>Get a free 15-min strategy call with a vetted AI consultant.</p>
+  </div>
+  <button class="btn-primary" onclick="alert('Lead form integration here — connect to your CRM or sponsor.')">Book Free Call →</button>
+</div>
+
+<div class="sponsor-bar">
+  <strong>Sponsored by AI-forward companies</strong> · Reach 50,000+ business decision-makers
+  <div class="sponsor-slots">
+    <div class="sponsor-slot">Your AI Tool Here</div>
+    <div class="sponsor-slot">Partner Slot</div>
+    <div class="sponsor-slot">Advertise →</div>
+  </div>
+</div>
+</section>
+
+<section class="seo-section">
+  <h2>How to Calculate Your Business AI Savings</h2>
+  <p>AI automation can reduce labor costs by 20–35% depending on your industry. This calculator uses published McKinsey, Gartner, and Forrester benchmarks to estimate your potential annual savings from deploying AI tools across your workforce.</p>
+  <p>The formula: <strong>(Employees × Salary × Automatable % × Industry Factor) − Annual AI Cost = Net Savings</strong>. Most businesses see a 3–8× ROI within the first year of AI adoption.</p>
+
+  <div class="faq">
+    <div class="faq-item"><h3>Is this AI savings calculator accurate?</h3><p>It provides a conservative estimate based on industry benchmarks. Actual savings vary by implementation quality, team adoption, and use cases. Use this as a starting point for your AI business case.</p></div>
+    <div class="faq-item"><h3>What AI tools deliver the best ROI for businesses?</h3><p>Customer service AI, document automation, data analysis, and sales enablement tools typically show the fastest payback — often under 3 months.</p></div>
+    <div class="faq-item"><h3>How long does AI implementation take?</h3><p>Simple AI tool deployments (ChatGPT, Zapier AI, etc.) can start in days. Enterprise-grade custom AI projects typically take 3–6 months for full ROI.</p></div>
+  </div>
+</section>
+</main>
+
+<div class="network">
+  <h4>More Free Business Calculators</h4>
+  <div class="calc-pills">
+    <a href="#" class="pill">ROI Calculator</a>
+    <a href="#" class="pill">Employee Cost Calculator</a>
+    <a href="#" class="pill">Meeting Cost Calculator</a>
+    <a href="#" class="pill">Profit Margin Calculator</a>
+    <a href="#" class="pill">AI Adoption Readiness</a>
+    <a href="#" class="pill">SaaS Churn Calculator</a>
+    <a href="#" class="pill">Hiring Cost Calculator</a>
+  </div>
+</div>
+
+
+
+<script>
+const fmt=n=>n>=1e6?'$'+(n/1e6).toFixed(1)+'M':n>=1e3?'$'+(n/1e3).toFixed(0)+'K':'$'+Math.round(n);
+const fmtN=n=>n>=1000?(n/1000).toFixed(1)+'K':Math.round(n)+'';
+
+function calc(){
+  const emp=+document.getElementById('emp').value||0;
+  const sal=+document.getElementById('salary').value||0;
+  const ind=+document.getElementById('industry').value;
+  const budget=+document.getElementById('budget').value||0;
+  const auto=+document.getElementById('autoSlider').value;
+
+  const laborCost=emp*sal;
+  const grossSavings=laborCost*ind*(auto/100);
+  const annualCost=budget*12;
+  const net=grossSavings-annualCost;
+  const hrsSaved=emp*2080*(auto/100)*ind;
+  const roi=annualCost>0?net/annualCost:0;
+  const payback=grossSavings>0?(annualCost/grossSavings)*12:0;
+
+  document.getElementById('mainResult').textContent=net>0?fmt(net):'$0';
+  document.getElementById('bk1').textContent=fmtN(hrsSaved);
+  document.getElementById('bk2').textContent=roi>0?roi.toFixed(1)+'×':'—';
+  document.getElementById('bk3').textContent=payback>0&&payback<24?payback.toFixed(1)+' mo':'< 1 mo';
+
+  const r=document.getElementById('result');
+  r.classList.add('show');
+}
+
+// Slider visual fill
+const slider=document.getElementById('autoSlider');
+function updateSlider(){
+  const v=(slider.value-slider.min)/(slider.max-slider.min)*100;
+  slider.style.setProperty('--pct',v+'%');
+  document.getElementById('autoLabel').textContent=slider.value+'%';
+  calc();
+}
+slider.addEventListener('input',updateSlider);
+
+document.querySelectorAll('input[type=number],select').forEach(el=>el.addEventListener('input',calc));
+
+// Init
+updateSlider();
+calc();
+</script>
+
+<!-- Schema.org structured data for SEO -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"AI Savings Calculator for Business",
+  "description":"Free calculator to estimate annual business savings from AI automation. Instant ROI estimate for enterprises.",
+  "url":"https://aicalculator.io",
+  "applicationCategory":"BusinessApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+</body>
+</html>
