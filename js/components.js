@@ -22,12 +22,30 @@
     });
   }
 
+  // Fetch with a 3s timeout; one retry on failure (network error, timeout, or !ok).
+  async function fetchWithRetry(url, attempts = 2) {
+    let lastErr;
+    for (let i = 0; i < attempts; i++) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 3000);
+      try {
+        const res = await fetch(url, { signal: controller.signal });
+        if (res.ok) return res;
+        lastErr = new Error('HTTP ' + res.status);
+      } catch (e) {
+        lastErr = e;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    throw lastErr;
+  }
+
   async function loadComponent(selector, path) {
     const el = document.querySelector(selector);
     if (!el) return;
     try {
-      const res = await fetch(base + path);
-      if (!res.ok) return;
+      const res = await fetchWithRetry(base + path);
       const html = await res.text();
       if (selector === 'header' && el.querySelector('.topbar')) {
         const temp      = document.createElement('div');
