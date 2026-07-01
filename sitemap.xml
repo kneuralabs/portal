@@ -17,13 +17,6 @@
   </url>
 
   <url>
-    <loc>https://www.kneuralabs.com/approach.html</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://www.kneuralabs.com/journey.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
@@ -41,6 +34,13 @@
     <loc>https://www.kneuralabs.com/insights.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kneuralabs.com/studio.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
