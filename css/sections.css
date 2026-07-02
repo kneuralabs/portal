@@ -525,22 +525,25 @@ html[data-theme="dark"] .cta-strip .btn-primary:hover { background: var(--accent
   margin: 0;
 }
 
-/* ── Scroll reveal ── */
+/* ── Scroll reveal — soft-focus rise: content settles into sharpness ── */
 .sr {
   opacity: 0;
-  transform: translate3d(0, 26px, 0);
-  will-change: opacity, transform;
+  transform: translate3d(0, 14px, 0) scale(.995);
+  filter: blur(7px);
+  will-change: opacity, transform, filter;
   transition:
     opacity var(--dur-m) var(--ease-soft),
-    transform var(--dur-l) var(--ease-soft);
+    transform var(--dur-l) var(--ease-soft),
+    filter var(--dur-m) var(--ease-soft);
   transition-delay: var(--rd, 0ms);
 }
-.sr-left  { transform: translate3d(-26px, 0, 0); }
-.sr-right { transform: translate3d(26px, 0, 0); }
-.sr-scale { transform: scale(.96); }
+.sr-left  { transform: translate3d(-12px, 8px, 0); }
+.sr-right { transform: translate3d(12px, 8px, 0); }
+.sr-scale { transform: scale(.975); }
 .sr.revealed {
   opacity: 1;
   transform: none;
+  filter: none;
 }
 .sr.revealed { will-change: auto; }
 
@@ -574,13 +577,15 @@ html.js:not(.is-ready) .marks,
 html.js:not(.is-ready) .svc-hero .eyebrow,
 html.js:not(.is-ready) .svc-hero .lede {
   opacity: 0;
-  transform: translate3d(0, 22px, 0);
+  transform: translate3d(0, 14px, 0);
+  filter: blur(7px);
 }
 .hero .eyebrow, .hero-side, .hero-actions, .marks,
 .svc-hero .eyebrow, .svc-hero .lede {
   transition:
     opacity var(--dur-m) var(--ease-soft),
-    transform var(--dur-l) var(--ease-soft);
+    transform var(--dur-l) var(--ease-soft),
+    filter var(--dur-m) var(--ease-soft);
 }
 html.is-ready .hero-side    { transition-delay: 90ms; }
 html.is-ready .hero-actions { transition-delay: 160ms; }
@@ -631,15 +636,15 @@ details[open] summary { color: var(--ink); }
   html.js:not(.is-ready) .hero-actions,
   html.js:not(.is-ready) .marks,
   html.js:not(.is-ready) .svc-hero .eyebrow,
-  html.js:not(.is-ready) .svc-hero .lede { opacity: 1; transform: none; }
+  html.js:not(.is-ready) .svc-hero .lede { opacity: 1; transform: none; filter: none; }
 }
 
-/* Stat number rise */
+/* Stat number rise — settles into focus */
 .stat.revealed .n { animation: numRise var(--dur-xl) var(--ease-soft) both; }
 @keyframes numRise {
-  0% { opacity: 0; transform: translateY(28px); }
+  0% { opacity: 0; transform: translateY(14px); filter: blur(8px); }
   60% { opacity: 1; }
-  100% { opacity: 1; transform: none; }
+  100% { opacity: 1; transform: none; filter: none; }
 }
 
 /* ============================================================

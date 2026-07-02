@@ -1,6 +1,6 @@
 /* ============================================================
    Kneuralabs — Premium motion system
-   Smooth scroll · choreographed reveals · parallax · micro-interactions.
+   Smooth scroll · soft-focus reveals · micro-interactions.
    Dependency-free, progressive-enhancement, reduced-motion aware.
    ============================================================ */
 (function () {
@@ -56,12 +56,12 @@
     if (Math.abs(diff) < 0.15) {
       current = target;
       window.scrollTo(0, Math.round(current));
-      frameUpdate(); parallax();
+      frameUpdate();
       ticking = false; raf = 0; return;
     }
     current += diff * EASE;
     window.scrollTo(0, current);
-    frameUpdate(); parallax();
+    frameUpdate();
     raf = requestAnimationFrame(loop);
   }
   function start() { if (!ticking) { ticking = true; raf = requestAnimationFrame(loop); } }
@@ -78,18 +78,16 @@
       start();
     }, { passive: false });
     window.addEventListener('scroll', function () {
-      if (!ticking) { target = current = window.scrollY; frameUpdate(); parallax(); }
+      if (!ticking) { target = current = window.scrollY; frameUpdate(); }
     }, { passive: true });
     window.addEventListener('resize', function () {
       target = current = window.scrollY;
-      cacheParallaxOffsets();
     }, { passive: true });
     document.addEventListener('visibilitychange', function () {
       if (document.hidden && raf) { cancelAnimationFrame(raf); ticking = false; raf = 0; }
     });
   } else {
-    window.addEventListener('scroll', function () { frameUpdate(); parallax(); }, { passive: true });
-    window.addEventListener('resize', function () { cacheParallaxOffsets(); }, { passive: true });
+    window.addEventListener('scroll', function () { frameUpdate(); }, { passive: true });
   }
   frameUpdate();
 
@@ -111,51 +109,6 @@
     setTimeout(function () { dest.focus({ preventScroll: true }); }, smooth ? 520 : 0);
     if (history.replaceState) history.replaceState(null, '', href);
   });
-
-  /* ── Scroll-linked parallax ─────────────────────────────────
-     Offsets are cached at collect-time and refreshed on resize.
-     parallax() only reads pre-cached values — zero getBoundingClientRect
-     calls inside the scroll loop, eliminating forced layout reflows.
-  ─────────────────────────────────────────────────────────── */
-  var pxEls = [];
-
-  function cacheParallaxOffsets() {
-    if (!pxEls.length) return;
-    // Strip transforms so natural position is measured
-    pxEls.forEach(function (p) { p.el.style.transform = ''; });
-    var sy = window.scrollY;
-    pxEls.forEach(function (p) {
-      var r    = p.el.getBoundingClientRect();
-      p.docTop = r.top + sy;
-      p.docH   = r.height;
-    });
-  }
-
-  function collectParallax() {
-    if (reduce || !finePointer) return;
-    var map = [
-      ['.hero-side', 0.05], ['.marks', 0.07],
-      ['.cta-strip h2', -0.05], ['.svc-row .id-big', 0.08]
-    ];
-    map.forEach(function (pair) {
-      document.querySelectorAll(pair[0]).forEach(function (el) {
-        el.style.willChange = 'transform';
-        pxEls.push({ el: el, k: pair[1], docTop: 0, docH: 0 });
-      });
-    });
-    cacheParallaxOffsets();
-  }
-
-  function parallax() {
-    if (!pxEls.length) return;
-    var vh = window.innerHeight, sy = window.scrollY;
-    for (var i = 0; i < pxEls.length; i++) {
-      var p = pxEls[i], elTop = p.docTop - sy;
-      if (elTop + p.docH < -200 || elTop > vh + 200) continue;
-      var mid = elTop + p.docH / 2 - vh / 2;
-      p.el.style.transform = 'translate3d(0,' + (mid * p.k).toFixed(2) + 'px,0)';
-    }
-  }
 
   /* ── Hero headline: human typing effect ──────────────────
      Types each hero <h1> from a blank canvas with occasional
@@ -300,21 +253,6 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.sr').forEach(function (el) { revealObserver.observe(el); });
-  }
-  collectParallax();
-  parallax();
-
-  /* ── Magnetic buttons (desktop, subtle) ────────────────── */
-  if (!reduce && finePointer) {
-    document.querySelectorAll('.btn, .cta-mini').forEach(function (btn) {
-      btn.addEventListener('pointermove', function (e) {
-        var r = btn.getBoundingClientRect();
-        var mx = (e.clientX - r.left - r.width  / 2) / r.width;
-        var my = (e.clientY - r.top  - r.height / 2) / r.height;
-        btn.style.transform = 'translate(' + (mx * 7).toFixed(2) + 'px,' + (my * 7).toFixed(2) + 'px)';
-      });
-      btn.addEventListener('pointerleave', function () { btn.style.transform = ''; });
-    });
   }
 
   /* ── Stat counter ──────────────────────────────────────── */

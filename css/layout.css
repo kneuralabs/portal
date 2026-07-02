@@ -100,7 +100,7 @@
 /* Directional reveals translate vertically on narrow screens
    so nothing slides in from off-canvas on a phone. */
 @media (max-width: 720px) {
-  .sr-left, .sr-right { transform: translate3d(0, 20px, 0); }
+  .sr-left, .sr-right { transform: translate3d(0, 14px, 0); }
 }
 
 /* Landscape phones / short viewports — reclaim vertical space.

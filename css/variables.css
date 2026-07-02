@@ -1,7 +1,7 @@
 /* ============================================================
    Kneuralabs — Design tokens
    Editorial / structural system. Warm paper-and-ink palette,
-   sienna accent, Fraunces display + Inter text + JetBrains Mono.
+   sienna accent, Fraunces display + Source Serif 4 text + JetBrains Mono.
    ============================================================ */
 
 :root {
@@ -25,7 +25,7 @@
 
   /* ── Type ── */
   --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --sans:  "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --sans:  "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* ── Motion ── */
