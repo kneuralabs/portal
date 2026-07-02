@@ -31,8 +31,8 @@
   font-family: var(--serif);
   font-weight: 380;
   font-size: clamp(32px, 4.2vw, 56px);
-  letter-spacing: -.02em;
-  line-height: 1.05;
+  letter-spacing: -.012em;
+  line-height: 1.08;
   margin-top: 18px;
 }
 .section-head p {
@@ -52,9 +52,9 @@
   font-family: var(--serif);
   font-weight: 380;
   font-size: clamp(40px, 6vw, 84px);
-  letter-spacing: -.025em;
+  letter-spacing: -.015em;
   margin: 18px 0 0;
-  line-height: 1;
+  line-height: 1.05;
   text-wrap: balance;
 }
 .svc-hero h1 em { font-style: italic; color: var(--accent); }
@@ -114,7 +114,7 @@
   .cta-strip { padding-top: 48px; padding-bottom: 48px; }
   .marks { margin-top: 28px; }
   /* Marks: reset right-float on landscape phones so the row wraps cleanly */
-  .marks span[style] { margin-left: 0 !important; }
+  .marks .note { margin-left: 0; }
   .mobile-menu { padding-top: 64px; gap: 0; }
   .mobile-menu a { padding: 9px 0; font-size: 19px; }
   .frame {

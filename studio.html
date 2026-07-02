@@ -31,9 +31,9 @@
   <meta name="twitter:image" content="https://www.kneuralabs.com/assets/images/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" /></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" /></noscript>
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
@@ -102,18 +102,13 @@
     .marks .sq {
       width: 7px; height: 7px;
       background: var(--ink); transform: rotate(45deg);
-      animation: tickPulse 2.4s cubic-bezier(.83,0,.17,1) infinite;
     }
-    .marks span:nth-child(2) .sq { animation-delay: .4s; }
-    .marks span:nth-child(3) .sq { animation-delay: .8s; }
-    @keyframes tickPulse {
-      0%,100% { transform: rotate(45deg) scale(1); opacity: 1; }
-      50%      { transform: rotate(45deg) scale(1.25); opacity: .55; }
-    }
+    .marks .note { margin-left: auto; opacity: .7; }
+    .stat .n .unit { font-size: 24px; color: var(--ink-2); }
 
     @media (max-width: 980px) {
       .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-      .marks span[style] { margin-left: 0 !important; }
+      .marks .note { margin-left: 0; }
     }
     @media (max-width: 600px) {
       .hero { padding-top: 56px; padding-bottom: 40px; }
@@ -240,11 +235,6 @@
     .t-row.active::before {
       background: var(--accent); border-color: var(--accent);
       box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--accent);
-      animation: tlNodePulse 2.8s var(--ease-out) infinite;
-    }
-    @keyframes tlNodePulse {
-      0%,100% { box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--accent), 0 0 0 5px color-mix(in oklab, var(--accent) 0%, transparent); }
-      50%      { box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--accent), 0 0 0 14px color-mix(in oklab, var(--accent) 25%, transparent); }
     }
     .t-day {
       font-family: var(--mono); font-size: 11px;
@@ -485,9 +475,11 @@
       <div class="nav-group">
         <a href="services.html" data-page="services">Services <svg class="chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg></a>
         <div class="dropdown">
-          <a href="journey.html"  data-page="journey">Journey</a>
-          <a href="insights.html" data-page="insights">Insights</a>
-          <a href="studio.html"   data-page="studio" class="active">Studio</a>
+          <a href="journey.html"        data-page="journey">Journey</a>
+          <a href="launch-program.html" data-page="launch-program">Launch Program</a>
+          <a href="insights.html"       data-page="insights">Insights</a>
+          <a href="studio.html"         data-page="studio" class="active">Studio</a>
+          <a href="savings.html"        data-page="savings">Savings Calculator</a>
         </div>
       </div>
 
@@ -498,14 +490,13 @@
         </div>
       </div>
 
-      <a href="contact.html"        data-page="contact">Contact</a>
-      <a href="launch-program.html" data-page="launch-program">Launch</a>
+      <a href="contact.html" data-page="contact">Contact</a>
     </nav>
 
     <div class="topbar-actions">
       <a class="cta-mini" href="contact.html">
         <span class="dot" aria-hidden="true"></span>
-        Book discovery call
+        Book a discovery call
       </a>
 
       <button class="theme-toggle" id="themeToggleFloat" aria-label="Toggle dark mode">
@@ -534,9 +525,11 @@
       <div class="nav-group">
         <a href="services.html" data-page="services">Services <svg class="chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg></a>
         <div class="mobile-sub">
-          <a href="journey.html"  data-page="journey">Journey</a>
-          <a href="insights.html" data-page="insights">Insights</a>
-          <a href="studio.html"   data-page="studio">Studio</a>
+          <a href="journey.html"        data-page="journey">Journey</a>
+          <a href="launch-program.html" data-page="launch-program">Launch Program</a>
+          <a href="insights.html"       data-page="insights">Insights</a>
+          <a href="studio.html"         data-page="studio">Studio</a>
+          <a href="savings.html"        data-page="savings">Savings Calculator</a>
         </div>
       </div>
 
@@ -547,11 +540,10 @@
         </div>
       </div>
 
-      <a href="contact.html"        data-page="contact">Contact</a>
-      <a href="launch-program.html" data-page="launch-program">Launch</a>
+      <a href="contact.html" data-page="contact">Contact</a>
     </nav>
 
-    <a href="contact.html" class="mobile-cta">Book discovery call &rarr;</a>
+    <a href="contact.html" class="mobile-cta">Book a discovery call &rarr;</a>
 
     <div class="mobile-menu-brand">
       <a class="brand" href="index.html" aria-label="Kneuralabs home">
@@ -590,7 +582,7 @@
       <span><span class="sq"></span> Model-agnostic</span>
       <span><span class="sq"></span> Five-day prototype cycle</span>
       <span><span class="sq"></span> KPI on every build</span>
-      <span style="margin-left:auto;opacity:.7">No brand loyalty. Whatever works.</span>
+      <span class="note">No brand loyalty. Whatever works.</span>
     </div>
   </section>
 
@@ -603,7 +595,7 @@
         <div class="sub">Stacked like libraries — we pick what wins per task.</div>
       </div>
       <div class="stat">
-        <div class="n"><span data-count="5">5</span><span style="font-size:24px;color:var(--ink-2)">&nbsp;days</span></div>
+        <div class="n"><span data-count="5">5</span><span class="unit">&nbsp;days</span></div>
         <div class="l">Idea → working prototype</div>
         <div class="sub">Standard cycle. Mondays to Fridays. Real data.</div>
       </div>
@@ -625,7 +617,7 @@
     <div class="section-head">
       <div>
         <div class="eyebrow"><span class="tick"></span> How the studio operates</div>
-        <h2>Four operating <em>principles.</em></h2>
+        <h2>Four operating principles.</h2>
       </div>
       <p>
         The studio is a working shop, not a lab. Every engagement runs on the same four principles — they're what keeps the cycle short, the stack honest, and the outcome measurable. None of it is theory; this is how a build actually moves through the room.
@@ -648,7 +640,7 @@
       <article class="principle si lft">
         <div class="idx">P · 03</div>
         <h3>Outcomes, not experiments.</h3>
-        <p>Every build has a number attached: more revenue, less churn, faster ops. AI is the <em style="font-style:italic;color:var(--accent);">how</em>. The KPI is the <em style="font-style:italic;color:var(--accent);">why</em>. If the number doesn't move, we tear it down and rebuild.</p>
+        <p>Every build has a number attached: more revenue, less churn, faster ops. AI is the <em>how</em>. The KPI is the <em>why</em>. If the number doesn't move, we tear it down and rebuild.</p>
       </article>
 
       <article class="principle si lft">
@@ -664,7 +656,7 @@
     <div class="section-head">
       <div>
         <div class="eyebrow"><span class="tick"></span> A typical week</div>
-        <h2>Monday's idea is<br /><em>Friday's prototype.</em></h2>
+        <h2>Monday's idea is<br />Friday's prototype.</h2>
       </div>
       <p>
         Most studios call this a sprint. We call it a week. The shape is deliberate — long enough to ship something real, short enough that scope can't sprawl. You sit in the room as much or as little as suits you.
@@ -715,7 +707,7 @@
     <div class="section-head">
       <div>
         <div class="eyebrow"><span class="tick"></span> What comes out of the studio</div>
-        <h2>Four shapes a <em>build</em> can take.</h2>
+        <h2>Four shapes a build can take.</h2>
       </div>
       <p>
         Every studio engagement ends with a working thing. Sometimes it's a prototype to validate an idea, sometimes a tool a team picks up and runs with on Monday. These are the four shapes a build most often takes — they're independent, but combine cleanly.
@@ -786,7 +778,7 @@
     <div class="section-head">
       <div>
         <div class="eyebrow"><span class="tick"></span> The stack on hand</div>
-        <h2>Every frontier model,<br /><em>one workshop.</em></h2>
+        <h2>Every frontier model,<br />one workshop.</h2>
       </div>
       <p>
         A partial snapshot of what's currently on the rack. The list shifts weekly — we add what's worth adding and quietly retire what isn't. The point isn't the list; the point is that whichever model wins on your task is the one we'll reach for, without a sales pitch.
@@ -826,7 +818,7 @@
     <div class="frame">
       <div class="eyebrow"><span class="tick"></span> The studio in one line</div>
       <blockquote style="margin-top:24px;">
-        The future doesn't <em>wait around.</em> We build it anyway — one thing nobody thought possible at a time.
+        The future doesn't wait around. We build it anyway — one thing nobody thought possible at a time.
       </blockquote>
       <div class="by">— Kneuralabs Innovation Studio</div>
     </div>
@@ -837,7 +829,7 @@
     <div class="frame cta-grid">
       <div>
         <div class="eyebrow"><span class="tick"></span> Got a wild idea?</div>
-        <h2>Bring us your<br />boldest <em>thing.</em></h2>
+        <h2>Bring us your<br />boldest thing.</h2>
       </div>
       <div>
         <p>Drop your most ambitious challenge — the one nobody else will take on. A 30-minute call is enough to know whether the studio can ship a working version of it next week.</p>
@@ -884,7 +876,7 @@
       <div class="foot-col">
         <h4>Contact</h4>
         <a href="mailto:hello@kneuralabs.com">hello@kneuralabs.com</a>
-        <a href="contact.html">Book discovery call</a>
+        <a href="contact.html">Book a discovery call</a>
         <a href="https://www.linkedin.com/company/kneuralabs" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>

@@ -233,11 +233,11 @@
       var ops = [], sinceTypo = 0;
       atoms.forEach(function (a, i) {
         var canFumble = !a.br && a.ch !== ' ' && sinceTypo > 2 &&
-          (i === forced || Math.random() < 0.12);
+          (i === forced || Math.random() < 0.05);
         if (canFumble) {
-          var n = Math.random() < 0.65 ? 1 : 2;
+          var n = 1;
           for (var k = 0; k < n; k++) ops.push({ t: 'wrong', ch: wrongChar(a.ch), em: a.em });
-          ops.push({ t: 'pause', d: rnd(180, 360) });
+          ops.push({ t: 'pause', d: rnd(140, 240) });
           for (var k2 = 0; k2 < n; k2++) ops.push({ t: 'back' });
           sinceTypo = 0;
         }
@@ -247,12 +247,12 @@
 
       function delayFor(op) {
         if (op.t === 'pause') return op.d;
-        if (op.t === 'back') return rnd(55, 110);
-        if (op.t === 'break') return rnd(220, 360);
+        if (op.t === 'back') return rnd(40, 80);
+        if (op.t === 'break') return rnd(150, 250);
         var ch = op.t === 'wrong' ? op.ch : op.a.ch;
-        if (ch === ' ') return rnd(70, 150);
-        if (/[.,!?;:]/.test(ch)) return rnd(220, 420);
-        return rnd(45, 130);
+        if (ch === ' ') return rnd(45, 95);
+        if (/[.,!?;:]/.test(ch)) return rnd(150, 280);
+        return rnd(30, 80);
       }
 
       var qi = 0;
@@ -267,7 +267,7 @@
         setTimeout(step, delayFor(op));
       }
 
-      setTimeout(step, 360 + idx * 220);
+      setTimeout(step, 260 + idx * 160);
     });
   }
   typeHeroes();
