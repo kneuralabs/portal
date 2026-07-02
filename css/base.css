@@ -10,7 +10,6 @@ html, body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-feature-settings: "ss01", "cv11";
 }
 
 html {
@@ -22,8 +21,8 @@ html {
 html, body { overflow-x: clip; max-width: 100%; }
 
 body {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 16.5px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 420ms var(--ease-out), color 420ms var(--ease-out);
