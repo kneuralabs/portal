@@ -50,7 +50,7 @@
     } catch (_) { /* fall through to mailto fallback */ }
 
     if (!submitted) {
-      /* Graceful fallback: open mail client so the enquiry is never lost */
+      /* Graceful fallback: open mail client so the inquiry is never lost */
       var body = [
         'Name: '    + payload.full_name,
         'Company: ' + payload.company,

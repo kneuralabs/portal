@@ -31,9 +31,9 @@
   <meta name="twitter:image" content="https://www.kneuralabs.com/assets/images/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..500&family=JetBrains+Mono:wght@300;400;500&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..500&family=JetBrains+Mono:wght@300;400;500&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..500&family=JetBrains+Mono:wght@300;400;500&display=swap" /></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@300;400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@300;400;500&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@300;400;500&display=swap" /></noscript>
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
@@ -74,15 +74,15 @@
       gap: 64px; align-items: end;
     }
     h1.display {
-      font-family: var(--serif);
-      font-weight: 380;
+      font-family: var(--display);
+      font-weight: 600;
       font-size: clamp(48px, 7.2vw, 116px);
       line-height: .95;
       letter-spacing: -.025em;
       margin: 24px 0 0;
       text-wrap: balance;
     }
-    h1.display em { font-style: italic; font-weight: 340; color: var(--accent); }
+    h1.display em { font-style: italic; font-weight: 600; color: var(--accent); }
     .hero-side {
       font-size: 15.5px;
       color: var(--ink-2);
@@ -149,9 +149,9 @@
       display: grid; grid-template-columns: repeat(4,1fr); gap: 28px;
     }
     .stat .n {
-      font-family: var(--serif);
+      font-family: var(--display);
       font-size: 48px; line-height: 1;
-      letter-spacing: -.02em; font-weight: 400;
+      letter-spacing: -.02em; font-weight: 600;
       display: inline-block;
     }
     .stat .l {
@@ -175,12 +175,12 @@
       margin-bottom: 48px;
     }
     .section-head h2 {
-      font-family: var(--serif); font-weight: 380;
+      font-family: var(--display); font-weight: 600;
       font-size: clamp(32px, 4.2vw, 56px);
       letter-spacing: -.02em; line-height: 1.05;
       margin-top: 18px;
     }
-    .section-head h2 em { font-style: italic; color: var(--accent); font-weight: 340; }
+    .section-head h2 em { font-style: italic; color: var(--accent); font-weight: 600; }
     .section-head p {
       font-size: 16px; color: var(--ink-2);
       max-width: 58ch; line-height: 1.6;
@@ -206,7 +206,7 @@
       letter-spacing: .1em; color: var(--ink-2);
     }
     .principle h3 {
-      font-family: var(--serif); font-weight: 400;
+      font-family: var(--display); font-weight: 600;
       font-size: 22px; letter-spacing: -.01em; line-height: 1.2;
     }
     .principle p { color: var(--ink-2); font-size: 15px; line-height: 1.55; }
@@ -242,7 +242,7 @@
       color: var(--ink-2); padding-top: 6px;
     }
     .t-body h3 {
-      font-family: var(--serif); font-weight: 400;
+      font-family: var(--display); font-weight: 600;
       font-size: 24px; letter-spacing: -.01em;
       margin: 0 0 6px; line-height: 1.2;
     }
@@ -280,14 +280,14 @@
       display: inline-flex; align-items: center; justify-content: center;
       width: 44px; height: 44px; border-radius: 50%;
       background: var(--ink); color: var(--paper);
-      font-family: var(--serif); font-size: 18px; font-weight: 400;
+      font-family: var(--display); font-size: 18px; font-weight: 600;
       transition: transform var(--dur-s) var(--ease-spring);
     }
     .cap.feature .id { background: var(--accent); color: var(--on-accent); }
     .cap:hover .id { transform: scale(1.08) rotate(-3deg); }
     .cap h3 {
-      font-family: var(--serif); font-weight: 380;
-      font-size: 28px; letter-spacing: -.015em; line-height: 1.1;
+      font-family: var(--display); font-weight: 600;
+      font-size: 28px; letter-spacing: -.022em; line-height: 1.1;
     }
     .cap > p { color: var(--ink-2); font-size: 15px; line-height: 1.55; }
     .cap ul {
@@ -350,7 +350,7 @@
       color: var(--ink-2);
     }
     .model .name {
-      font-family: var(--serif); font-weight: 400;
+      font-family: var(--display); font-weight: 600;
       font-size: 18px; letter-spacing: -.01em;
     }
     .model .use {
@@ -373,13 +373,13 @@
     }
     .pull blockquote {
       margin: 0;
-      font-family: var(--serif); font-weight: 380;
+      font-family: var(--display); font-weight: 600;
       font-size: clamp(28px, 4vw, 56px);
       line-height: 1.1; letter-spacing: -.02em;
       max-width: 22ch;
       text-wrap: balance;
     }
-    .pull blockquote em { font-style: italic; color: var(--accent); font-weight: 340; }
+    .pull blockquote em { font-style: italic; color: var(--accent); font-weight: 600; }
     .pull .by {
       margin-top: 24px;
       font-family: var(--mono); font-size: 11px;
@@ -406,12 +406,12 @@
       gap: 64px; align-items: end;
     }
     .cta-strip h2 {
-      font-family: var(--serif); font-weight: 380;
+      font-family: var(--display); font-weight: 600;
       font-size: clamp(36px, 5vw, 72px);
       letter-spacing: -.02em; line-height: 1.02; margin-top: 18px;
       color: #F4F3F0;
     }
-    .cta-strip h2 em { font-style: italic; color: oklch(0.78 0.1 70); font-weight: 340; }
+    .cta-strip h2 em { font-style: italic; color: oklch(0.78 0.1 70); font-weight: 600; }
     .cta-strip p {
       color: rgba(244,243,240,.72);
       font-size: 15.5px; max-width: 48ch;
@@ -606,7 +606,7 @@
       </div>
       <div class="stat">
         <div class="n">∞</div>
-        <div class="l">Problems we're down for</div>
+        <div class="l">Problems we'll take on</div>
         <div class="sub">No scope too weird. No idea too early.</div>
       </div>
     </div>
@@ -675,7 +675,7 @@
         <div class="t-day">Tue · D2</div>
         <div class="t-body">
           <h3>Wire the stack.</h3>
-          <p>Pull the right models, plug them into your data, instrument the metric. Vibes-test outputs ourselves before anyone else sees them.</p>
+          <p>Pull the right models, plug them into your data, instrument the metric. Pressure-test outputs ourselves before anyone else sees them.</p>
         </div>
       </div>
       <div class="t-row active si">
@@ -733,7 +733,7 @@
         <div class="tag"><span>Build 02 · Featured</span><span>2–4 wks</span></div>
         <div class="id">B2</div>
         <h3>AI Agent or Pipeline</h3>
-        <p>When the prototype hit. Harden it into a multi-step agent or pipeline — observability, fallback paths, eval sweep, scheduled runs.</p>
+        <p>The prototype worked. Harden it into a multi-step agent or pipeline — observability, fallback paths, eval sweep, scheduled runs.</p>
         <ul>
           <li>Multi-model orchestration</li>
           <li>Eval suite + regression tracking</li>
@@ -787,7 +787,7 @@
 
     <div>
       <div class="stack-head">
-        <div style="font-family:var(--serif); font-size:22px; font-weight:400; letter-spacing:-.01em;">Currently in rotation</div>
+        <div style="font-family:var(--display); font-size:22px; font-weight:400; letter-spacing:-.01em;">Currently in rotation</div>
         <div class="count">15 of 30+ · refreshed weekly</div>
       </div>
 

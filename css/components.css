@@ -36,9 +36,9 @@ header.top.scrolled { box-shadow: 0 1px 0 var(--rule); }
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: clamp(24px, 2.6vw, 34px);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -.01em;
   line-height: 1;
   flex: none;
@@ -197,8 +197,8 @@ details summary {
   gap: 20px;
   align-items: center;
   padding: 24px 8px;
-  font-family: var(--serif);
-  font-weight: 400;
+  font-family: var(--display);
+  font-weight: 600;
   font-size: 22px;
   letter-spacing: -.01em;
 }
@@ -251,7 +251,7 @@ details .body {
 }
 .q-index a:hover, .q-index a:focus-visible { background: var(--paper-2); padding-left: 16px; outline: none; }
 .q-index .qn { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--ink-2); }
-.q-index .qt { font-family: var(--serif); font-weight: 400; font-size: 21px; letter-spacing: -.01em; }
+.q-index .qt { font-family: var(--display); font-weight: 600; font-size: 21px; letter-spacing: -.01em; }
 .q-index .go {
   width: 28px; height: 28px;
   border-radius: 50%;
@@ -342,8 +342,8 @@ form.card {
 }
 html[data-theme="dark"] form.card { border-color: rgba(255,255,255,.08); }
 form.card h3 {
-  font-family: var(--serif);
-  font-weight: 400;
+  font-family: var(--display);
+  font-weight: 600;
   font-size: 22px;
   letter-spacing: -.01em;
   margin: 0 0 4px;
@@ -412,7 +412,7 @@ form.card button[disabled] { opacity: .7; cursor: progress; }
   text-align: left;
 }
 .form-success svg { stroke: var(--accent); }
-.form-success h3 { font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 4px 0 0; }
+.form-success h3 { font-family: var(--display); font-size: 24px; font-weight: 600; margin: 4px 0 0; }
 .form-success p { color: var(--ink-2); font-size: 15px; line-height: 1.6; }
 .form-success a { color: var(--ink); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
 
@@ -658,9 +658,9 @@ html[data-theme="dark"] .menu-close:hover { background: var(--ink); border-color
   display: flex;
   align-items: center;
   gap: 16px;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: clamp(22px, 7vw, 32px);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -.03em;
   color: var(--ink-2);
   padding: 14px 0;
@@ -685,7 +685,7 @@ html[data-theme="dark"] .menu-close:hover { background: var(--ink); border-color
 }
 .mobile-nav a::after {
   content: "→";
-  font-family: var(--sans);
+  font-family: var(--text);
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0;
@@ -841,7 +841,7 @@ html[data-theme="dark"] .menu-close:hover { background: var(--ink); border-color
   background: var(--ink);
   color: var(--paper);
   border-radius: 999px;
-  font-family: var(--sans);
+  font-family: var(--text);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: .01em;
