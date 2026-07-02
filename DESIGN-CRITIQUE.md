@@ -249,6 +249,53 @@ level — it's the three loudest square inches of the product.
 before any further page is built. #3 and #4 are a two-day polish sprint.
 #5 is hygiene that keeps the system honest.
 
+---
+
+## Addendum — actions taken in this branch
+
+Implemented after the review above, under two constraints set by the owner:
+the logo stays exactly as it is, and the hero typewriter animation stays
+(refined, not removed).
+
+1. **Typographic ownership (improvement #2)** — the `--serif` token now
+   holds what its name promised: **Fraunces** (variable optical size,
+   300–600, true italics) carries every display heading, numeral, and
+   italic accent; Inter remains the text/UI face; JetBrains Mono the
+   microcopy. Display tracking and leading retuned for the serif.
+2. **Motion discipline (improvement #3)** — every infinite animation is
+   gone: marks-row tick pulse, timeline node pulse (both copies, including
+   studio's embedded system). Scroll reveals dropped their `blur()`. Badge
+   hovers no longer spring-rotate; the brand hover no longer tilts; the
+   stat numerals no longer morph letter-spacing. The dead `animations.css`
+   (loaded by no page) is deleted.
+3. **Hero typewriter — kept, made better** — its caret CSS lived in the
+   dead stylesheet, so the caret never actually rendered; it now blinks
+   in the accent color, and when typing completes it blinks twice and
+   comes to rest instead of blinking forever. Typing cadence tightened
+   (~40% faster), fumbles rarer and single-keystroke, so the headline
+   lands while the visitor is still watching.
+4. **Emphasis rationed (improvement #4)** — the italic-sienna accent now
+   appears exactly once per page, in the hero `<h1>`. All section-level
+   `<em>` devices removed (nine pages, including all five on studio).
+5. **One CTA verb (improvement #4)** — every primary action reads
+   "Book a discovery call." Top-level "Launch" is folded into the
+   Services dropdown as "Launch Program" (shared nav and studio's copy,
+   which had also drifted — it was missing Savings Calculator). The
+   contact form heading and button now match the verb.
+6. **Rhythm variation (§5)** — one full-width quiet moment added to the
+   homepage: the site's best line, *"Built to run. Not to file."*, set
+   large and centered between the services grid and the closing CTA.
+7. **Craft leaks swept (improvement #5)** — undefined `--stroke` token
+   replaced with `--rule`; `--accent-2` given a named role (`.alt` for
+   the modernization service, plus a dark-mode contrast fix the inline
+   styles had been masking); inline `style=""` attributes that CSS fought
+   with `!important` replaced by real classes (`.note`, `.unit`, `.alt`,
+   `.section-cta`, `.cta-strip .eyebrow`).
+
+Deliberately not done: the logo (owner's call — see improvement #1, which
+stands), studio's copy voice (content, not design), and the logo PNG's
+weight (any re-export would alter the asset).
+
 ### What's already Apple-grade — protect it
 
 - The paper/ink/sienna OKLCH palette and the genuinely designed dark theme.
